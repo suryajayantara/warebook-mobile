@@ -58,7 +58,9 @@ class ThesisView extends StatelessWidget {
                             child: Column(
                               children: [
                                 DocumentCard(
-                                  onTap: () {},
+                                  onTap: () {
+                                    print('error');
+                                  },
                                 ),
                                 DocumentCard(
                                   onTap: () {},
