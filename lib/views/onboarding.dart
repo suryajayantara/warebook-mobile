@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
-import 'package:warebook_mobile/views/components/OnboardPage.dart';
-import 'package:warebook_mobile/views/components/SolidButton.dart';
+import 'package:warebook_mobile/views/components/onboarding_page.dart';
+import 'package:warebook_mobile/views/components/button.dart';
 
 class OnboardingView extends StatefulWidget {
   OnboardingView({Key? key}) : super(key: key);
