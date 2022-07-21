@@ -3,8 +3,8 @@ class ImagePath {
   static String imgFolder = 'assets/images/';
 
   // Background List
-
   static String splashBg = imgFolder + 'splash-bg.png';
+  static String itemBg = imgFolder + 'window-bg.png';
   // SVG List
   static String whiteLogo = imgFolder + 'white-icon.svg';
   static String firstOnboarding = imgFolder + 'onboarding/1.svg';

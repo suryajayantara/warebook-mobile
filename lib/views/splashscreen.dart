@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
+import 'package:warebook_mobile/controllers/Auth/login_controller.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  SplashScreen({Key? key}) : super(key: key);
+
+  final _loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {

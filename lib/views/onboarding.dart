@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
+import 'package:warebook_mobile/themes/colors.dart';
+import 'package:warebook_mobile/views/components/button/solid_button.dart';
 import 'package:warebook_mobile/views/components/onboarding_page.dart';
-import 'package:warebook_mobile/views/components/button.dart';
 
 class OnboardingView extends StatefulWidget {
   OnboardingView({Key? key}) : super(key: key);
@@ -75,6 +76,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 32),
                   child: SolidButton(
+                    color: ColorsTheme.lightBlue,
                     title: "Selanjutnya",
                     onTap: () {},
                   ),

@@ -11,7 +11,7 @@ class TitleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(top: 150, left: 50, right: 50),
+      margin: EdgeInsets.only(top: 150, left: 35, right: 35),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
