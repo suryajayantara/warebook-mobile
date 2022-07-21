@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:warebook_mobile/views/createRepository.dart';
 import 'package:warebook_mobile/views/onboarding.dart';
 import 'package:warebook_mobile/views/splashscreen.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: OnboardingView(),
+      home: CreateRepository(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(brightness: Brightness.light),
     );
