@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:warebook_mobile/views/auth/loginPage.dart';
-import 'package:warebook_mobile/views/auth/registrationPage.dart';
-import 'package:warebook_mobile/views/auth/selectaccount.dart';
+
 import 'package:warebook_mobile/views/dashboard.dart';
 import 'package:warebook_mobile/views/onboarding.dart';
 import 'package:warebook_mobile/views/splashscreen.dart';
