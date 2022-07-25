@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:warebook_mobile/views/createRepository.dart';
 import 'package:warebook_mobile/views/onboarding.dart';
+import 'package:warebook_mobile/views/register.dart';
 import 'package:warebook_mobile/views/splashscreen.dart';
 
 void main(List<String> args) {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: CreateRepository(),
+      home: Registerpage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(brightness: Brightness.light),
     );
