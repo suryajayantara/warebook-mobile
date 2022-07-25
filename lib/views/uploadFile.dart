@@ -42,9 +42,11 @@ class UploadPage extends StatelessWidget {
                       showCursor: true,
                       autofocus: true,
                       decoration: InputDecoration(
-                        label: Text("Nama"),
+                        label: Text("Nama Bagian"),
                         hintText: "Nama Bagian",
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
                       ),
                     ),
                     SizedBox(
@@ -60,9 +62,11 @@ class UploadPage extends StatelessWidget {
                                   showCursor: true,
                                   autofocus: true,
                                   decoration: InputDecoration(
-                                    label: Text("No."),
-                                    hintText: "No. Bagian",
-                                    border: OutlineInputBorder(),
+                                    label: Text("Hal. Awal"),
+                                    hintText: "No.Halaman",
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10))),
                                   ),
                                 )
                               ],
@@ -80,9 +84,11 @@ class UploadPage extends StatelessWidget {
                                   showCursor: true,
                                   autofocus: true,
                                   decoration: InputDecoration(
-                                    label: Text("No."),
-                                    hintText: "No. Bagian",
-                                    border: OutlineInputBorder(),
+                                    label: Text("No. Akhir"),
+                                    hintText: "No.Halaman",
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10))),
                                   ),
                                 )
                               ],
