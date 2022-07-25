@@ -3,9 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
 
-
-
-
 class DocumentCard extends StatelessWidget {
   final Function()? onTap;
 

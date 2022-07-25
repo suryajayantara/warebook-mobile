@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/views/components/Card.dart';
+import 'package:warebook_mobile/views/components/card/organism/title_card.dart';
 
 class ThesisView extends StatelessWidget {
   const ThesisView({Key? key}) : super(key: key);

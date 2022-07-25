@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class EmailField extends StatelessWidget {
   final TextEditingController? controller;
   String? hintText;

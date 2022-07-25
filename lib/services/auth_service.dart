@@ -9,7 +9,7 @@ class AuthService extends GetConnect {
     // print(url_path.url + 'login');
     // return user;
     return await post(
-        Uri.parse(url_path.url + 'login').toString(), user.toJson(),
+        Uri.parse(url_path.serviceUrl() + 'login').toString(), user.toJson(),
         headers: {
           'Content-type': 'application/json',
           'Accept': 'application/json',
@@ -26,7 +26,7 @@ class AuthService extends GetConnect {
   }
 
   void logout(token) async {
-    await get(url_path.url + 'logout', headers: url_path.header(token))
+    await get(url_path.serviceUrl() + 'logout', headers: url_path.header(token))
         .then((value) => print(value.body['message']))
         .catchError((e) {
       throw "${e}";

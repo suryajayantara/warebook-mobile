@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
-
-
-class EmailField extends StatelessWidget {
+class PasswordField extends StatelessWidget {
   final TextEditingController? controller;
   String? hintText;
   String? label;
-  EmailField(
+  PasswordField(
       {Key? key,
       required this.controller,
       required this.hintText,
@@ -20,6 +18,7 @@ class EmailField extends StatelessWidget {
       child: TextFormField(
           showCursor: true,
           autofocus: true,
+          obscureText: true,
           controller: controller,
           decoration: InputDecoration(
             hintText: hintText,
