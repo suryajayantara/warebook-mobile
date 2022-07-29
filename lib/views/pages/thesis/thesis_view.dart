@@ -11,6 +11,10 @@ class ThesisView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: Text("+"),
+          onPressed: () {},
+        ),
         body: SafeArea(
       child: ListView(
         children: [
@@ -59,14 +63,15 @@ class ThesisView extends StatelessWidget {
                             margin: EdgeInsets.symmetric(vertical: 25),
                             child: Column(
                               children: [
-                                DocumentCard(
-                                  onTap: () {
-                                    print('error');
-                                  },
-                                ),
-                                DocumentCard(
-                                  onTap: () {},
-                                )
+                                    // DocumentCard(
+                                    //   onTap: () {
+                                    //     print('error');
+                                    //   },
+                                    // ),
+                                    // DocumentCard(
+                                    //   onTap: () {},
+                                    // )
+                                
                               ],
                             ),
                           )

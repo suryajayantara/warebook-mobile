@@ -20,12 +20,21 @@ Users _$UsersFromJson(Map<String, dynamic> json) => Users(
           : Departement.fromJson(json['departement'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$UsersToJson(Users instance) => <String, dynamic>{
-      'name': instance.name,
-      'email': instance.email,
-      'password': instance.password,
-      'token': instance.token,
-      'uniqueId': instance.uniqueId,
-      'study': instance.study,
-      'departement': instance.departement,
-    };
+Map<String, dynamic> _$UsersToJson(Users instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('name', toNull(instance.name));
+  val['email'] = instance.email;
+  val['password'] = instance.password;
+  writeNotNull('token', toNull(instance.token));
+  writeNotNull('uniqueId', toNull(instance.uniqueId));
+  writeNotNull('study', toNull(instance.study));
+  writeNotNull('departement', toNull(instance.departement));
+  return val;
+}

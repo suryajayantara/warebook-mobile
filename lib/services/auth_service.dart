@@ -5,9 +5,14 @@ import 'package:warebook_mobile/models/users.dart';
 class AuthService extends GetConnect {
   final url_path = NetworkUtility();
 
+
+  /* 
+
+    Login Function : Digunakan untuk melakukan login
+    Params yang dikirim berupa model Users dari Controller
+  
+  */
   Future<Users> login(Users user) async {
-    // print(url_path.url + 'login');
-    // return user;
     return await post(
         Uri.parse(url_path.serviceUrl() + 'login').toString(), user.toJson(),
         headers: {
@@ -25,6 +30,12 @@ class AuthService extends GetConnect {
     });
   }
 
+  /*
+
+      Logout Function => Method yang digunakan untuk melakukan Logout
+      Param yang dikirim berupakan Token (yang disimpan di GetStorage)
+  
+   */
   void logout(token) async {
     await get(url_path.serviceUrl() + 'logout', headers: url_path.header(token))
         .then((value) => print(value.body['message']))
@@ -32,4 +43,28 @@ class AuthService extends GetConnect {
       throw "${e}";
     });
   }
+
+
+  /*  
+
+      Get User Details Method => Method untuk mengambil data User
+      Param yang dikirim berupa token , digunakan untuk mengcheck user mana yang sedang login
+      *Jika tidak ada token, maka dianggap user tidak login
+      *Jika token sudah expired, maka request token kembali
+  
+  */
+
+  Future<Users> getUserDetail(token) async {
+    return await get(url_path.serviceUrl() + 'getUser',
+            headers: url_path.header(token))
+        .then(
+      (value) {
+        // print(value.body);
+        return Users.fromJson(value.body);
+      },
+    ).catchError((e) {
+      throw "${e}";
+    });
+  }
+
 }

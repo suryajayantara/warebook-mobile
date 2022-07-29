@@ -10,17 +10,17 @@ part 'users.g.dart';
 @JsonSerializable(explicitToJson: true)
 class Users {
   @JsonKey(toJson: toNull, includeIfNull: false)
-  final String? name;
-  final String? email;
-  final String? password;
+  String? name;
+  String? email;
+  String? password;
   @JsonKey(toJson: toNull, includeIfNull: false)
-  final String? token;
+  String? token;
   @JsonKey(toJson: toNull, includeIfNull: false)
-  final String? uniqueId;
+  String? uniqueId;
   @JsonKey(toJson: toNull, includeIfNull: false)
-  final Study? study;
+  Study? study;
   @JsonKey(toJson: toNull, includeIfNull: false)
-  final Departement? departement;
+  Departement? departement;
 
   Users(
       {this.name,

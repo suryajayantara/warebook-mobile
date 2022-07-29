@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class EmailField extends StatelessWidget {
-  final TextEditingController? controller;
+  TextEditingController? controller;
   String? hintText;
   String? label;
   EmailField(
@@ -16,6 +16,14 @@ class EmailField extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
       child: TextFormField(
+          validator: (value) {
+            bool emailValid = RegExp(
+                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                .hasMatch(value.toString());
+            if (emailValid) {
+              return 'Email Tidak Benar';
+            }
+          },
           showCursor: true,
           autofocus: true,
           controller: controller,

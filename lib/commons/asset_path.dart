@@ -14,6 +14,10 @@ class ImagePath {
   static String secondOnboarding = imgFolder + 'onboarding/2.svg';
   static String thirdOnboarding = imgFolder + 'onboarding/3.svg';
 
+  // Auth Selector Images Assets
+  static String lectureSelector = imgFolder + 'auth/lecture.svg';
+  static String StudentSelector = imgFolder + 'auth/student.svg';
+
   // Icons List
   static String file = imgFolder + 'icons/file.svg';
 

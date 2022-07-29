@@ -3,8 +3,12 @@ part 'study.g.dart';
 
 @JsonSerializable()
 class Study {
-  final String? studyName;
-  final String? desc;
+  
+  @JsonKey(
+    name: 'studies_name',
+  )
+  String? studyName;
+  String? desc;
 
   Study({this.studyName, this.desc});
 

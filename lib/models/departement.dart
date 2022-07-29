@@ -3,6 +3,7 @@ part 'departement.g.dart';
 
 @JsonSerializable()
 class Departement {
+  @JsonKey(name: 'departement_name')
   final String? departemenName;
   final String? desc;
 

@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:warebook_mobile/models/users.dart';
 import 'package:warebook_mobile/services/auth_service.dart';
-import 'package:warebook_mobile/views/home.dart';
-import 'package:warebook_mobile/views/login.dart';
+import 'package:warebook_mobile/views/pages/menu/home.dart';
+import 'package:warebook_mobile/views/pages/auth/login.dart';
 import 'package:warebook_mobile/views/onboarding.dart';
 
 class LoginController extends GetxController {
@@ -12,6 +12,7 @@ class LoginController extends GetxController {
   TextEditingController password = TextEditingController();
   GetStorage dataStorage = GetStorage('auth');
   final _authService = new AuthService();
+  
   // Variable
   var token;
   bool isLoading = false.obs();

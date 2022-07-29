@@ -7,12 +7,12 @@ part of 'departement.dart';
 // **************************************************************************
 
 Departement _$DepartementFromJson(Map<String, dynamic> json) => Departement(
-      departemenName: json['departemenName'] as String?,
+      departemenName: json['departement_name'] as String?,
       desc: json['desc'] as String?,
     );
 
 Map<String, dynamic> _$DepartementToJson(Departement instance) =>
     <String, dynamic>{
-      'departemenName': instance.departemenName,
+      'departement_name': instance.departemenName,
       'desc': instance.desc,
     };
