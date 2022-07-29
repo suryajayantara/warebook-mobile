@@ -21,4 +21,5 @@ class ImagePath {
   // Icons List
   static String file = imgFolder + 'icons/file.svg';
 
+
 }
