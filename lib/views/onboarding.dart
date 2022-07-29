@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
-import 'package:warebook_mobile/views/components/OnboardPage.dart';
-import 'package:warebook_mobile/views/components/SolidButton.dart';
+import 'package:warebook_mobile/controllers/Auth/user_controller.dart';
+import 'package:warebook_mobile/themes/colors.dart';
+import 'package:warebook_mobile/views/components/button/solid_button.dart';
+import 'package:warebook_mobile/views/components/onboarding_page.dart';
+import 'package:warebook_mobile/views/pages/auth/login.dart';
 
 class OnboardingView extends StatefulWidget {
   OnboardingView({Key? key}) : super(key: key);
@@ -12,6 +15,12 @@ class OnboardingView extends StatefulWidget {
 }
 
 class _OnboardingViewState extends State<OnboardingView> {
+
+  final _userController = Get.put(UserController());
+  
+
+
+
   List<Widget> _onBoardPageList = [
     OnboardPage(
         imgUrl: ImagePath.firstOnboarding,
@@ -43,7 +52,7 @@ class _OnboardingViewState extends State<OnboardingView> {
           controller: _pvController,
           children: _onBoardPageList,
           onPageChanged: (index) {
-            print(index);
+            
             setState(() {
               activePage = index + 1;
             });
@@ -75,8 +84,11 @@ class _OnboardingViewState extends State<OnboardingView> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 32),
                   child: SolidButton(
-                    title: "Selanjutnya",
-                    onTap: () {},
+                    color: ColorsTheme.lightBlue,
+                    title: "Masuk",
+                    onTap: () {
+                      Get.offAll(() => LoginPage());
+                    },
                   ),
                 )
               ],

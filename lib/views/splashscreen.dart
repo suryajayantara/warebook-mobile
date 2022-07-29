@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:warebook_mobile/commons/asset_path.dart';
+import 'package:warebook_mobile/controllers/Auth/login_controller.dart';
+import 'package:warebook_mobile/controllers/Auth/user_controller.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  SplashScreen({Key? key}) : super(key: key);
+
+  final _loginController = Get.put(LoginController());
+ 
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -12,13 +20,13 @@ class SplashScreen extends StatelessWidget {
         decoration: BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('assets/images/splash-bg.png'))),
+                image: AssetImage(ImagePath.splashBg))),
         width: Get.width,
         child: Container(
           alignment: Alignment.center,
           margin: EdgeInsets.symmetric(vertical: 0, horizontal: 50),
           child: SvgPicture.asset(
-            'assets/images/white-icon.svg',
+            ImagePath.whiteLogo,
             color: Colors.white,
           ),
         ),
