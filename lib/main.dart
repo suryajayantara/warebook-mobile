@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-
-
-import 'package:warebook_mobile/views/onboarding.dart';
-import 'package:warebook_mobile/views/pages/auth/select_account.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:warebook_mobile/views/pages/thesis/create_repo_thesis.dart';
-import 'package:warebook_mobile/views/splashscreen.dart';
-import 'package:warebook_mobile/views/pages/thesis/thesis_view.dart';
-
 
 void main(List<String> args) async {
   await GetStorage.init();

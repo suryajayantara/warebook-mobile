@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:warebook_mobile/helpers/ext_form_validator.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/controllers/Thesis/thesis_controller.dart';
-import 'package:warebook_mobile/themes/colors.dart';
-import 'package:warebook_mobile/views/components/form/normal_field.dart';
-import 'package:warebook_mobile/views/components/form/number_field.dart';
-import 'package:warebook_mobile/views/components/form/text_area_field.dart';
+import 'package:warebook_mobile/helpers/regex_seting.dart';
+import 'package:warebook_mobile/views/components/form/custom_input_form.dart';
+import 'package:warebook_mobile/views/components/form/upload_file_field.dart';
+import 'package:warebook_mobile/views/pages/thesis/thesis_view.dart';
 
-class CreatingThesisRepoView extends StatelessWidget {
+class CreatingThesisRepoView extends StatefulWidget {
   CreatingThesisRepoView({Key? key}) : super(key: key);
 
+  @override
+  State<CreatingThesisRepoView> createState() => _CreatingThesisRepoViewState();
+}
+
+class _CreatingThesisRepoViewState extends State<CreatingThesisRepoView> {
   // Controller Init
   final thesisController = Get.put(ThesisController());
   final _key = GlobalKey<FormState>();
+  final _regexExp = new RegexTypeExp();
 
   @override
   Widget build(BuildContext context) {
@@ -48,52 +56,64 @@ class CreatingThesisRepoView extends StatelessWidget {
                       margin: EdgeInsets.only(top: 20),
                       child: Form(
                           key: _key,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           child: Column(
                             children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 0),
-                                child: NormalField(
-                                  label: "Judul",
-                                  hintText: 'Masukan Judul disini',
-                                  controller: thesisController.title,
-                                  validate: (value) {
-                                    if (value == null) {
-                                      return 'Tahun Pembuatan Kosong';
-                                    }
-                                    return "";
-                                  },
-                                ),
-                              ),
-                              Padding(
+                              // Judul
+                              CustomInputForm(
+                                hintText: 'Masukan Judul Disini',
                                 padding: EdgeInsets.symmetric(vertical: 10),
-                                child: NumberField(
-                                  label: "Tahun Pembuatan",
-                                  hintText: 'Masukan Tanun Pembuatan disini',
-                                  controller: thesisController.createdYear,
-                                  validate: (value) {
-                                    if (value == null) {
-                                      return 'Tahun Pembuatan Kosong';
-                                    }
-                                    return "";
-                                  },
-                                ),
-                              ),
-                              TextAreaField(
-                                hintText: "Masukan Abstrakmu disini",
-                                label: "Abstrak",
-                                maxLines: 6,
-                                controller: thesisController.abstract,
-                                validate: (value) {
-                                  if (value == null) {
-                                    return 'Tahun Pembuatan Kosong';
-                                  }
-                                  return "";
+                                validator: (val) {
+                                  // Validasi jika form ini tidak boleh kosong
+                                  if (!val!.isNotNull || val.isEmpty)
+                                    return "Judul Tidak Boleh Kosong";
+
+                                  // Validasi Jika Form Mimiliki panjang minimal karakter
+                                  if (val.length < 1)
+                                    return "Judul Harus lebih dari 2 Huruf";
                                 },
                               ),
+
+                              // Abstract
+
+                              CustomInputForm(
+                                hintText: 'Masukan Judul Disini',
+                                inputType: TextInputType.multiline,
+                                maxLines: 7,
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                validator: (val) {
+                                  if (!val!.isNotNull || val.isEmpty)
+                                    return "Judul Tidak Boleh Kosong";
+
+                                  if (val.length < 2)
+                                    return "Judul Harus lebih dari 2 Huruf";
+                                },
+                              ),
+
+                              CustomInputForm(
+                                hintText: 'Masukan Judul Disini',
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                validator: (val) {
+                                  if (!val!.isNotNull || val.isEmpty)
+                                    return "Judul Tidak Boleh Kosong";
+
+                                  if (val.length < 2)
+                                    return "Judul Harus lebih dari 2 Huruf";
+                                },
+                              ),
+
+                              UploadField(
+                                  description: thesisController.uploadStatus,
+                                  padding: EdgeInsets.symmetric(vertical: 10),
+                                  ontap: () {
+                                    thesisController.selectFile();
+                                  }),
+                              
                               ElevatedButton(
                                   onPressed: () {
-                                    if (_key.currentState!.validate()) {}
+                                    if (_key.currentState!.validate()) {
+                                      Get.to(ThesisView());
+                                    }
                                   },
                                   child: Text('Submit'))
                             ],

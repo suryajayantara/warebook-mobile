@@ -9,7 +9,7 @@ class NetworkUtility {
   
   */
 
-  String hostUrl = "192.168.1.65";
+  String hostUrl = "192.168.1.55";
   String hostPort = "8000";
   String hostVersion = 'v1';
 
