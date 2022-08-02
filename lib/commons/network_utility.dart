@@ -9,7 +9,7 @@ class NetworkUtility {
   
   */
 
-  String hostUrl = "192.168.1.55";
+  String hostUrl = "192.168.43.227";
   String hostPort = "8000";
   String hostVersion = 'v1';
 
@@ -20,7 +20,6 @@ class NetworkUtility {
   // Header
   Map<String, String> header(token) {
     return {
-      "Content-type": "application/json",
       'Accept': 'application/json',
       'Authorization': 'Bearer $token'
     };

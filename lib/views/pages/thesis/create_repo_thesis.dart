@@ -61,6 +61,7 @@ class _CreatingThesisRepoViewState extends State<CreatingThesisRepoView> {
                             children: [
                               // Judul
                               CustomInputForm(
+                                controller: thesisController.title,
                                 hintText: 'Masukan Judul Disini',
                                 padding: EdgeInsets.symmetric(vertical: 10),
                                 validator: (val) {
@@ -77,7 +78,8 @@ class _CreatingThesisRepoViewState extends State<CreatingThesisRepoView> {
                               // Abstract
 
                               CustomInputForm(
-                                hintText: 'Masukan Judul Disini',
+                                controller: thesisController.abstract,
+                                hintText: 'Masukan Abstrak Disini',
                                 inputType: TextInputType.multiline,
                                 maxLines: 7,
                                 padding: EdgeInsets.symmetric(vertical: 10),
@@ -91,7 +93,8 @@ class _CreatingThesisRepoViewState extends State<CreatingThesisRepoView> {
                               ),
 
                               CustomInputForm(
-                                hintText: 'Masukan Judul Disini',
+                                hintText: 'Masukan Kata Kunci Disini',
+                                controller: thesisController.tags,
                                 padding: EdgeInsets.symmetric(vertical: 10),
                                 validator: (val) {
                                   if (!val!.isNotNull || val.isEmpty)
@@ -111,9 +114,11 @@ class _CreatingThesisRepoViewState extends State<CreatingThesisRepoView> {
                               
                               ElevatedButton(
                                   onPressed: () {
-                                    if (_key.currentState!.validate()) {
-                                      Get.to(ThesisView());
-                                    }
+                                    // if (_key.currentState!.validate()) {
+                                    //   Get.to(ThesisView());
+                                    // }
+
+                                  
                                   },
                                   child: Text('Submit'))
                             ],

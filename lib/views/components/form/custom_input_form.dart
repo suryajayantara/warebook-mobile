@@ -13,6 +13,7 @@ class CustomInputForm extends StatelessWidget {
   final int? maxLines;
   final List<TextInputFormatter>? inputTextFormater;
   final String? Function(String?)? validator;
+  final TextEditingController? controller;
 
   CustomInputForm(
       {Key? key,
@@ -23,7 +24,8 @@ class CustomInputForm extends StatelessWidget {
       this.maxLines,
       this.maxLenght,
       this.inputTextFormater,
-      this.validator})
+      this.validator,
+      this.controller})
       : super(key: key);
 
   @override
@@ -31,6 +33,7 @@ class CustomInputForm extends StatelessWidget {
     return Padding(
       padding: (padding != null) ? padding : EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
+        controller: controller,
         keyboardType: inputType,
         inputFormatters: inputTextFormater,
         maxLines: (maxLines != null) ? maxLines : 1,

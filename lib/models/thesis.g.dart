@@ -10,7 +10,7 @@ Thesis _$ThesisFromJson(Map<String, dynamic> json) => Thesis(
       users: json['users'] == null
           ? null
           : Users.fromJson(json['users'] as Map<String, dynamic>),
-      thesis_type: json['thesis_type'] as String?,
+      thesisType: json['thesisType'] as String?,
       title: json['title'] as String?,
       abstract: json['abstract'] as String?,
       created_year: json['created_year'] as String?,
@@ -28,7 +28,7 @@ Map<String, dynamic> _$ThesisToJson(Thesis instance) {
   }
 
   writeNotNull('users', toNull(instance.users));
-  val['thesis_type'] = instance.thesis_type;
+  val['thesisType'] = instance.thesisType;
   val['title'] = instance.title;
   val['abstract'] = instance.abstract;
   val['created_year'] = instance.created_year;

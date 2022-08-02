@@ -10,9 +10,9 @@ class ThesisController extends GetxController {
   var uploadStatus;
 
   // Text Editing Controller
-  TextEditingController title = new TextEditingController();
-  TextEditingController keyWord = new TextEditingController();
-  TextEditingController abstract = new TextEditingController();
+  TextEditingController title = TextEditingController();
+  TextEditingController tags = TextEditingController();
+  TextEditingController abstract = TextEditingController();
 
   // File Setting
   FileType file = FileType.custom;
@@ -33,15 +33,18 @@ class ThesisController extends GetxController {
     if (dataDocument != null) {
       File file = File(dataDocument.files.single.path!);
       String fileName = file.path.split('/').last;
+      
       thesisService.addThesis(
           Thesis(
-            created_year: '2001',
-            tags: 'yelo,green,blue',
-            title: 'asdasd',
+              thesisType: 'Tugas Akhir',
+              tags: tags.value.text,
+              title: title.value.text,
+              abstract: abstract.value.text
           ),
           await file.readAsBytes(),
           fileName);
     }
+
   }
 
   

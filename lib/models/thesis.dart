@@ -10,7 +10,8 @@ part 'thesis.g.dart';
 class Thesis {
   @JsonKey(includeIfNull: false, toJson: toNull)
   Users? users;
-  String? thesis_type;
+  String? thesisType;
+  @JsonKey(name: 'thesis_type')
   String? title;
   String? abstract;
   String? created_year;
@@ -18,7 +19,7 @@ class Thesis {
   String? tags;
   Thesis({
     this.users,
-    this.thesis_type,
+    this.thesisType,
     this.title,
     this.abstract,
     this.created_year,
@@ -28,7 +29,7 @@ class Thesis {
 
   Thesis copyWith({
     Users? users,
-    String? thesis_type,
+    String? thesisType,
     String? title,
     String? abstract,
     String? created_year,
@@ -37,7 +38,7 @@ class Thesis {
   }) {
     return Thesis(
       users: users ?? this.users,
-      thesis_type: thesis_type ?? this.thesis_type,
+      thesisType: thesisType ?? this.thesisType,
       title: title ?? this.title,
       abstract: abstract ?? this.abstract,
       created_year: created_year ?? this.created_year,
@@ -52,16 +53,16 @@ class Thesis {
 
   @override
   String toString() {
-    return 'Thesis(users: $users, thesis_type: $thesis_type, title: $title, abstract: $abstract, created_year: $created_year, thumbnail_url: $thumbnail_url, tags: $tags)';
+    return 'Thesis(users: $users, thesisType: $thesisType, title: $title, abstract: $abstract, created_year: $created_year, thumbnail_url: $thumbnail_url, tags: $tags)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
+  
     return other is Thesis &&
         other.users == users &&
-        other.thesis_type == thesis_type &&
+        other.thesisType == thesisType &&
         other.title == title &&
         other.abstract == abstract &&
         other.created_year == created_year &&
@@ -72,7 +73,7 @@ class Thesis {
   @override
   int get hashCode {
     return users.hashCode ^
-        thesis_type.hashCode ^
+        thesisType.hashCode ^
         title.hashCode ^
         abstract.hashCode ^
         created_year.hashCode ^
@@ -80,29 +81,6 @@ class Thesis {
         tags.hashCode;
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'users': users?.toJson(),
-      'thesis_type': thesis_type,
-      'title': title,
-      'abstract': abstract,
-      'created_year': created_year,
-      'thumbnail_url': thumbnail_url,
-      'tags': tags,
-    };
-  }
-
-  factory Thesis.fromMap(Map<String, dynamic> map) {
-    return Thesis(
-      users: map['users'] != null ? Users.fromJson(map['users']) : null,
-      thesis_type: map['thesis_type'],
-      title: map['title'],
-      abstract: map['abstract'],
-      created_year: map['created_year'],
-      thumbnail_url: map['thumbnail_url'],
-      tags: map['tags'],
-    );
-  }
 }
 
 toNull(_) {
