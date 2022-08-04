@@ -3,7 +3,12 @@ import 'package:get/get.dart';
 import 'package:warebook_mobile/views/components/card/pill.dart';
 
 class TitleCard extends StatelessWidget {
-  const TitleCard({Key? key}) : super(key: key);
+  String? title;
+  String? type;
+
+  TitleCard({Key? key, required this.title, required this.type})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,13 +26,13 @@ class TitleCard extends StatelessWidget {
       child: Column(
         children: [
           Pill(
-            text: "Tugas Akhir",
+            text: type.toString(),
           ),
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
             child: Text(
-              "Pembuatan Jaje Bali Berbasis Machine Learning dengan Tensorflow ",
+              title.toString(),
               style: TextStyle(
                   fontFamily: 'Nunito Sans',
                   fontSize: 17,

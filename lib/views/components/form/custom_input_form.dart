@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 class CustomInputForm extends StatelessWidget {
   // Required Params
   final String hintText;
+  final String label;
   // bool? isPassword = false;
 
   // Aditional Params
@@ -19,6 +20,7 @@ class CustomInputForm extends StatelessWidget {
       {Key? key,
       required this.hintText,
       required this.padding,
+      required this.label,
       // this.isPassword,
       this.inputType,
       this.maxLines,
@@ -33,6 +35,7 @@ class CustomInputForm extends StatelessWidget {
     return Padding(
       padding: (padding != null) ? padding : EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
+        autocorrect: false,
         controller: controller,
         keyboardType: inputType,
         inputFormatters: inputTextFormater,
@@ -41,6 +44,7 @@ class CustomInputForm extends StatelessWidget {
         validator: validator,
         // obscureText: (isPassword) ? true : false,
         decoration: InputDecoration(
+            label: Text(label),
             counterText: "",
             hintText: hintText,
             border: const OutlineInputBorder()),

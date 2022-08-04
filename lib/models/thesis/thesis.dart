@@ -9,40 +9,47 @@ part 'thesis.g.dart';
 @JsonSerializable()
 class Thesis {
   @JsonKey(includeIfNull: false, toJson: toNull)
+  int? id;
+  @JsonKey(includeIfNull: false, toJson: toNull)
   Users? users;
-  String? thesisType;
   @JsonKey(name: 'thesis_type')
+  String? thesisType;
   String? title;
   String? abstract;
-  String? created_year;
-  String? thumbnail_url;
+  @JsonKey(name: 'created_year')
+  int? createdYear;
+  @JsonKey(name: 'thumbnail_url')
+  String? thumbnailUrl;
   String? tags;
   Thesis({
+    this.id,
     this.users,
     this.thesisType,
     this.title,
     this.abstract,
-    this.created_year,
-    this.thumbnail_url,
+    this.createdYear,
+    this.thumbnailUrl,
     this.tags,
   });
 
   Thesis copyWith({
+    int? id,
     Users? users,
     String? thesisType,
     String? title,
     String? abstract,
-    String? created_year,
-    String? thumbnail_url,
+    int? createdYear,
+    String? thumbnailUrl,
     String? tags,
   }) {
     return Thesis(
+      id: id ?? this.id,
       users: users ?? this.users,
       thesisType: thesisType ?? this.thesisType,
       title: title ?? this.title,
       abstract: abstract ?? this.abstract,
-      created_year: created_year ?? this.created_year,
-      thumbnail_url: thumbnail_url ?? this.thumbnail_url,
+      createdYear: createdYear ?? this.createdYear,
+      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
       tags: tags ?? this.tags,
     );
   }
@@ -53,7 +60,7 @@ class Thesis {
 
   @override
   String toString() {
-    return 'Thesis(users: $users, thesisType: $thesisType, title: $title, abstract: $abstract, created_year: $created_year, thumbnail_url: $thumbnail_url, tags: $tags)';
+    return 'Thesis(id: $id, users: $users, thesisType: $thesisType, title: $title, abstract: $abstract, createdYear: $createdYear, thumbnailUrl: $thumbnailUrl, tags: $tags)';
   }
 
   @override
@@ -61,25 +68,28 @@ class Thesis {
     if (identical(this, other)) return true;
   
     return other is Thesis &&
+        other.id == id &&
         other.users == users &&
         other.thesisType == thesisType &&
         other.title == title &&
         other.abstract == abstract &&
-        other.created_year == created_year &&
-        other.thumbnail_url == thumbnail_url &&
+        other.createdYear == createdYear &&
+        other.thumbnailUrl == thumbnailUrl &&
         other.tags == tags;
   }
 
   @override
   int get hashCode {
-    return users.hashCode ^
+    return id.hashCode ^
+        users.hashCode ^
         thesisType.hashCode ^
         title.hashCode ^
         abstract.hashCode ^
-        created_year.hashCode ^
-        thumbnail_url.hashCode ^
+        createdYear.hashCode ^
+        thumbnailUrl.hashCode ^
         tags.hashCode;
   }
+
 
 }
 

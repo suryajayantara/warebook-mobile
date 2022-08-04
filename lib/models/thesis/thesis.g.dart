@@ -7,14 +7,15 @@ part of 'thesis.dart';
 // **************************************************************************
 
 Thesis _$ThesisFromJson(Map<String, dynamic> json) => Thesis(
+      id: json['id'] as int?,
       users: json['users'] == null
           ? null
           : Users.fromJson(json['users'] as Map<String, dynamic>),
-      thesisType: json['thesisType'] as String?,
+      thesisType: json['thesis_type'] as String?,
       title: json['title'] as String?,
       abstract: json['abstract'] as String?,
-      created_year: json['created_year'] as String?,
-      thumbnail_url: json['thumbnail_url'] as String?,
+      createdYear: json['created_year'] as int?,
+      thumbnailUrl: json['thumbnail_url'] as String?,
       tags: json['tags'] as String?,
     );
 
@@ -27,12 +28,13 @@ Map<String, dynamic> _$ThesisToJson(Thesis instance) {
     }
   }
 
+  writeNotNull('id', toNull(instance.id));
   writeNotNull('users', toNull(instance.users));
-  val['thesisType'] = instance.thesisType;
+  val['thesis_type'] = instance.thesisType;
   val['title'] = instance.title;
   val['abstract'] = instance.abstract;
-  val['created_year'] = instance.created_year;
-  val['thumbnail_url'] = instance.thumbnail_url;
+  val['created_year'] = instance.createdYear;
+  val['thumbnail_url'] = instance.thumbnailUrl;
   val['tags'] = instance.tags;
   return val;
 }

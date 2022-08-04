@@ -1,5 +1,3 @@
-import 'package:warebook_mobile/helpers/regex_seting.dart';
-
 extension extFormValidator on String {
   bool get isValidEmail {
     final emailRegExp = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
