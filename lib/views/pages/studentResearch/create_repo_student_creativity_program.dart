@@ -2,34 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
+import 'package:warebook_mobile/controllers/StudentCreativityProgram/student_creativity_program_controller.dart';
 import 'package:warebook_mobile/controllers/Thesis/thesis_controller.dart';
 import 'package:warebook_mobile/themes/colors.dart';
+import 'package:warebook_mobile/views/components/alert/custom_alert.dart';
+import 'package:warebook_mobile/views/components/appbar/form_appbar.dart';
 import 'package:warebook_mobile/views/components/form/custom_input_form.dart';
 import 'package:warebook_mobile/views/components/form/organism/simple_fom.dart';
 import 'package:warebook_mobile/views/components/form/upload_file_field.dart';
 
-class ThesisCreateView extends StatelessWidget {
-  // final thesisController = Get.put(ThesisController());
+class StudentCreativityProgramCreateView extends StatelessWidget {
+  final studentCreativityProgramController =
+      Get.put(StudentCreativityProgramController());
   final _key = GlobalKey<FormState>();
 
-  ThesisCreateView({Key? key}) : super(key: key);
+  StudentCreativityProgramCreateView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        toolbarHeight: 100,
-        title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 0, bottom: 10),
-            child: SvgPicture.asset(
-              ImagePath.whiteLogo,
-              color: ColorsTheme.white,
-              width: 200,
-            ),
-          ),
-        ]),
+        title: FormAppBar(),
+        automaticallyImplyLeading: false,
       ),
       resizeToAvoidBottomInset: false,
       body: SimpleForm(
@@ -45,7 +40,7 @@ class ThesisCreateView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text(
-                        "Thesis Baru",
+                        "Student Research Baru",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w800,
@@ -53,16 +48,34 @@ class ThesisCreateView extends StatelessWidget {
                       ),
                     ),
                     CustomInputForm(
-                      // controller: thesisController.title,
-                      label: 'Judul',
-                      hintText: 'Masukan Judul Disini',
+                      controller: studentCreativityProgramController.creativityType,
+                      label: 'Type PKM',
+                      hintText: 'Masukan Jenis PKM Disini',
                       padding: EdgeInsets.symmetric(vertical: 10),
                       validator: (value) {
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
                       },
                     ),
                     CustomInputForm(
-                      // controller: thesisController.abstract,
+                      controller: studentCreativityProgramController.aliases,
+                      label: 'Nama Singkatan PKM',
+                      hintText: 'Masukan Nama Singkatan PKM Disini',
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      validator: (value) {
+                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                      },
+                    ),
+                    CustomInputForm(
+                      controller: studentCreativityProgramController.title,
+                      label: 'Judul',
+                      hintText: 'Masukan Judul PKM Disini',
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      validator: (value) {
+                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                      },
+                    ),
+                    CustomInputForm(
+                      controller: studentCreativityProgramController.abstract,
                       label: 'Abstrak',
                       hintText: 'Tuliskan Abstrak disini',
                       maxLines: 6,
@@ -73,9 +86,19 @@ class ThesisCreateView extends StatelessWidget {
                       },
                     ),
                     CustomInputForm(
-                      // controller: thesisController.tags,
-                      label: 'Kata Kunci',
-                      hintText: 'Masukan kata kunci disini',
+                      controller: studentCreativityProgramController.year,
+                      label: 'Tahun Terbit',
+                      hintText: 'Masukan Tahun Terbit disini',
+                      inputType: TextInputType.number,
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      validator: (value) {
+                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                      },
+                    ),
+                    CustomInputForm(
+                      controller: studentCreativityProgramController.supervisor,
+                      label: 'Dosen Pembimbing',
+                      hintText: 'Masukan Nama Dosen Pembimbing Disini',
                       padding: EdgeInsets.symmetric(vertical: 10),
                       validator: (value) {
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
@@ -89,9 +112,6 @@ class ThesisCreateView extends StatelessWidget {
                     //     ontap: () {
                     //       thesisController.selectFile();
                     //     }),
-                    SizedBox(
-                      height: 50,
-                    )
                   ],
                 )),
           )

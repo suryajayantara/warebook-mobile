@@ -10,7 +10,7 @@ class FormAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       Padding(
-        padding: const EdgeInsets.only(top: 40, bottom: 20),
+        padding: const EdgeInsets.only(top: 40, bottom: 40),
         child: SvgPicture.asset(
           ImagePath.whiteLogo,
           color: ColorsTheme.white,
