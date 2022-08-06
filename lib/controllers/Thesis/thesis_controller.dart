@@ -1,18 +1,22 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/models/thesis/thesis.dart';
 import 'package:warebook_mobile/services/thesis_service.dart';
+import 'package:warebook_mobile/views/pages/my_repository.dart';
 import 'package:warebook_mobile/views/pages/thesis/thesis_view.dart';
 
 class ThesisController extends GetxController {
   // Obs Variables
   var statusData = false;
   var filename = "".obs;
+  var isLoading = false.obs;
 
   // Data
   final listData = <Thesis>[].obs;
+
 
   // Text Editing Controller
   TextEditingController title = TextEditingController();
@@ -29,7 +33,16 @@ class ThesisController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+    getAllData();
   }
+
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    super.onClose();
+    dispose();
+  }
+
 
   // Function for select file from file_picker
   void selectFile() async {
@@ -41,10 +54,16 @@ class ThesisController extends GetxController {
     }
   }
 
+  void getAllData() async {
+    return thesisService.getAll().then((value) {
+      listData.assignAll(value);
+    }).catchError((e) {
+      throw "$e";
+    });
+  }
+
+  // Simpan Data
   void addData() async {
-    File file = File(data!.files.single.path!);
-    String fileName = file.path.split('/').last;
-    filename.value = fileName;
     thesisService
         .addThesis(
             Thesis(
@@ -52,11 +71,10 @@ class ThesisController extends GetxController {
                 tags: tags.value.text,
                 title: title.value.text,
                 abstract: abstract.value.text),
-            await file.readAsBytes(),
-            fileName)
+    )
         .then((value) {
-      print(value);
-      // Get.off(ThesisView(), arguments: value);
+      getAllData();
+      Get.offAll(MyRepositoryPage());
     }).catchError((e) {
       print(e);
     });

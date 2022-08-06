@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/controllers/Thesis/thesis_controller.dart';
 import 'package:warebook_mobile/themes/colors.dart';
+import 'package:warebook_mobile/views/components/alert/custom_alert.dart';
 import 'package:warebook_mobile/views/components/appbar/form_appbar.dart';
 import 'package:warebook_mobile/views/components/form/custom_input_form.dart';
 import 'package:warebook_mobile/views/components/form/organism/simple_fom.dart';

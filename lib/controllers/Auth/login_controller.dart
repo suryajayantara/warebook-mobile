@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:warebook_mobile/models/users.dart';
 import 'package:warebook_mobile/services/auth_service.dart';
+import 'package:warebook_mobile/views/dashboard.dart';
 import 'package:warebook_mobile/views/pages/menu/home.dart';
 import 'package:warebook_mobile/views/pages/auth/login.dart';
 import 'package:warebook_mobile/views/onboarding.dart';
@@ -24,7 +25,7 @@ class LoginController extends GetxController {
       // isLoading = true;
       if (value.token != null) {
         dataStorage.write('token', value.token);
-        Get.to(HomeView());
+        Get.to(DashboardPage());
       }
     });
   }
