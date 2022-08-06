@@ -13,7 +13,7 @@ class LoginController extends GetxController {
   TextEditingController password = TextEditingController();
   GetStorage dataStorage = GetStorage('auth');
   final _authService = new AuthService();
-  
+
   // Variable
   var token;
   bool isLoading = false.obs();

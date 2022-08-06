@@ -9,7 +9,7 @@ class UserController extends GetxController {
 
   void onInit() {
     super.onInit();
-    getUserDetail();
+    // getUserDetail();
   }
 
   Future<Users> getUserDetail() async {

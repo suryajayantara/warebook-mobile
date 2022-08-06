@@ -72,7 +72,7 @@ class SimpleForm extends StatelessWidget {
             child: Container(
               height: 70,
               child: Container(
-                color: ColorsTheme.grey,
+                color: ColorsTheme.white,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,

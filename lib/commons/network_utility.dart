@@ -1,5 +1,4 @@
 class NetworkUtility {
-
   /* 
 
       Service : Laravel-warebook
@@ -9,7 +8,7 @@ class NetworkUtility {
   
   */
 
-  String hostUrl = "192.168.1.57";
+  String hostUrl = "192.168.18.62";
   String hostPort = "8000";
   String hostVersion = 'v1';
 
@@ -19,9 +18,6 @@ class NetworkUtility {
 
   // Header
   Map<String, String> header(token) {
-    return {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $token'
-    };
+    return {'Accept': 'application/json', 'Authorization': 'Bearer $token'};
   }
 }

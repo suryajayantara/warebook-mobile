@@ -48,19 +48,18 @@ class ThesisService extends GetConnect {
   ) async {
     String token = dataStorage.read('token');
 
-    print(token);
     var form = FormData({
       'title': thesis.title,
       'abstract': thesis.abstract,
       'tags': thesis.tags,
       'thesis_type': 'Tugas Akhir'
     });
+
     return await post(
             Uri.parse(url_path.serviceUrl() + 'thesis').toString(), form,
             headers: url_path.header(token.toString()))
         .then((value) {
       if (value.body != null && value.isOk) {
-        
         return Thesis.fromJson(value.body['data']);
       } else {
         throw "${value.bodyString} ${value.statusCode}";
