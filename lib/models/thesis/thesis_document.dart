@@ -26,26 +26,11 @@ class ThesisDocument {
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'documentName': documentName,
-      'url': url,
-    };
-  }
+  Map<String, dynamic> toJson() => _$ThesisDocumentToJson(this);
 
-  factory ThesisDocument.fromMap(Map<String, dynamic> map) {
-    return ThesisDocument(
-      id: map['id']?.toInt(),
-      documentName: map['documentName'],
-      url: map['url'],
-    );
-  }
+  factory ThesisDocument.fromJson(Map<String, dynamic> map) =>
+      _$ThesisDocumentFromJson(map);
 
-  String toJson() => json.encode(toMap());
-
-  factory ThesisDocument.fromJson(String source) =>
-      ThesisDocument.fromMap(json.decode(source));
 
   @override
   String toString() =>

@@ -11,6 +11,7 @@ StudentCreativityProgram _$StudentCreativityProgramFromJson(
     StudentCreativityProgram(
       id: json['id'] as int?,
       title: json['title'] as String?,
+      aliases: json['aliases'] as String?,
       abstract: json['abstract'] as String?,
       year: json['year'] as String?,
       supervisor: json['supervisor'] as String?,
@@ -25,6 +26,7 @@ Map<String, dynamic> _$StudentCreativityProgramToJson(
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'aliases': instance.aliases,
       'abstract': instance.abstract,
       'year': instance.year,
       'supervisor': instance.supervisor,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
-import 'package:warebook_mobile/controllers/Journal/journal_controller.dart';
+import 'package:warebook_mobile/controllers/Journal/journal_document_controller.dart';
 import 'package:warebook_mobile/controllers/Thesis/thesis_controller.dart';
 import 'package:warebook_mobile/themes/colors.dart';
 import 'package:warebook_mobile/views/components/alert/custom_alert.dart';
@@ -12,7 +12,7 @@ import 'package:warebook_mobile/views/components/form/organism/simple_fom.dart';
 import 'package:warebook_mobile/views/components/form/upload_file_field.dart';
 
 class JournalCreateView extends StatelessWidget {
-  final journalController = Get.put(JournalController());
+  final journalTopicController = Get.put(JournalDocumentController());
   final _key = GlobalKey<FormState>();
 
   JournalCreateView({Key? key}) : super(key: key);
@@ -47,7 +47,7 @@ class JournalCreateView extends StatelessWidget {
                       ),
                     ),
                     CustomInputForm(
-                      controller: journalController.title,
+                      controller: journalTopicController.title,
                       label: 'Judul Journal',
                       hintText: 'Masukan Judul Disini',
                       padding: EdgeInsets.symmetric(vertical: 10),
@@ -56,7 +56,7 @@ class JournalCreateView extends StatelessWidget {
                       },
                     ),
                     CustomInputForm(
-                      controller: journalController.author,
+                      controller: journalTopicController.author,
                       label: 'Pengarang',
                       hintText: 'Masukan Nama Pengarang Disini',
                       padding: EdgeInsets.symmetric(vertical: 10),
@@ -65,7 +65,7 @@ class JournalCreateView extends StatelessWidget {
                       },
                     ),
                     CustomInputForm(
-                      controller: journalController.abstract,
+                      controller: journalTopicController.abstract,
                       label: 'Abstrak',
                       hintText: 'Tuliskan Abstrak disini',
                       maxLines: 6,
@@ -76,7 +76,7 @@ class JournalCreateView extends StatelessWidget {
                       },
                     ),
                     CustomInputForm(
-                      controller: journalController.year,
+                      controller: journalTopicController.year,
                       label: 'Tahun Terbit',
                       hintText: 'Masukan Tahun Terbit disini',
                       inputType: TextInputType.number,
@@ -86,7 +86,7 @@ class JournalCreateView extends StatelessWidget {
                       },
                     ),
                     CustomInputForm(
-                      controller: journalController.tags,
+                      controller: journalTopicController.tags,
                       label: 'Kata Kunci',
                       hintText: 'Masukan kata kunci disini',
                       padding: EdgeInsets.symmetric(vertical: 10),
@@ -95,7 +95,7 @@ class JournalCreateView extends StatelessWidget {
                       },
                     ),
                     CustomInputForm(
-                      controller: journalController.doi,
+                      controller: journalTopicController.doi,
                       label: 'DOI',
                       hintText: 'Masukan DOI disini',
                       padding: EdgeInsets.symmetric(vertical: 10),

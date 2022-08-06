@@ -10,19 +10,19 @@ InternalResearch _$InternalResearchFromJson(Map<String, dynamic> json) =>
     InternalResearch(
       title: json['title'] as String?,
       abstract: json['abstract'] as String?,
-      budgetType: json['budgetType'] as String?,
+      budgetType: json['budget_type'] as String?,
       budget: json['budget'] as int?,
-      projectStartedAt: json['projectStartedAt'] == null
+      projectStartedAt: json['project_started_at'] == null
           ? null
-          : DateTime.parse(json['projectStartedAt'] as String),
-      projectFinishAt: json['projectFinishAt'] == null
+          : DateTime.parse(json['project_started_at'] as String),
+      projectFinishAt: json['project_finish_at'] == null
           ? null
-          : DateTime.parse(json['projectFinishAt'] as String),
-      contractNumber: json['contractNumber'] as String?,
-      teamMember: json['teamMember'] as String?,
-      contractUrl: json['contractUrl'] as String?,
-      proposalUrl: json['proposalUrl'] as String?,
-      documentUrl: json['documentUrl'] as String?,
+          : DateTime.parse(json['project_finish_at'] as String),
+      contractNumber: json['contract_type'] as String?,
+      teamMember: json['team_member'] as String?,
+      contractUrl: json['contract_url'] as String?,
+      proposalUrl: json['proposal_url'] as String?,
+      documentUrl: json['document_url'] as String?,
       users: json['users'] == null
           ? null
           : Users.fromJson(json['users'] as Map<String, dynamic>),
@@ -32,14 +32,14 @@ Map<String, dynamic> _$InternalResearchToJson(InternalResearch instance) =>
     <String, dynamic>{
       'title': instance.title,
       'abstract': instance.abstract,
-      'budgetType': instance.budgetType,
+      'budget_type': instance.budgetType,
       'budget': instance.budget,
-      'projectStartedAt': instance.projectStartedAt?.toIso8601String(),
-      'projectFinishAt': instance.projectFinishAt?.toIso8601String(),
-      'contractNumber': instance.contractNumber,
-      'teamMember': instance.teamMember,
-      'contractUrl': instance.contractUrl,
-      'proposalUrl': instance.proposalUrl,
-      'documentUrl': instance.documentUrl,
+      'project_started_at': instance.projectStartedAt?.toIso8601String(),
+      'project_finish_at': instance.projectFinishAt?.toIso8601String(),
+      'contract_type': instance.contractNumber,
+      'team_member': instance.teamMember,
+      'contract_url': instance.contractUrl,
+      'proposal_url': instance.proposalUrl,
+      'document_url': instance.documentUrl,
       'users': instance.users,
     };

@@ -8,14 +8,22 @@ part 'internal_research.g.dart';
 class InternalResearch {
   String? title;
   String? abstract;
+  @JsonKey(name: 'budget_type')
   String? budgetType;
   int? budget;
+  @JsonKey(name: 'project_started_at')
   DateTime? projectStartedAt;
+  @JsonKey(name: 'project_finish_at')
   DateTime? projectFinishAt;
+  @JsonKey(name: 'contract_type')
   String? contractNumber;
+  @JsonKey(name: 'team_member')
   String? teamMember;
-  String? contractUrl;
+  @JsonKey(name: 'contract_url')
+  String? contractUrl;  
+  @JsonKey(name: 'proposal_url')
   String? proposalUrl;
+  @JsonKey(name: 'document_url')
   String? documentUrl;
   Users? users;
   InternalResearch({

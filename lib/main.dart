@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       // home: (dataStorage.read('token') == null)
       //     ? OnboardingView()
       //     : DashboardPage(),
-      home: StudentResearchCreateView(),
+      home: DashboardPage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,

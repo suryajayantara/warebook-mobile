@@ -1,12 +1,16 @@
 import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
+
 import 'package:warebook_mobile/models/users.dart';
+
 part 'student_creativity_program.g.dart';
 
 @JsonSerializable()
 class StudentCreativityProgram {
   int? id;
   String? title;
+  String? aliases;
   String? abstract;
   String? year;
   String? supervisor;
@@ -15,6 +19,7 @@ class StudentCreativityProgram {
   StudentCreativityProgram({
     this.id,
     this.title,
+    this.aliases,
     this.abstract,
     this.year,
     this.supervisor,
@@ -25,6 +30,7 @@ class StudentCreativityProgram {
   StudentCreativityProgram copyWith({
     int? id,
     String? title,
+    String? aliases,
     String? abstract,
     String? year,
     String? supervisor,
@@ -34,6 +40,7 @@ class StudentCreativityProgram {
     return StudentCreativityProgram(
       id: id ?? this.id,
       title: title ?? this.title,
+      aliases: aliases ?? this.aliases,
       abstract: abstract ?? this.abstract,
       year: year ?? this.year,
       supervisor: supervisor ?? this.supervisor,
@@ -49,16 +56,17 @@ class StudentCreativityProgram {
 
   @override
   String toString() {
-    return 'StudentCreativityProgramType(id: $id, title: $title, abstract: $abstract, year: $year, supervisor: $supervisor, documentUrl: $documentUrl, users: $users)';
+    return 'StudentCreativityProgram(id: $id, title: $title, aliases: $aliases, abstract: $abstract, year: $year, supervisor: $supervisor, documentUrl: $documentUrl, users: $users)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
+  
     return other is StudentCreativityProgram &&
         other.id == id &&
         other.title == title &&
+        other.aliases == aliases &&
         other.abstract == abstract &&
         other.year == year &&
         other.supervisor == supervisor &&
@@ -70,10 +78,12 @@ class StudentCreativityProgram {
   int get hashCode {
     return id.hashCode ^
         title.hashCode ^
+        aliases.hashCode ^
         abstract.hashCode ^
         year.hashCode ^
         supervisor.hashCode ^
         documentUrl.hashCode ^
         users.hashCode;
   }
+
 }
