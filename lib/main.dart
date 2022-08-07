@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:warebook_mobile/views/dashboard.dart';
+import 'package:warebook_mobile/views/detail_repository_view.dart';
 import 'package:warebook_mobile/views/onboarding.dart';
 import 'package:warebook_mobile/views/pages/auth/login.dart';
 import 'package:warebook_mobile/views/pages/internalResearch/create_repo_internal_research.dart';
@@ -26,10 +27,10 @@ class MyApp extends StatelessWidget {
       // home: (dataStorage.read('token') == null)
       //     ? OnboardingView()
       //     : DashboardPage(),
-      home: StudentResearchCreateView(),
+      home: DetailRepositoryPage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
         hoverColor: Colors.transparent,
