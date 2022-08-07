@@ -10,15 +10,19 @@ part 'student_creativity_program.g.dart';
 class StudentCreativityProgram {
   int? id;
   String? title;
+  @JsonKey(name: 'creativity_type')
+  String? creativityType;
   String? aliases;
   String? abstract;
   String? year;
   String? supervisor;
+  @JsonKey(name: 'document_url')
   String? documentUrl;
   Users? users;
   StudentCreativityProgram({
     this.id,
     this.title,
+    this.creativityType,
     this.aliases,
     this.abstract,
     this.year,
@@ -30,6 +34,7 @@ class StudentCreativityProgram {
   StudentCreativityProgram copyWith({
     int? id,
     String? title,
+    String? creativityType,
     String? aliases,
     String? abstract,
     String? year,
@@ -40,6 +45,7 @@ class StudentCreativityProgram {
     return StudentCreativityProgram(
       id: id ?? this.id,
       title: title ?? this.title,
+      creativityType: creativityType ?? this.creativityType,
       aliases: aliases ?? this.aliases,
       abstract: abstract ?? this.abstract,
       year: year ?? this.year,
@@ -56,7 +62,7 @@ class StudentCreativityProgram {
 
   @override
   String toString() {
-    return 'StudentCreativityProgram(id: $id, title: $title, aliases: $aliases, abstract: $abstract, year: $year, supervisor: $supervisor, documentUrl: $documentUrl, users: $users)';
+    return 'StudentCreativityProgram(id: $id, title: $title, creativityType: $creativityType, aliases: $aliases, abstract: $abstract, year: $year, supervisor: $supervisor, documentUrl: $documentUrl, users: $users)';
   }
 
   @override
@@ -66,6 +72,7 @@ class StudentCreativityProgram {
     return other is StudentCreativityProgram &&
         other.id == id &&
         other.title == title &&
+        other.creativityType == creativityType &&
         other.aliases == aliases &&
         other.abstract == abstract &&
         other.year == year &&
@@ -78,6 +85,7 @@ class StudentCreativityProgram {
   int get hashCode {
     return id.hashCode ^
         title.hashCode ^
+        creativityType.hashCode ^
         aliases.hashCode ^
         abstract.hashCode ^
         year.hashCode ^

@@ -20,29 +20,6 @@ class ThesisService extends GetConnect {
     });
   }
 
-  // Future<Thesis> addThesis(
-  //     Thesis thesis, Uint8List fileByte, String fileName) async {
-  //   var filePart = MultipartFile(fileByte, filename: fileName);
-  //   var form = FormData({
-  //     'thumbnail_img': filePart,
-  //     'title': thesis.title,
-  //     'abstract': thesis.abstract,
-  //     'tags': thesis.tags
-  //   });
-  //   return await post(
-  //           Uri.parse(url_path.serviceUrl() + 'thesis').toString(), form,
-  //           headers: url_path.header(dataStorage.read('key')))
-  //       .then((value) {
-  //     if (value.body != null && value.isOk) {
-  //       // print(value.body);
-  //       return Thesis.fromJson(value.body['data']);
-  //     } else {
-  //       throw "${value.bodyString}";
-  //     }
-
-  //   });
-  // }
-
   Future<Thesis> addThesis(
     Thesis thesis,
   ) async {

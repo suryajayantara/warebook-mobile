@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:json_annotation/json_annotation.dart';
-
 import 'package:warebook_mobile/models/users.dart';
 part 'journal_topic.g.dart';
 
@@ -50,7 +47,7 @@ class JournalTopic {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
+  
     return other is JournalTopic &&
         other.id == id &&
         other.subject == subject &&

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:json_annotation/json_annotation.dart';
 
 import 'package:warebook_mobile/models/users.dart';
@@ -55,7 +53,6 @@ class Thesis {
   }
 
   Map<String, dynamic> toJson() => _$ThesisToJson(this);
-
   factory Thesis.fromJson(Map<String, dynamic> map) => _$ThesisFromJson(map);
 
   @override

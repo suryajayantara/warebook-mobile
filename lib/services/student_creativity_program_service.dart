@@ -6,10 +6,11 @@ import 'package:warebook_mobile/models/StudentCreativityProgram/student_creativi
 
 class StudentCreativityProgramService extends GetConnect {
   final url_path = NetworkUtility();
+  String routeName = "thesis";
   GetStorage dataStorage = GetStorage('auth');
 
   Future<List<StudentCreativityProgram>> getAll() async {
-    return await get(Uri.parse(url_path.serviceUrl() + 'creativity').toString())
+    return await get(Uri.parse(url_path.serviceUrl() + routeName).toString())
         .then((value) {
       if (value.body != null && value.isOk) {
         return List<StudentCreativityProgram>.from(value.body["data"]
@@ -20,50 +21,33 @@ class StudentCreativityProgramService extends GetConnect {
     });
   }
 
-  // Future<Thesis> addThesis(
-  //     Thesis thesis, Uint8List fileByte, String fileName) async {
-  //   var filePart = MultipartFile(fileByte, filename: fileName);
-  //   var form = FormData({
-  //     'thumbnail_img': filePart,
-  //     'title': thesis.title,
-  //     'abstract': thesis.abstract,
-  //     'tags': thesis.tags
-  //   });
-  //   return await post(
-  //           Uri.parse(url_path.serviceUrl() + 'thesis').toString(), form,
-  //           headers: url_path.header(dataStorage.read('key')))
-  //       .then((value) {
-  //     if (value.body != null && value.isOk) {
-  //       // print(value.body);
-  //       return Thesis.fromJson(value.body['data']);
-  //     } else {
-  //       throw "${value.bodyString}";
-  //     }
+  
 
-  //   });
-  // }
+  Future<StudentCreativityProgram> createStudentCreativityProgram(
+      StudentCreativityProgram studentCreativityProgram,
+      Uint8List fileByte,
+      String fileName) async {
+    var filePart = MultipartFile(fileByte, filename: fileName);
+    var form = FormData({
+      'document_url': filePart,
+      'creativity_type': studentCreativityProgram.creativityType,
+      'aliases': studentCreativityProgram.aliases,
+      'title': studentCreativityProgram.title,
+      'abstract': studentCreativityProgram.abstract,
+      'year': studentCreativityProgram.year,
+      'supervisor': studentCreativityProgram.supervisor
+    });
+    return await post(
+            Uri.parse(url_path.serviceUrl() + routeName).toString(), form,
+            headers: url_path.header(dataStorage.read('key')))
+        .then((value) {
+      if (value.body != null && value.isOk) {
+        return StudentCreativityProgram.fromJson(value.body['data']);
+      } else {
+        throw "${value.bodyString}";
+      }
+    });
+  }
 
-  // Future<Thesis> addThesis(
-  //   Thesis thesis,
-  // ) async {
-  //   String token = dataStorage.read('token');
-
-  //   var form = FormData({
-  //     'title': thesis.title,
-  //     'abstract': thesis.abstract,
-  //     'tags': thesis.tags,
-  //     'thesis_type': 'Tugas Akhir'
-  //   });
-
-  //   return await post(
-  //           Uri.parse(url_path.serviceUrl() + 'thesis').toString(), form,
-  //           headers: url_path.header(token.toString()))
-  //       .then((value) {
-  //     if (value.body != null && value.isOk) {
-  //       return Thesis.fromJson(value.body['data']);
-  //     } else {
-  //       throw "${value.bodyString} ${value.statusCode}";
-  //     }
-  //   });
-  // }
+  
 }

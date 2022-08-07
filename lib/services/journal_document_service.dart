@@ -7,11 +7,11 @@ import 'package:warebook_mobile/models/journals/journal_topic.dart';
 
 class JournalDocumentService extends GetConnect {
   final url_path = NetworkUtility();
+  String routeName = 'journalDocument';
   GetStorage dataStorage = GetStorage('auth');
 
   Future<List<JournalDocument>> getAll() async {
-    return await get(
-            Uri.parse(url_path.serviceUrl() + 'journalDocument').toString())
+    return await get(Uri.parse(url_path.serviceUrl() + routeName).toString())
         .then((value) {
       if (value.body != null && value.isOk) {
         return List<JournalDocument>.from(
@@ -22,50 +22,30 @@ class JournalDocumentService extends GetConnect {
     });
   }
 
-  // Future<Thesis> addThesis(
-  //     Thesis thesis, Uint8List fileByte, String fileName) async {
-  //   var filePart = MultipartFile(fileByte, filename: fileName);
-  //   var form = FormData({
-  //     'thumbnail_img': filePart,
-  //     'title': thesis.title,
-  //     'abstract': thesis.abstract,
-  //     'tags': thesis.tags
-  //   });
-  //   return await post(
-  //           Uri.parse(url_path.serviceUrl() + 'thesis').toString(), form,
-  //           headers: url_path.header(dataStorage.read('key')))
-  //       .then((value) {
-  //     if (value.body != null && value.isOk) {
-  //       // print(value.body);
-  //       return Thesis.fromJson(value.body['data']);
-  //     } else {
-  //       throw "${value.bodyString}";
-  //     }
-
-  //   });
-  // }
-
-  // Future<Thesis> addThesis(
-  //   Thesis thesis,
-  // ) async {
-  //   String token = dataStorage.read('token');
-
-  //   var form = FormData({
-  //     'title': thesis.title,
-  //     'abstract': thesis.abstract,
-  //     'tags': thesis.tags,
-  //     'thesis_type': 'Tugas Akhir'
-  //   });
-
-  //   return await post(
-  //           Uri.parse(url_path.serviceUrl() + 'thesis').toString(), form,
-  //           headers: url_path.header(token.toString()))
-  //       .then((value) {
-  //     if (value.body != null && value.isOk) {
-  //       return Thesis.fromJson(value.body['data']);
-  //     } else {
-  //       throw "${value.bodyString} ${value.statusCode}";
-  //     }
-  //   });
-  // }
+  // Add
+  Future<JournalDocument> createJournalDocument(JournalDocument journalDocument,
+      Uint8List fileByte, String fileName, String journalTopic) async {
+    var filePart = MultipartFile(fileByte, filename: fileName);
+    var form = FormData({
+      'document_url': filePart,
+      'journal_topic': journalTopic,
+      'title': journalDocument.title,
+      'author': journalDocument.author,
+      'abstract': journalDocument.abstract,
+      'year': journalDocument.abstract,
+      'original_url': journalDocument.originalUrl,
+      'tags': journalDocument.tags,
+      'doi': journalDocument.doi
+    });
+    return await post(
+            Uri.parse(url_path.serviceUrl() + routeName).toString(), form,
+            headers: url_path.header(dataStorage.read('key')))
+        .then((value) {
+      if (value.body != null && value.isOk) {
+        return JournalDocument.fromJson(value.body['data']);
+      } else {
+        throw "${value.bodyString}";
+      }
+    });
+  }
 }
