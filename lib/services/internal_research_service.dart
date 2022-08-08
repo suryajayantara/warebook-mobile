@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:warebook_mobile/commons/network_utility.dart';
@@ -9,12 +8,40 @@ class InternalResearchService extends GetConnect {
   final routeName = "research";
   GetStorage dataStorage = GetStorage('auth');
 
+/* 
+    Get Internal Research - all (Auth Needed)
+    Method  : GET
+    URL     : api.com/journalTopic
+    Desc    : Digunakan untuk Store / Menyimpan data Journal Topic 
+    Header  : 
+                - Accept : application/json
+                - Authencticatop : Baerer Token
+    Body    : 
+                - title(String) => Judul dari Journal Topic
+                - Abstract(String) => Deskripsi dari journal topic itu sendiri
+                
+  
+  */
+
+
   Future<List<InternalResearch>> getAll() async {
     return await get(Uri.parse(urlPath.serviceUrl() + routeName).toString())
         .then((value) {
       if (value.body != null && value.isOk) {
         return List<InternalResearch>.from(
             value.body["data"].map((e) => InternalResearch.fromJson(e)));
+      } else {
+        throw "${value.body} - ${value.statusCode}";
+      }
+    });
+  }
+
+  Future<InternalResearch> getDetails(int id) async {
+    return await get(
+            Uri.parse(urlPath.serviceUrl() + routeName + '/${id}').toString())
+        .then((value) {
+      if (value.body != null && value.isOk) {
+        return InternalResearch.fromJson(value.body['data']);
       } else {
         throw "${value.body} - ${value.statusCode}";
       }

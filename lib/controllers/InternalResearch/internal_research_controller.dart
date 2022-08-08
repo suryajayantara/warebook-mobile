@@ -1,12 +1,11 @@
-import 'dart:ffi';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:warebook_mobile/models/internalResearch/internal_research.dart';
 import 'package:warebook_mobile/services/internal_research_service.dart';
 import 'package:warebook_mobile/views/pages/menu/dosen_repository.dart';
+import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 
 class InternalResearchController extends GetxController {
   TextEditingController title = TextEditingController();
@@ -19,6 +18,7 @@ class InternalResearchController extends GetxController {
   TextEditingController teamMember = TextEditingController();
 
   final listData = <InternalResearch>[].obs;
+  InternalResearch detailsData = InternalResearch();
   final service = InternalResearchService();
 
   // Variable untuk menyimpan data
@@ -35,10 +35,13 @@ class InternalResearchController extends GetxController {
   void getAllData() async {
     return service.getAll().then((value) {
       listData.assignAll(value);
-      print(value);
     }).catchError((e) {
       throw e;
     });
+  }
+
+  InternalResearch getInternalResearctDetails(int id) {
+    return detailsData = listData.firstWhere((element) => element.id == id);
   }
 
   void createInternalResearch() async {
@@ -70,7 +73,13 @@ class InternalResearchController extends GetxController {
     }).catchError((e) {
       throw e;
     });
-
-
   }
+
+  // Print PDF
+  void openDocument() {
+   
+    PDF().cachedFromUrl(
+        'http://192.168.1.55:8000/storage/internalResearch/proposal/20220808Perkara.pdf');
+  }
+
 }

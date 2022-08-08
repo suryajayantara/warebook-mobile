@@ -1,11 +1,14 @@
 import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
+
 import 'package:warebook_mobile/models/users.dart';
 
 part 'internal_research.g.dart';
 
 @JsonSerializable()
 class InternalResearch {
+  int? id;
   String? title;
   String? abstract;
   @JsonKey(name: 'budget_type')
@@ -29,6 +32,7 @@ class InternalResearch {
   @JsonKey(includeIfNull: false, toJson: toNull)
   Users? users;
   InternalResearch({
+    this.id,
     this.title,
     this.abstract,
     this.budgetType,
@@ -44,6 +48,7 @@ class InternalResearch {
   });
 
   InternalResearch copyWith({
+    int? id,
     String? title,
     String? abstract,
     String? budgetType,
@@ -58,6 +63,7 @@ class InternalResearch {
     Users? users,
   }) {
     return InternalResearch(
+      id: id ?? this.id,
       title: title ?? this.title,
       abstract: abstract ?? this.abstract,
       budgetType: budgetType ?? this.budgetType,
@@ -80,14 +86,15 @@ class InternalResearch {
 
   @override
   String toString() {
-    return 'InternalResearch(title: $title, abstract: $abstract, budgetType: $budgetType, budget: $budget, projectStartedAt: $projectStartedAt, projectFinishAt: $projectFinishAt, contractNumber: $contractNumber, teamMember: $teamMember, contractUrl: $contractUrl, proposalUrl: $proposalUrl, documentUrl: $documentUrl, users: $users)';
+    return 'InternalResearch(id: $id, title: $title, abstract: $abstract, budgetType: $budgetType, budget: $budget, projectStartedAt: $projectStartedAt, projectFinishAt: $projectFinishAt, contractNumber: $contractNumber, teamMember: $teamMember, contractUrl: $contractUrl, proposalUrl: $proposalUrl, documentUrl: $documentUrl, users: $users)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
+  
     return other is InternalResearch &&
+        other.id == id &&
         other.title == title &&
         other.abstract == abstract &&
         other.budgetType == budgetType &&
@@ -104,7 +111,8 @@ class InternalResearch {
 
   @override
   int get hashCode {
-    return title.hashCode ^
+    return id.hashCode ^
+        title.hashCode ^
         abstract.hashCode ^
         budgetType.hashCode ^
         budget.hashCode ^
@@ -117,6 +125,8 @@ class InternalResearch {
         documentUrl.hashCode ^
         users.hashCode;
   }
+
+
 }
 
 toString(_) {

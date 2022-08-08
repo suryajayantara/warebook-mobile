@@ -5,8 +5,12 @@ import 'package:warebook_mobile/commons/asset_path.dart';
 
 class DocumentCard extends StatelessWidget {
   final Function()? onTap;
+  String? title;
+  String? desc;
 
-  DocumentCard({Key? key, required this.onTap}) : super(key: key);
+  DocumentCard(
+      {Key? key, required this.onTap, required this.title, required this.desc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,14 +49,14 @@ class DocumentCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "BAB I",
+                        title.toString(),
                         style: TextStyle(
                             fontWeight: FontWeight.w900,
                             fontSize: 18,
                             fontFamily: 'Nunito Sans'),
                       ),
                       Text(
-                        "Hello World, this is description,Hello World",
+                        desc.toString(),
                         style: TextStyle(
                           fontSize: 13,
                           fontFamily: 'Nunito Sans',

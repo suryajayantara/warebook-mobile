@@ -6,6 +6,8 @@ import 'package:warebook_mobile/helpers/string_formating.dart';
 import 'package:warebook_mobile/models/internalResearch/internal_research.dart';
 import 'package:warebook_mobile/views/components/popup/pop_up_menu.dart';
 import 'package:warebook_mobile/views/dashboard.dart';
+import 'package:warebook_mobile/views/pages/internalResearch/internal_research_view.dart';
+import 'package:warebook_mobile/views/pages/thesis/thesis_view.dart';
 
 class DosenRepositoryPage extends StatelessWidget {
   DosenRepositoryPage({Key? key}) : super(key: key);
@@ -55,6 +57,14 @@ class DosenRepositoryPage extends StatelessWidget {
                   itemCount: internalResearchController.listData.length,
                   itemBuilder: (ctx, i) {
                     return ListTile(
+                      onTap: () {
+                        Duration(milliseconds: 500);
+                        Get.to(() => InternalResearchDetailsPage(), arguments: {
+                          "id": int.parse(internalResearchController
+                              .listData[i].id
+                              .toString())
+                        });
+                      },
                       leading: FlutterLogo(size: 72.0),
                       title: Text(stringFormating.truncateWithEllipsis(
                           20,

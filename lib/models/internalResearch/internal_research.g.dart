@@ -8,6 +8,7 @@ part of 'internal_research.dart';
 
 InternalResearch _$InternalResearchFromJson(Map<String, dynamic> json) =>
     InternalResearch(
+      id: json['id'] as int?,
       title: json['title'] as String?,
       abstract: json['abstract'] as String?,
       budgetType: json['budget_type'] as String?,
@@ -30,6 +31,7 @@ InternalResearch _$InternalResearchFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$InternalResearchToJson(InternalResearch instance) {
   final val = <String, dynamic>{
+    'id': instance.id,
     'title': instance.title,
     'abstract': instance.abstract,
     'budget_type': instance.budgetType,

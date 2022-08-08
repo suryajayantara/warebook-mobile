@@ -8,12 +8,16 @@ class NetworkUtility {
   
   */
 
-  String hostUrl = "192.168.1.55";
+  String hostUrl = "192.168.18.247";
   String hostPort = "8000";
   String hostVersion = 'v1';
 
   String serviceUrl() {
     return "http://${hostUrl}:${hostPort}/api/${hostVersion}/";
+  }
+
+  String serviceDownload() {
+    return "http://${hostUrl}:${hostPort}/";
   }
 
   // Header
