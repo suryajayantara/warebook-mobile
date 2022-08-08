@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/controllers/StudentCreativityProgram/student_creativity_program_controller.dart';
-import 'package:warebook_mobile/controllers/Thesis/thesis_controller.dart';
-import 'package:warebook_mobile/themes/colors.dart';
-import 'package:warebook_mobile/views/components/alert/custom_alert.dart';
 import 'package:warebook_mobile/views/components/appbar/form_appbar.dart';
 import 'package:warebook_mobile/views/components/form/custom_input_form.dart';
-import 'package:warebook_mobile/views/components/form/organism/simple_fom.dart';
-import 'package:warebook_mobile/views/components/form/upload_file_field.dart';
+import 'package:warebook_mobile/views/components/form/organism/simple_form.dart';
 
 class StudentCreativityProgramCreateView extends StatelessWidget {
   final studentCreativityProgramController =

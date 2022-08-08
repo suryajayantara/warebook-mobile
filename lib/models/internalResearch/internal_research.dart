@@ -10,12 +10,13 @@ class InternalResearch {
   String? abstract;
   @JsonKey(name: 'budget_type')
   String? budgetType;
+  @JsonKey(toJson: toInt)
   int? budget;
   @JsonKey(name: 'project_started_at')
   DateTime? projectStartedAt;
   @JsonKey(name: 'project_finish_at')
   DateTime? projectFinishAt;
-  @JsonKey(name: 'contract_type')
+  @JsonKey(name: 'contract_number')
   String? contractNumber;
   @JsonKey(name: 'team_member')
   String? teamMember;
@@ -25,6 +26,7 @@ class InternalResearch {
   String? proposalUrl;
   @JsonKey(name: 'document_url')
   String? documentUrl;
+  @JsonKey(includeIfNull: false, toJson: toNull)
   Users? users;
   InternalResearch({
     this.title,
@@ -121,6 +123,11 @@ toString(_) {
   return _.toString();
 }
 
-toNul(_) {
+
+toInt(_) {
+  return int.parse(_);
+}
+
+toNull(_) {
   return null;
 }

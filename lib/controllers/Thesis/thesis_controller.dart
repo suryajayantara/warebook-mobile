@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/models/thesis/thesis.dart';
 import 'package:warebook_mobile/services/thesis_service.dart';
-import 'package:warebook_mobile/views/pages/my_repository.dart';
+import 'package:warebook_mobile/views/pages/menu/my_repository.dart';
 import 'package:warebook_mobile/views/pages/thesis/thesis_view.dart';
 
 class ThesisController extends GetxController {

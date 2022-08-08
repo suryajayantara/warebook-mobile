@@ -6,8 +6,9 @@ import 'package:warebook_mobile/views/onboarding.dart';
 import 'package:warebook_mobile/views/pages/auth/login.dart';
 import 'package:warebook_mobile/views/pages/internalResearch/create_repo_internal_research.dart';
 import 'package:warebook_mobile/views/pages/journal/create_repo_journal.dart';
+import 'package:warebook_mobile/views/pages/menu/dosen_repository.dart';
 import 'package:warebook_mobile/views/pages/menu/home.dart';
-import 'package:warebook_mobile/views/pages/my_repository.dart';
+import 'package:warebook_mobile/views/pages/menu/my_repository.dart';
 import 'package:warebook_mobile/views/pages/studentResearch/create_repo_student_creativity_program.dart';
 import 'package:warebook_mobile/views/pages/thesis/create_repo_thesis.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       // home: (dataStorage.read('token') == null)
       //     ? OnboardingView()
       //     : DashboardPage(),
-      home: DashboardPage(),
+      home: DosenRepositoryPage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,

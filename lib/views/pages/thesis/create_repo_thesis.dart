@@ -7,7 +7,7 @@ import 'package:warebook_mobile/themes/colors.dart';
 import 'package:warebook_mobile/views/components/alert/custom_alert.dart';
 import 'package:warebook_mobile/views/components/appbar/form_appbar.dart';
 import 'package:warebook_mobile/views/components/form/custom_input_form.dart';
-import 'package:warebook_mobile/views/components/form/organism/simple_fom.dart';
+import 'package:warebook_mobile/views/components/form/organism/simple_form.dart';
 import 'package:warebook_mobile/views/components/form/upload_file_field.dart';
 
 class ThesisCreateView extends StatelessWidget {

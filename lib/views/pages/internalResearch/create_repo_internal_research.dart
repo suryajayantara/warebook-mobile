@@ -1,20 +1,92 @@
+import 'package:warebook_mobile/views/components/form/date_select_form.dart';
+import 'package:intl/intl.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/controllers/InternalResearch/internal_research_controller.dart';
-import 'package:warebook_mobile/controllers/Thesis/thesis_controller.dart';
-import 'package:warebook_mobile/themes/colors.dart';
 import 'package:warebook_mobile/views/components/appbar/form_appbar.dart';
 import 'package:warebook_mobile/views/components/form/custom_input_form.dart';
-import 'package:warebook_mobile/views/components/form/organism/simple_fom.dart';
+import 'package:warebook_mobile/views/components/form/organism/simple_form.dart';
 import 'package:warebook_mobile/views/components/form/upload_file_field.dart';
 
-class InternalResearchCreateView extends StatelessWidget {
+class InternalResearchCreateView extends StatefulWidget {
+  InternalResearchCreateView({Key? key}) : super(key: key);
+  @override
+  State<InternalResearchCreateView> createState() =>
+      _InternalResearchCreateViewState();
+}
+
+class _InternalResearchCreateViewState
+    extends State<InternalResearchCreateView> {
   final internalResearchController = Get.put(InternalResearchController());
   final _key = GlobalKey<FormState>();
 
-  InternalResearchCreateView({Key? key}) : super(key: key);
+  // FileName
+  String? proposalName;
+  String? dokumentName;
+
+// Function untuk ambil file Dokument
+  void selectDocument() async {
+    FilePickerResult? getFiles = await FilePicker.platform
+        .pickFiles(type: FileType.custom, allowedExtensions: ['pdf']);
+    if (getFiles != null) {
+      internalResearchController.getDocument = getFiles;
+      setState(() {
+        dokumentName = getFiles.files.single.name;
+      });
+    }
+  }
+
+  // Fungsi untuk mendapatkan File Proposal
+  void selectProposal() async {
+    FilePickerResult? getFiles = await FilePicker.platform
+        .pickFiles(type: FileType.custom, allowedExtensions: ['pdf']);
+    if (getFiles != null) {
+      internalResearchController.getProposal = getFiles;
+      setState(() {
+        proposalName = getFiles.files.single.name;
+      });
+    }
+  }
+
+  // fungsi untuk menampilkan file picker
+  void selectStartDate() async {
+    DateTime? pickedTime = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1950),
+        lastDate: DateTime(2100));
+
+    setState(() {
+      String formatedDate = DateFormat('yyyy-mm-dd').format(pickedTime!);
+      internalResearchController.projectStartedAt.text = formatedDate;
+    });
+  }
+
+  void selectFinishDate() async {
+    DateTime? pickedTime = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1950),
+        lastDate: DateTime(2100));
+
+    setState(() {
+      String formatedDate = DateFormat('yyyy-mm-dd').format(pickedTime!);
+      internalResearchController.projectFinishAt.text = formatedDate;
+    });
+  }
+
+  // Function untuk ambil file Proposal
+  // void selectProposal() async {
+  //   FilePickerResult? dataDocument = await FilePicker.platform
+  //       .pickFiles(type: FileType.custom, allowedExtensions: ['pdf']);
+  //   if (dataDocument != null) {
+  //     dataProposal = dataDocument;
+  //     proposal.value = dataDocument.files.single.name;
+  //   }
+  // }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,26 +156,21 @@ class InternalResearchCreateView extends StatelessWidget {
                       },
                     ),
 
-                    CustomInputForm(
+                    DateSelectForm(
+                        padding: EdgeInsets.symmetric(vertical: 10),
                       controller: internalResearchController.projectStartedAt,
-                      label: 'Waktu Projek Dimulai',
-                      hintText: 'Masukan Waktu Dimulai disini',
-                      inputType: TextInputType.datetime,
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(
-                      controller: internalResearchController.projectFinishAt,
-                      label: 'Waktu Projek Diselesaikan',
-                      hintText: 'Masukan Waktu Diselesaikan disini',
-                      inputType: TextInputType.datetime,
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
+                        label: 'Tanggal Pengajuan',
+                        hint: DateFormat('dd/mm/yyyy').format(DateTime.now()),
+                        onTap: selectStartDate,
+                        Icon: Icon(Icons.calendar_today_rounded)),
+                    DateSelectForm(
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        controller: internalResearchController.projectFinishAt,
+                        label: 'Tanggal Penyelesaian',
+                        hint: DateFormat('dd/mm/yyyy').format(DateTime.now()),
+                        onTap: selectFinishDate,
+                        Icon: Icon(Icons.calendar_month_outlined)),
+
                     CustomInputForm(
                       controller: internalResearchController.contractNumber,
                       label: 'No. Kontrak',
@@ -122,14 +189,22 @@ class InternalResearchCreateView extends StatelessWidget {
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
                       },
                     ),
-                    // UploadField(
-                    //     description: (thesisController.statusData)
-                    //         ? thesisController.filename.toString()
-                    //         : "Pilih Satu File",
-                    //     padding: EdgeInsets.symmetric(vertical: 10),
-                    //     ontap: () {
-                    //       thesisController.selectFile();
-                    //     }),
+                    UploadField(
+                        description: (dokumentName != null)
+                            ? dokumentName
+                            : "Pilih Dokument Penelitian",
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        ontap: () {
+                          selectDocument();
+                        }),
+                    UploadField(
+                        description: (proposalName != null)
+                            ? proposalName
+                            : "Pilih Proposal Penelitian",
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        ontap: () {
+                          selectProposal();
+                        }),
                     SizedBox(
                       height: 50,
                     )
@@ -139,6 +214,7 @@ class InternalResearchCreateView extends StatelessWidget {
         ],
         action: () {
           // thesisController.addData();
+          internalResearchController.createInternalResearch();
         },
       ),
     );
