@@ -13,13 +13,12 @@ class InternalResearch {
   String? abstract;
   @JsonKey(name: 'budget_type')
   String? budgetType;
-  @JsonKey(fromJson: toInt)
   int? budget;
   @JsonKey(name: 'project_started_at')
   DateTime? projectStartedAt;
   @JsonKey(name: 'project_finish_at')
   DateTime? projectFinishAt;
-  @JsonKey(name: 'contract_number', fromJson: toInt)
+  @JsonKey(name: 'contract_number')
   int? contractNumber;
   @JsonKey(name: 'team_member')
   String? teamMember;
@@ -130,13 +129,12 @@ class InternalResearch {
 
 
 toInt(_) {
-  return int.parse(_);
+  return int.parse(_.toString());
 }
 
 toNull(_) {
   return null;
 }
-
 
 toString(_) {
   return _.toString();

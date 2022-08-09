@@ -64,7 +64,7 @@ class InternalResearchService extends GetConnect {
   
   */
 
-  Future<InternalResearch> createInternalResearch(
+  Future<void> createInternalResearch(
       InternalResearch internalResearch,
       MultipartFile multipartDocument,
       MultipartFile multipartProposal) async {
@@ -80,13 +80,14 @@ class InternalResearchService extends GetConnect {
       'proposal_url': multipartProposal,
       'document_url': multipartDocument,
     });
-    return await post(
+    await post(
             Uri.parse(urlPath.serviceUrl() + routeName).toString(), form,
             headers: urlPath.header(dataStorage.read('token')))
         .then((value) {
       if (value.body != null && value.isOk) {
-        print(value.body);
-        return InternalResearch.fromJson(value.body['data']);
+        // Problem here
+        // return InternalResearch();
+
         // print(internalResearch.fromJson(value.body['data']));
       } else {
         throw "${value.bodyString} - ${value.statusCode} - ${value.body}";
