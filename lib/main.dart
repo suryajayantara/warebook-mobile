@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       // home: (dataStorage.read('token') == null)
       //     ? OnboardingView()
       //     : DashboardPage(),
-      home: JournalTopicCreateView(),
+      home: DashboardPage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,

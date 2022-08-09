@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/network_utility.dart';
@@ -76,9 +78,11 @@ class InternalResearchDetailsPage extends StatelessWidget {
                                   desc: "DOkument bla bla",
                                   onTap: () {
                                     //  final
-                                    Get.to(() => PDFView(), arguments: {
+                                    Timer(Duration(seconds: 3), () {
+                                      Get.to(() => PDFView(), arguments: {
                                       'url': internalResearchController
                                           .detailsData.documentUrl
+                                    });
                                     });
                                   },
                                 ),
@@ -87,9 +91,11 @@ class InternalResearchDetailsPage extends StatelessWidget {
                                   desc: "Proposal bla bla",
                                   onTap: () {
                                     //  final
-                                    Get.to(() => PDFView(), arguments: {
+                                    Timer(Duration(seconds: 3), () {
+                                      Get.to(() => PDFView(), arguments: {
                                       'url': internalResearchController
                                           .detailsData.proposalUrl
+                                    });
                                     });
                                   },
                                 ),

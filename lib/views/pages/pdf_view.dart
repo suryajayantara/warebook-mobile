@@ -21,7 +21,13 @@ class PDFView extends StatelessWidget {
       body: Container(
           child: PDF().cachedFromUrl(
         urlPath.serviceDownload() + url,
+        headers: {
+          "Connection": "Keep-Alive",
+          "Keep-Alive": "timeout=5, max=1000"
+        },
         maxAgeCacheObject: Duration(days: 7),
+        errorWidget: (dynamic error) => Center(child: Text(error.toString())),
+        
         //duration of cache
       )),
     );

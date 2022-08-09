@@ -35,7 +35,6 @@ class InternalResearchController extends GetxController {
   void getAllData() async {
     return service.getAll().then((value) {
       listData.assignAll(value);
-      print(listData);
     }).catchError((e) {
       throw e;
     });
