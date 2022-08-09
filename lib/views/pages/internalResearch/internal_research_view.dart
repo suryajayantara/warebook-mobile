@@ -40,7 +40,7 @@ class InternalResearchDetailsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   TitleCard(
-                      type: 'Pengabdian',
+                      type: 'Judul',
                       title: internalResearchController.detailsData.title),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 35, vertical: 20),

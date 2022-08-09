@@ -6,8 +6,7 @@ class TitleCard extends StatelessWidget {
   String? title;
   String? type;
 
-  TitleCard({Key? key, required this.title, required this.type})
-      : super(key: key);
+  TitleCard({Key? key, required this.title, this.type}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +29,12 @@ class TitleCard extends StatelessWidget {
           ),
           Padding(
             padding:
-                const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+                const EdgeInsets.symmetric(horizontal: 30.0, vertical: 25.0),
             child: Text(
               title.toString(),
               style: TextStyle(
                   fontFamily: 'Nunito Sans',
-                  fontSize: 17,
+                  fontSize: 20,
                   fontWeight: FontWeight.w800),
               textAlign: TextAlign.center,
             ),

@@ -15,6 +15,7 @@ class CustomInputForm extends StatelessWidget {
   final List<TextInputFormatter>? inputTextFormater;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
+  final Icon? icons;
 
   CustomInputForm(
       {Key? key,
@@ -22,6 +23,7 @@ class CustomInputForm extends StatelessWidget {
       required this.padding,
       required this.label,
       // this.isPassword,
+      this.icons,
       this.inputType,
       this.maxLines,
       this.maxLenght,
@@ -42,8 +44,10 @@ class CustomInputForm extends StatelessWidget {
         maxLines: (maxLines != null) ? maxLines : 1,
         maxLength: (maxLenght != null) ? maxLenght : 255,
         validator: validator,
+        
         // obscureText: (isPassword) ? true : false,
         decoration: InputDecoration(
+            prefixIcon: icons,
             label: Text(label),
             counterText: "",
             hintText: hintText,

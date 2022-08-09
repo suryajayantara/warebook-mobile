@@ -35,6 +35,7 @@ class InternalResearchController extends GetxController {
   void getAllData() async {
     return service.getAll().then((value) {
       listData.assignAll(value);
+      print(listData);
     }).catchError((e) {
       throw e;
     });
@@ -63,7 +64,7 @@ class InternalResearchController extends GetxController {
                 budgetType: budgetType.value.text,
                 projectStartedAt: DateTime.parse(projectStartedAt.value.text),
                 projectFinishAt: DateTime.parse(projectFinishAt.value.text),
-                contractNumber: contractNumber.value.text,
+                contractNumber: int.parse(contractNumber.value.text),
                 teamMember: teamMember.value.text),
             multipartDocument,
             multipartProposal)
@@ -73,13 +74,6 @@ class InternalResearchController extends GetxController {
     }).catchError((e) {
       throw e;
     });
-  }
-
-  // Print PDF
-  void openDocument() {
-   
-    PDF().cachedFromUrl(
-        'http://192.168.1.55:8000/storage/internalResearch/proposal/20220808Perkara.pdf');
   }
 
 }

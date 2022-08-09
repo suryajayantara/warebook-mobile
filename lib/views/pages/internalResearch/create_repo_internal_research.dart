@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:warebook_mobile/views/components/form/date_select_form.dart';
 import 'package:intl/intl.dart';
 import 'package:file_picker/file_picker.dart';
@@ -137,6 +138,7 @@ class _InternalResearchCreateViewState
                       },
                     ),
                     CustomInputForm(
+                      
                       controller: internalResearchController.budgetType,
                       label: 'Sumber Dana',
                       hintText: 'Masukan Sumber Dana disini',
@@ -146,10 +148,15 @@ class _InternalResearchCreateViewState
                       },
                     ),
                     CustomInputForm(
+                      icons: Icon(Icons.payments),
                       controller: internalResearchController.budget,
                       label: 'Jumlah Pendanaan',
                       hintText: 'Masukan Jumlah Pendanaan disini',
                       inputType: TextInputType.number,
+                      inputTextFormater: [
+                        // Format hanya angka
+                        FilteringTextInputFormatter.allow(RegExp('[0-9.,]+'))
+                      ],
                       padding: EdgeInsets.symmetric(vertical: 10),
                       validator: (value) {
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
@@ -175,6 +182,10 @@ class _InternalResearchCreateViewState
                       controller: internalResearchController.contractNumber,
                       label: 'No. Kontrak',
                       hintText: 'Masukan No. Kontrak disini',
+                      inputTextFormater: [
+                        // Format hanya angka
+                        FilteringTextInputFormatter.allow(RegExp('[0-9.,]+'))
+                      ],
                       padding: EdgeInsets.symmetric(vertical: 10),
                       validator: (value) {
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
