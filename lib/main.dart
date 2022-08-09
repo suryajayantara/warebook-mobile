@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:warebook_mobile/views/dashboard.dart';
 import 'package:warebook_mobile/views/onboarding.dart';
 import 'package:warebook_mobile/views/pages/internalResearch/create_repo_internal_research.dart';
+import 'package:warebook_mobile/views/pages/journal/create_repo_journal_topic.dart';
 import 'package:warebook_mobile/views/pages/menu/dosen_repository.dart';
 
 void main(List<String> args) async {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       // home: (dataStorage.read('token') == null)
       //     ? OnboardingView()
       //     : DashboardPage(),
-      home: DashboardPage(),
+      home: JournalTopicCreateView(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,

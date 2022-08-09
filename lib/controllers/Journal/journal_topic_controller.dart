@@ -7,7 +7,11 @@ import 'package:warebook_mobile/services/journal_topic_service.dart';
 class JournalTopicController extends GetxController {
   final listData = <JournalTopic>[].obs;
 
-  final service = new JournalTopicService();
+  final journalService = new JournalTopicService();
+
+  TextEditingController title = TextEditingController();
+  TextEditingController description = TextEditingController();
+  TextEditingController subject = TextEditingController();
 
   @override
   void onInit() {
@@ -17,11 +21,25 @@ class JournalTopicController extends GetxController {
   }
 
   void getAllData() async {
-    return service.getAll().then((value) {
+    return journalService.getAll().then((value) {
       listData.assignAll(value);
       print(value);
     }).catchError((e) {
       throw "$e";
+    });
+  }
+
+  void create() async {
+    journalService
+        .createJournalTopic(
+      JournalTopic(
+        title: title.value.text,
+        description: description.value.text,
+        subject: subject.value.text,
+      ),
+    )
+        .then((value) {
+      print(value);
     });
   }
 }
