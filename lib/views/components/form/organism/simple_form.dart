@@ -35,7 +35,7 @@ class SimpleForm extends StatelessWidget {
                         // Konten disini
                         Container(
                           margin: EdgeInsets.symmetric(
-                              horizontal: 35, vertical: 40),
+                              horizontal: 35, vertical: 20),
                           child: Container(
                             width: Get.width,
                             decoration: BoxDecoration(

@@ -19,7 +19,7 @@ InternalResearch _$InternalResearchFromJson(Map<String, dynamic> json) =>
       projectFinishAt: json['project_finish_at'] == null
           ? null
           : DateTime.parse(json['project_finish_at'] as String),
-      contractNumber: toInt(json['contract_number']),
+      contractNumber: json['contract_number'] as int?,
       teamMember: json['team_member'] as String?,
       contractUrl: json['contract_url'] as String?,
       proposalUrl: json['proposal_url'] as String?,
@@ -35,7 +35,7 @@ Map<String, dynamic> _$InternalResearchToJson(InternalResearch instance) {
     'title': instance.title,
     'abstract': instance.abstract,
     'budget_type': instance.budgetType,
-    'budget': toInt(instance.budget),
+    'budget': instance.budget,
     'project_started_at': instance.projectStartedAt?.toIso8601String(),
     'project_finish_at': instance.projectFinishAt?.toIso8601String(),
     'contract_number': instance.contractNumber,

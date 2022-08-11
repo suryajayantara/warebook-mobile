@@ -5,29 +5,28 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/models/thesis/thesis.dart';
 import 'package:warebook_mobile/services/thesis_service.dart';
+import 'package:warebook_mobile/views/custom_pop_up_dialog.dart';
 import 'package:warebook_mobile/views/pages/menu/my_repository.dart';
 import 'package:warebook_mobile/views/pages/thesis/thesis_view.dart';
 
 class ThesisController extends GetxController {
-  // Obs Variables
-  var statusData = false;
-  var filename = "".obs;
-  var isLoading = false.obs;
-
-  // Data
-  final listData = <Thesis>[].obs;
-
 
   // Text Editing Controller
   TextEditingController title = TextEditingController();
   TextEditingController tags = TextEditingController();
   TextEditingController abstract = TextEditingController();
+  TextEditingController createdYear = TextEditingController();
+
+  // Data
+  final listData = <Thesis>[].obs;
+  Thesis detailsData = Thesis();
+
 
   // File Setting
   FilePickerResult? data;
 
   // Service
-  final thesisService = new ThesisService();
+  final thesisService = ThesisService();
 
   @override
   void onInit() {
@@ -36,23 +35,6 @@ class ThesisController extends GetxController {
     getAllData();
   }
 
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
-    dispose();
-  }
-
-
-  // Function for select file from file_picker
-  void selectFile() async {
-    FilePickerResult? dataDocument = await FilePicker.platform
-        .pickFiles(type: FileType.custom, allowedExtensions: ['jpg']);
-    if (dataDocument != null) {
-      statusData = true;
-      data = dataDocument;
-    }
-  }
 
   void getAllData() async {
     return thesisService.getAll().then((value) {
@@ -60,6 +42,10 @@ class ThesisController extends GetxController {
     }).catchError((e) {
       throw "$e";
     });
+  }
+
+  Thesis getThesisDetails(int id) {
+    return detailsData = listData.firstWhere((element) => element.id == id);
   }
 
   // Simpan Data
@@ -78,7 +64,45 @@ class ThesisController extends GetxController {
     }).catchError((e) {
       print(e);
     });
-
     // Show Details Data
+  }
+
+  void editData(int id) {
+    detailsData = listData.firstWhere((element) => element.id == id);
+    title.text = detailsData.title.toString();
+    abstract.text = detailsData.abstract.toString();
+    tags.text = detailsData.tags.toString();
+    createdYear.text = detailsData.createdYear.toString();
+  }
+
+  void updateData(int id) {
+    FormData form = FormData({
+      'thesis_type': detailsData.thesisType,
+      'tags': tags.value.text,
+      'title': title.value.text,
+      'abstract': abstract.value.text,
+      'created_year': int.parse(createdYear.value.text)
+    });
+
+    thesisService.updateThesis(form, id).then((value) {
+      getAllData();
+      Get.offAll(MyRepositoryPage());
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  // Delete Data
+  Future<bool> deleteThesis(id) async {
+    return await thesisService.deleteThesis(id).then((value) {
+      getAllData();
+      if (value) {
+        return true;
+      } else {
+        return false;
+      }
+    }).catchError((e) {
+      throw e;
+    });
   }
 }

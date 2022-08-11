@@ -4,7 +4,9 @@ part 'thesis_document.g.dart';
 @JsonSerializable()
 class ThesisDocument {
   int? id;
+  @JsonKey(name: 'document_name')
   String? documentName;
+  @JsonKey(name: 'document_url')
   String? url;
   ThesisDocument({
     this.id,

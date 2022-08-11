@@ -6,6 +6,8 @@ import 'package:warebook_mobile/views/onboarding.dart';
 import 'package:warebook_mobile/views/pages/internalResearch/create_repo_internal_research.dart';
 import 'package:warebook_mobile/views/pages/journal/create_repo_journal_topic.dart';
 import 'package:warebook_mobile/views/pages/menu/dosen_repository.dart';
+import 'package:warebook_mobile/views/pages/thesis/create_document_thesis.dart';
+import 'package:warebook_mobile/views/pages/thesis/create_repo_thesis.dart';
 
 void main(List<String> args) async {
   await GetStorage.init();
@@ -19,10 +21,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      // home: (dataStorage.read('token') == null)
-      //     ? OnboardingView()
-      //     : DashboardPage(),
-      home: DashboardPage(),
+      home: (dataStorage.read('token') == "")
+          ? OnboardingView()
+          : DashboardPage(),
+      // home: ThesisCreateView(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,

@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/controllers/Thesis/thesis_controller.dart';
-import 'package:warebook_mobile/themes/colors.dart';
-import 'package:warebook_mobile/views/components/alert/custom_alert.dart';
 import 'package:warebook_mobile/views/components/appbar/form_appbar.dart';
 import 'package:warebook_mobile/views/components/form/custom_input_form.dart';
 import 'package:warebook_mobile/views/components/form/organism/simple_form.dart';
-import 'package:warebook_mobile/views/components/form/upload_file_field.dart';
 
-class ThesisCreateView extends StatelessWidget {
+class ThesisEditView extends StatelessWidget {
+  ThesisEditView({Key? key}) : super(key: key);
+  // int id = Get.arguments['id'];
+
   final thesisController = Get.put(ThesisController());
   final _key = GlobalKey<FormState>();
 
-  ThesisCreateView({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    int id = Get.arguments['id'];
+    thesisController.editData(id);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -89,20 +88,12 @@ class ThesisCreateView extends StatelessWidget {
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
                       },
                     ),
-                    // UploadField(
-                    //     description: (thesisController.statusData)
-                    //         ? thesisController.filename.toString()
-                    //         : "Pilih Satu File",
-                    //     padding: EdgeInsets.symmetric(vertical: 10),
-                    //     ontap: () {
-                    //       thesisController.selectFile();
-                    //     }),
                   ],
                 )),
           )
         ],
         action: () {
-          thesisController.addData();
+          thesisController.updateData(id);
         },
       ),
     );

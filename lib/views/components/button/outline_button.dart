@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class OutlinePillButton extends StatelessWidget {
+class OutlineButton extends StatelessWidget {
   final Function()? onTap;
-  Widget child;
-  Color colors;
-
-  OutlinePillButton(
+  Color color, textColor;
+  String? title;
+  double height, width;
+  OutlineButton(
       {Key? key,
       required this.onTap,
-      required this.child,
-      required this.colors})
+      required this.title,
+      required this.color,
+      required this.textColor,
+      this.height = 40,
+      this.width = 200})
       : super(key: key);
 
   @override
@@ -18,12 +21,18 @@ class OutlinePillButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-          margin: EdgeInsets.symmetric(vertical: 20),
-          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-          decoration: BoxDecoration(
-              border: Border.all(color: colors, width: 2),
-              borderRadius: BorderRadius.circular(20)),
-          child: child),
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          border: Border.all(color: color),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(
+            child: Text(
+          title.toString(),
+          style: TextStyle(color: textColor),
+        )),
+      ),
     );
   }
 }

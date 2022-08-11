@@ -44,6 +44,11 @@ class InternalResearchController extends GetxController {
     return detailsData = listData.firstWhere((element) => element.id == id);
   }
 
+  /*
+
+        Jangan lupa modifed biar ntar tinggal masukin form data aja di service
+  
+   */
   void createInternalResearch() async {
     File documentFile = File(getDocument!.files.single.path.toString());
     File proposalFile = File(getProposal!.files.single.path.toString());

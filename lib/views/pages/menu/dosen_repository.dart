@@ -58,7 +58,6 @@ class DosenRepositoryPage extends StatelessWidget {
                   itemBuilder: (ctx, i) {
                     return ListTile(
                       onTap: () {
-                        Duration(milliseconds: 500);
                         Get.to(() => InternalResearchDetailsPage(), arguments: {
                           "id": int.parse(internalResearchController
                               .listData[i].id

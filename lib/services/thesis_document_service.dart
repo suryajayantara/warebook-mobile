@@ -11,9 +11,9 @@ class ThesisDocumentService extends GetConnect {
   String routeName = "thesisDocument";
   GetStorage dataStorage = GetStorage('auth');
 
-  Future<List<ThesisDocument>> getAll() async {
+  Future<List<ThesisDocument>> getAllByThesis(id) async {
     return await get(
-            Uri.parse(url_path.serviceUrl() + routeName).toString())
+            Uri.parse(url_path.serviceUrl() + routeName + '/${id}').toString())
         .then((value) {
       if (value.body != null && value.isOk) {
         return List<ThesisDocument>.from(
@@ -24,21 +24,15 @@ class ThesisDocumentService extends GetConnect {
     });
   }
 
-  Future<ThesisDocument> createThesisDocument(ThesisDocument thesisDocument,
-      Uint8List fileByte, String fileName, int thesisId) async {
-    var filePart = MultipartFile(fileByte, filename: fileName);
-    var form = FormData({
-      'document_url': filePart,
-      'thesis_id': thesisId,
-      'document_name': thesisDocument.documentName,
-    });
+  Future<ThesisDocument> createThesisDocument(FormData formData) async {
     return await post(
-            Uri.parse(url_path.serviceUrl() + routeName).toString(), form,
-            headers: url_path.header(dataStorage.read('key')))
+      Uri.parse(url_path.serviceUrl() + routeName).toString(),
+      formData,
+    )
         .then((value) {
       if (value.body != null && value.isOk) {
-        // print(value.body);
-        return ThesisDocument.fromJson(value.body['data']);
+        print(value.body);
+        return ThesisDocument();
       } else {
         throw "${value.bodyString}";
       }

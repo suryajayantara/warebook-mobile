@@ -137,8 +137,7 @@ class _InternalResearchCreateViewState
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
                       },
                     ),
-                    CustomInputForm(
-                      
+                    CustomInputForm(  
                       controller: internalResearchController.budgetType,
                       label: 'Sumber Dana',
                       hintText: 'Masukan Sumber Dana disini',

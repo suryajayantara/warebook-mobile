@@ -9,13 +9,13 @@ part of 'thesis_document.dart';
 ThesisDocument _$ThesisDocumentFromJson(Map<String, dynamic> json) =>
     ThesisDocument(
       id: json['id'] as int?,
-      documentName: json['documentName'] as String?,
-      url: json['url'] as String?,
+      documentName: json['document_name'] as String?,
+      url: json['document_url'] as String?,
     );
 
 Map<String, dynamic> _$ThesisDocumentToJson(ThesisDocument instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'documentName': instance.documentName,
-      'url': instance.url,
+      'document_name': instance.documentName,
+      'document_url': instance.url,
     };

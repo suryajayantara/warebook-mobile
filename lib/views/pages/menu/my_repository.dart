@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:warebook_mobile/controllers/Thesis/thesis_controller.dart';
+import 'package:warebook_mobile/controllers/Thesis/thesis_document_controller.dart';
 import 'package:warebook_mobile/helpers/string_formating.dart';
+import 'package:warebook_mobile/views/components/button/outline_button.dart';
+import 'package:warebook_mobile/views/components/button/solid_button.dart';
+import 'package:warebook_mobile/views/components/popup/pop_up_menu.dart';
+import 'package:warebook_mobile/views/custom_pop_up_dialog.dart';
 import 'package:warebook_mobile/views/dashboard.dart';
-
+import 'package:warebook_mobile/views/pages/thesis/edit_repo_thesis.dart';
+import 'package:warebook_mobile/views/pages/thesis/thesis_view.dart';
 class MyRepositoryPage extends StatelessWidget {
   MyRepositoryPage({Key? key}) : super(key: key);
-
   final thesisController = Get.put(ThesisController());
+  final thesisDocumentController = Get.put(ThesisDocumentController());
   final stringFormating = new StringFormating();
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,19 +51,114 @@ class MyRepositoryPage extends StatelessWidget {
           ),
           body: TabBarView(children: [
             Obx(() {
-              return ListView.builder(
+              if (thesisController.listData.length > 0) {
+                
+return ListView.builder(
                   itemCount: thesisController.listData.length,
                   itemBuilder: (ctx, i) {
                     return ListTile(
+                        onTap: () {
+                          thesisDocumentController
+                              .getByThesisId(thesisController.listData[i].id);
+                          Get.to(() => ThesisDetailsPage(), arguments: {
+                            "id": thesisController.listData[i].id
+                          });
+                        },
                       leading: FlutterLogo(size: 72.0),
                       title: Text(stringFormating.truncateWithEllipsis(
                           20, thesisController.listData[i].title.toString())),
                       subtitle: Text(stringFormating.truncateWithEllipsis(60,
                           thesisController.listData[i].abstract.toString())),
-                      trailing: Icon(Icons.more_vert),
+                        trailing: PopUpMenuComponent(menuList: [
+                          PopupMenuItem(
+                              child: ListTile(
+                            title: Text("Perbaharui Data"),
+                            onTap: () {
+                              print(thesisController.listData[i].id);
+                              Get.to(() => ThesisEditView(), arguments: {
+                                "id": thesisController.listData[i].id
+                              });
+                            },
+                          )),
+                          PopupMenuItem(
+                              child: ListTile(
+                            title: Text("Hapus"),
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return CustomPopUpDialog(
+                                      title: 'Hapus Data',
+                                      desc: 'Yakin ingin menghapus data?',
+                                      button: [
+                                        SolidButton(
+                                          onTap: () {
+                                            thesisController
+                                                .deleteThesis(thesisController
+                                                    .listData[i].id)
+                                                .then((value) {
+                                              if (value) {
+                                                Navigator.pop(context);
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                  backgroundColor: Colors.blue,
+                                                  content: Text(
+                                                      'Data Berhasil Dihapus'),
+                                                ));
+                                              } else {
+                                                Navigator.pop(context);
+
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                  backgroundColor: Colors.red,
+                                                  content:
+                                                      Text(value.toString()),
+                                                ));
+                                              }
+                                            });
+                                          },
+                                          title: 'Hapus',
+                                          width: 120,
+                                          color: Colors.red,
+                                        ),
+                                        OutlineButton(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          title: 'Batalkan',
+                                          width: 120,
+                                          color: Colors.red,
+                                          textColor: Colors.red,
+                                        )
+                                      ],
+                                    );
+                                  });
+                            },
+                          ))
+                        ], icons: Icon(Icons.more_vert)),
                       isThreeLine: true,
                     );
                   });
+              } else {
+                return Center(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 350,
+                        child: LottieBuilder.asset(
+                            'assets/images/lottie/not-found.json'),
+                      ),
+                      Text(
+                        'Kamu Belum Punya Repository',
+                        style: TextStyle(
+                            fontFamily: 'Nunito Sans',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18),
+                      )
+                    ],
+                  ),
+                );
+              }
             }),
             ListView.builder(
                 itemCount: 1000,
