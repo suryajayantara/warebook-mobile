@@ -6,8 +6,8 @@ import 'package:warebook_mobile/commons/network_utility.dart';
 import 'package:warebook_mobile/controllers/InternalResearch/internal_research_controller.dart';
 import 'package:warebook_mobile/views/components/card/organism/document_card.dart';
 import 'package:warebook_mobile/views/components/card/organism/title_card.dart';
-import 'package:warebook_mobile/views/dashboard.dart';
-import 'package:warebook_mobile/views/pages/pdf_view.dart';
+import 'package:warebook_mobile/views/pages/menu/dashboard/dashboard.dart';
+import 'package:warebook_mobile/views/pages/utils/pdf_view.dart';
 
 class InternalResearchDetailsPage extends StatelessWidget {
   InternalResearchDetailsPage({Key? key}) : super(key: key);

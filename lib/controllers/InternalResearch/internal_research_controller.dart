@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/models/internalResearch/internal_research.dart';
 import 'package:warebook_mobile/services/internal_research_service.dart';
-import 'package:warebook_mobile/views/pages/menu/dosen_repository.dart';
+import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/lecturer_repository.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 
 class InternalResearchController extends GetxController {

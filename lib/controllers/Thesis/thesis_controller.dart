@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/models/thesis/thesis.dart';
 import 'package:warebook_mobile/services/thesis_service.dart';
-import 'package:warebook_mobile/views/custom_pop_up_dialog.dart';
-import 'package:warebook_mobile/views/pages/menu/my_repository.dart';
+import 'package:warebook_mobile/views/components/popup/custom_dialog.dart';
+import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/student_repository.dart';
 import 'package:warebook_mobile/views/pages/thesis/thesis_view.dart';
 
 class ThesisController extends GetxController {
@@ -60,7 +60,9 @@ class ThesisController extends GetxController {
     )
         .then((value) {
       getAllData();
-      Get.offAll(MyRepositoryPage());
+      Get.offAll(MyRepositoryPage(
+        activePage: 0,
+      ));
     }).catchError((e) {
       print(e);
     });
