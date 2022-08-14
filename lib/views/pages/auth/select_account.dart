@@ -60,7 +60,7 @@ class SelectAccountTypeView extends StatelessWidget {
                           AccountSelectorCard(
                             title: 'Mahasiswa',
                             colors: ColorsTheme.lightYellow,
-                            img: ImagePath.StudentSelector,
+                            img: ImagePath.studentSelector,
                             onTap: () {
                               Get.to(RegisterPage(type: 'student'));
                             },

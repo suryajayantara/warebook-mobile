@@ -5,10 +5,8 @@ import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/controllers/Auth/login_controller.dart';
 import 'package:warebook_mobile/themes/colors.dart';
-import 'package:warebook_mobile/views/pages/auth/register.dart';
+import 'package:warebook_mobile/views/components/form/custom_input_form.dart';
 import 'package:warebook_mobile/views/components/button/solid_button.dart';
-import 'package:warebook_mobile/views/components/form.dart';
-import 'package:warebook_mobile/views/components/form/password_field.dart';
 import 'package:warebook_mobile/views/pages/auth/select_account.dart';
 
 class LoginPage extends StatefulWidget {
@@ -70,15 +68,19 @@ class _LoginPageState extends State<LoginPage> {
                         child: Form(
                             child: Column(
                           children: [
-                            EmailField(
+                            CustomInputForm(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
                                 controller: _loginController.email,
                                 hintText: 'Masukan emailmu disini',
                                 label: 'Email'),
-                            PasswordField(
+                            CustomInputForm(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 10.0),
                               label: 'Password',
                               hintText: 'Masukan Passwordmu disini',
                               controller: _loginController.password,
-                              validate: (value) {
+                              validator: (value) {
                                 if (value == null) {
                                   return 'Tahun Pembuatan Kosong';
                                 } else {

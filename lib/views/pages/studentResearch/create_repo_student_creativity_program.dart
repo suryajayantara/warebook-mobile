@@ -1,16 +1,40 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/controllers/StudentCreativityProgram/student_creativity_program_controller.dart';
 import 'package:warebook_mobile/views/components/appbar/form_appbar.dart';
 import 'package:warebook_mobile/views/components/form/custom_input_form.dart';
 import 'package:warebook_mobile/views/components/form/organism/simple_form.dart';
+import 'package:warebook_mobile/views/components/form/upload_file_field.dart';
 
-class StudentCreativityProgramCreateView extends StatelessWidget {
+class StudentCreativityProgramCreateView extends StatefulWidget {
+  StudentCreativityProgramCreateView({Key? key}) : super(key: key);
+
+  @override
+  State<StudentCreativityProgramCreateView> createState() =>
+      _StudentCreativityProgramCreateViewState();
+}
+
+class _StudentCreativityProgramCreateViewState
+    extends State<StudentCreativityProgramCreateView> {
+  // Data
+  String? documentName;
+  
   final studentCreativityProgramController =
       Get.put(StudentCreativityProgramController());
   final _key = GlobalKey<FormState>();
 
-  StudentCreativityProgramCreateView({Key? key}) : super(key: key);
+  void selectDocument() async {
+    FilePickerResult? getFiles = await FilePicker.platform
+        .pickFiles(type: FileType.custom, allowedExtensions: ['pdf']);
+    if (getFiles != null) {
+      studentCreativityProgramController.getDocument = getFiles;
+      setState(() {
+        documentName = getFiles.files.single.name;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +58,7 @@ class StudentCreativityProgramCreateView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text(
-                        "Student Research Baru",
+                        "Repository PKM Baru",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w800,
@@ -43,7 +67,7 @@ class StudentCreativityProgramCreateView extends StatelessWidget {
                     ),
                     CustomInputForm(
                       controller: studentCreativityProgramController.creativityType,
-                      label: 'Type PKM',
+                      label: 'Tipe PKM',
                       hintText: 'Masukan Jenis PKM Disini',
                       padding: EdgeInsets.symmetric(vertical: 10),
                       validator: (value) {
@@ -84,6 +108,11 @@ class StudentCreativityProgramCreateView extends StatelessWidget {
                       label: 'Tahun Terbit',
                       hintText: 'Masukan Tahun Terbit disini',
                       inputType: TextInputType.number,
+                      maxLenght: 4,
+                      inputTextFormater: [
+                        // Format hanya angka
+                        FilteringTextInputFormatter.allow(RegExp('[0-9.,]+'))
+                      ],
                       padding: EdgeInsets.symmetric(vertical: 10),
                       validator: (value) {
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
@@ -98,6 +127,14 @@ class StudentCreativityProgramCreateView extends StatelessWidget {
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
                       },
                     ),
+                    UploadField(
+                        description: (documentName != null)
+                            ? documentName
+                            : "Pilih Dokument PKM",
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        ontap: () {
+                          selectDocument();
+                        }),
                     // UploadField(
                     //     description: (thesisController.statusData)
                     //         ? thesisController.filename.toString()
@@ -112,6 +149,7 @@ class StudentCreativityProgramCreateView extends StatelessWidget {
         ],
         action: () {
           // thesisController.addData();
+          studentCreativityProgramController.createStudentCreativityProgram();
         },
       ),
     );
