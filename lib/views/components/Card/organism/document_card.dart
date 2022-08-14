@@ -24,7 +24,7 @@ class DocumentCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             boxShadow: [
               BoxShadow(
-                color: Colors.black12.withOpacity(0.2),
+                color: Colors.grey.withOpacity(0.1),
                 blurRadius: 3,
                 spreadRadius: 1,
               )

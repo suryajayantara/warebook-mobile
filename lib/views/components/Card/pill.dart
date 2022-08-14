@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 
 class Pill extends StatelessWidget {
   String? text;
-  Pill({Key? key, this.text}) : super(key: key);
+  EdgeInsets? margin;
+  EdgeInsets? padding;
+  Pill({Key? key, this.text, required this.margin, required this.padding})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 20),
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+      padding: padding,
+      margin: margin,
       decoration: BoxDecoration(
           color: Colors.blue, borderRadius: BorderRadius.circular(20)),
       child: Text(

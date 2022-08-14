@@ -25,6 +25,8 @@ class TitleCard extends StatelessWidget {
       child: Column(
         children: [
           Pill(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             text: type.toString(),
           ),
           Padding(

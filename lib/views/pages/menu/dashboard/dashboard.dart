@@ -14,7 +14,7 @@ class DashboardPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Get.to(StudentCreativityProgramCreateView());
+            Get.to(ThesisCreateView());
           },
           child: Text("+")),
     );

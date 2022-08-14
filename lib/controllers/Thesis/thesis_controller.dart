@@ -1,13 +1,11 @@
-import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/models/thesis/thesis.dart';
 import 'package:warebook_mobile/services/thesis_service.dart';
-import 'package:warebook_mobile/views/components/popup/custom_dialog.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/student_repository.dart';
-import 'package:warebook_mobile/views/pages/thesis/thesis_view.dart';
+
 
 class ThesisController extends GetxController {
 
@@ -30,7 +28,6 @@ class ThesisController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getAllData();
   }
@@ -60,7 +57,7 @@ class ThesisController extends GetxController {
     )
         .then((value) {
       getAllData();
-      Get.offAll(MyRepositoryPage(
+      Get.to(MyRepositoryPage(
         activePage: 0,
       ));
     }).catchError((e) {
