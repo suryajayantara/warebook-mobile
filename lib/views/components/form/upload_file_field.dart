@@ -1,6 +1,8 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:warebook_mobile/themes/colors.dart';
+import 'package:warebook_mobile/views/components/button/outline_button.dart';
 
 class UploadField extends StatelessWidget {
   // Required Params
@@ -9,9 +11,14 @@ class UploadField extends StatelessWidget {
 
   // Additional Params
   String? description;
+  bool hasFile;
 
   UploadField(
-      {Key? key, required this.padding, required this.ontap, this.description})
+      {Key? key,
+      required this.padding,
+      required this.ontap,
+      this.description,
+      this.hasFile = false})
       : super(key: key);
 
   @override
@@ -21,9 +28,11 @@ class UploadField extends StatelessWidget {
       child: GestureDetector(
         onTap: ontap,
         child: DottedBorder(
+          
           borderType: BorderType.RRect,
-          color: Colors.black38,
+          color: (hasFile) ? ColorsTheme.lightBlue : Colors.black38,
           radius: Radius.circular(10),
+        
           dashPattern: [15, 15, 15, 15],
           child: Container(
             width: Get.width,
@@ -31,9 +40,20 @@ class UploadField extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text((description != null)
-                    ? description.toString()
-                    : 'Pilih File')
+                (description != null)
+                    ? Text(
+                        description.toString(),
+                        style: TextStyle(
+                            color: ColorsTheme.lightBlue,
+                            fontFamily: 'Nunito Sans',
+                            fontWeight: FontWeight.w800,
+                            fontSize: 18),
+                      )
+                    : Text(
+                        'Pilih File',
+                        style: TextStyle(fontSize: 18),
+                      )
+                
               ],
             ),
           ),

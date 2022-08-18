@@ -4,7 +4,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:warebook_mobile/models/users.dart';
 import 'package:warebook_mobile/services/auth_service.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/dashboard.dart';
-import 'package:warebook_mobile/views/pages/menu/home.dart';
 import 'package:warebook_mobile/views/pages/auth/login.dart';
 import 'package:warebook_mobile/views/onboarding.dart';
 

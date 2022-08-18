@@ -15,6 +15,7 @@ import 'package:warebook_mobile/views/components/card/pill.dart';
 import 'package:warebook_mobile/views/components/users/user_section.dart';
 import 'package:warebook_mobile/views/pages/thesis/create_document_thesis.dart';
 import 'package:warebook_mobile/views/pages/thesis/create_repo_thesis.dart';
+import 'package:warebook_mobile/views/pages/utils/pdf_view.dart';
 
 class ThesisDetailsPage extends StatelessWidget {
   ThesisDetailsPage({Key? key}) : super(key: key);
@@ -28,168 +29,14 @@ class ThesisDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     thesiscontrollers.getThesisDetails(id);
     thesisDocumentController.getByThesisId(id);
-    // return Scaffold(
-    //     floatingActionButton: FloatingActionButton(
-    //       child: Icon(Icons.file_upload_rounded),
-    //       onPressed: () {
-    //         Get.to(ThesisDocumentCreateView(),
-    //             arguments: {'id': thesiscontrollers.detailsData.id});
-    //       },
-    //     ),
-    //     body: ListView(
-    //       children: [
-    //         Container(
-    //           child: Stack(children: [
-    //             Container(
-    //               // Content dari Details dimulai disini
-    //               child: Column(
-    //                 children: [
-    //                   Image.asset(
-    //                     'assets/images/window-bg.png',
-    //                     height: 250,
-    //                     width: double.infinity,
-    //                     fit: BoxFit.cover,
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-    //             // Floating Card untuk judul
-    //             Column(
-    //               mainAxisAlignment: MainAxisAlignment.start,
-    //               children: [
-    //                 TitleCard(
-    //                   title:
-    //                       thesiscontrollers.detailsData.title,
-    //                   type: thesiscontrollers.detailsData.thesisType,
-    //                 ),
-    //                 Container(
-    //                   margin:
-    //                       EdgeInsets.symmetric(horizontal: 35, vertical: 20),
-    //                   child: Column(
-    //                       crossAxisAlignment: CrossAxisAlignment.start,
-    //                       mainAxisAlignment: MainAxisAlignment.start,
-    //                       children: [
-    //                         Text(
-    //                           "Abstrak",
-    //                           style: TextStyle(
-    //                               fontSize: 25,
-    //                               fontFamily: 'Nunito Sans',
-    //                               fontWeight: FontWeight.w700),
-    //                         ),
-    //                         Container(
-    //                             margin: EdgeInsets.only(top: 20),
-    //                             child: Column(
-    //                               children: [
-    //                                 Text(
-    //                                     thesiscontrollers.detailsData.abstract
-    //                                     .toString()),
-    //                               ],
-    //                             )),
-    //                         Container(
-    //                           margin: EdgeInsets.symmetric(vertical: 20),
-    //                           child: Text(
-    //                               "Kata Kunci : ${thesiscontrollers.detailsData.tags}"),
-    //                         ),
-    //                         Container(
-    //                             margin: EdgeInsets.symmetric(vertical: 25),
-    //                             child: Obx(() {
-    //                               if (!thesisDocumentController
-    //                                   .isLoading.value) {
-    //                                 if (thesisDocumentController
-    //                                             .listData.length !=
-    //                                         null &&
-    //                                     thesisDocumentController
-    //                                             .listData.length >
-    //                                         0) {
-    //                                   return ListView.builder(
-    //                                     shrinkWrap: true,
-    //                                     itemCount: thesisDocumentController
-    //                                         .listData.length,
-    //                                     itemBuilder: (ctx, i) {
-    //                                       return DocumentCard(
-    //                                           onTap: () {},
-    //                                           title: thesisDocumentController
-    //                                               .listData[i].documentName
-    //                                               .toString(),
-    //                                           desc: thesisDocumentController
-    //                                               .listData[i].documentName
-    //                                               .toString());
-    //                                     },
-    //                                   );
-    //                                 } else {
-    //                                   return Center(
-    //                                       child: Column(
-    //                                     mainAxisSize: MainAxisSize.min,
-    //                                     children: [
-    //                                       SizedBox(
-    //                                         height: 250,
-    //                                         child: LottieBuilder.asset(
-    //                                             'assets/images/lottie/nodata.json'),
-    //                                       ),
-    //                                       Text(
-    //                                         'Dokument Belum Tersedia',
-    //                                         style: TextStyle(
-    //                                             fontFamily: 'Nunito Sans',
-    //                                             fontSize: 16,
-    //                                             fontWeight: FontWeight.w700),
-    //                                       )
-    //                                     ],
-    //                                   ));
-    //                                 }
-    //                               } else {
-    //                                 // return Center(child: RefreshIndicator,);
-    //                                 return Center(
-    //                                     child: Column(
-    //                                   mainAxisSize: MainAxisSize.min,
-    //                                   children: [
-    //                                     SizedBox(
-    //                                       height: 250,
-    //                                       child: LottieBuilder.asset(
-    //                                           'assets/images/lottie/loading.json'),
-    //                                     ),
-    //                                     Text('Sedang Mencari Data...')
-    //                                   ],
-    //                                 ));
-    //                               }
-    //                             }))
-    //                       ]),
-    //                 )
-    //               ],
-    //             ),
-    //             Container(
-    //               margin: EdgeInsets.symmetric(vertical: 30, horizontal: 35),
-    //               width: Get.width,
-    //               child: Row(children: [
-    //                 GestureDetector(
-    //                   onTap: () {
-    //                     print('okay, this back');
-    //                   },
-    //                   child: GestureDetector(
-    //                     onTap: () {
-    //                       Get.to(ThesisCreateView());
-    //                     },
-    //                     child: Container(
-    //                         decoration: BoxDecoration(
-    //                             color: Colors.white.withOpacity(0.2),
-    //                             borderRadius: BorderRadius.circular(20)),
-    //                         child: Padding(
-    //                           padding: EdgeInsets.all(10),
-    //                           child: Icon(Icons.arrow_back),
-    //                         )),
-    //                   ),
-    //                 )
-    //               ]),
-    //             )
-    //           ]),
-    //         )
-    //       ],
-    //     ));
+    
 
     return SafeArea(
       child: Scaffold(
+        
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
+          backgroundColor: Colors.white,
+          elevation: 1,
           automaticallyImplyLeading: false,
           centerTitle: true,
           leading: IconButton(
@@ -210,20 +57,33 @@ class ThesisDetailsPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Row(
+                children: [
+                  Pill(
+                      text: 'Tugas Akhir',
+                      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 5, horizontal: 10)),
+                ],
+              ),
+              
               Text(
                 thesiscontrollers.detailsData.title.toString(),
                 style: TextStyle(
                     fontFamily: 'Nunito Sans',
-                    fontSize: 22,
-                    fontWeight: FontWeight.w800),
-              ),
-              Pill(
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                    fontSize: 30,
+                    fontWeight: FontWeight.w800,
+                    color: ColorsTheme.black),
+              ),    
+              Container(
                   margin: EdgeInsets.symmetric(vertical: 10),
-                  text: thesiscontrollers.detailsData.thesisType),
+                  child: UserSection(
+                      userName: 'Risa Rynanda',
+                      userDepartement: 'D3 Manajemen Informatika')),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       thesiscontrollers.detailsData.abstract.toString(),
@@ -231,19 +91,88 @@ class ThesisDetailsPage extends StatelessWidget {
                           fontFamily: 'Nunito Sans',
                           fontWeight: FontWeight.w600,
                           fontSize: 14),
-                    )
+                    ),
+                    Container(
+                        margin: EdgeInsets.symmetric(vertical: 20),
+                        child: RichText(
+                          text: TextSpan(
+                              text: 'Kata Kunci : ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.black),
+                              children: [
+                                TextSpan(
+                                    text: thesiscontrollers.detailsData.tags,
+                                    style: TextStyle(color: Colors.blueAccent))
+                              ]),
+                        )
+)
                   ],
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  DocumentCard(onTap: () {}, title: 'Nice', desc: "Blunde"),
-                ],
+              Container(
+                child: Obx(() {
+                  if (!thesisDocumentController.isLoading.value) {
+                    if (thesisDocumentController.listData.length != null &&
+                        thesisDocumentController.listData.length > 0) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: thesisDocumentController.listData.length,
+                        itemBuilder: (ctx, i) {
+                          return DocumentCard(
+                              onTap: () {
+                                Get.to(() => PDFView(
+                                      url: thesisDocumentController
+                                          .listData[i].url
+                                          .toString(),
+                                    ));
+                              },
+                              title: thesisDocumentController
+                                  .listData[i].documentName
+                                  .toString(),
+                              desc: thesisDocumentController
+                                  .listData[i].documentName
+                                  .toString());
+                        },
+                      );
+                    } else {
+                      return Center(
+                          child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            height: 250,
+                            child: LottieBuilder.asset(
+                                'assets/images/lottie/nodata.json'),
+                          ),
+                          Text(
+                            'Dokument Belum Tersedia',
+                            style: TextStyle(
+                                fontFamily: 'Nunito Sans',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700),
+                          )
+                        ],
+                      ));
+                    }
+                  } else {
+                    // return Center(child: RefreshIndicator,);
+                    return Center(
+                        child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          height: 250,
+                          child: LottieBuilder.asset(
+                              'assets/images/lottie/loading.json'),
+                        ),
+                        Text('Sedang Mencari Data...')
+                      ],
+                    ));
+                  }
+                }),
               ),
-              UserSection(
-                  userName: 'Risa Rynanda',
-                  userDepartement: 'D3 Manajemen Informatika'),
+              
             ],
           ),
         )),

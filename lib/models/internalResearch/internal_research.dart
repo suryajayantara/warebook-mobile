@@ -18,7 +18,7 @@ class InternalResearch {
   DateTime? projectStartedAt;
   @JsonKey(name: 'project_finish_at')
   DateTime? projectFinishAt;
-  @JsonKey(name: 'contract_number')
+  @JsonKey(name: 'contract_number', fromJson: toInt)
   int? contractNumber;
   @JsonKey(name: 'team_member')
   String? teamMember;

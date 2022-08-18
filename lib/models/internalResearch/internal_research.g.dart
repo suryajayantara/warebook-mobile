@@ -19,7 +19,7 @@ InternalResearch _$InternalResearchFromJson(Map<String, dynamic> json) =>
       projectFinishAt: json['project_finish_at'] == null
           ? null
           : DateTime.parse(json['project_finish_at'] as String),
-      contractNumber: json['contract_number'] as int?,
+      contractNumber: toInt(json['contract_number']),
       teamMember: json['team_member'] as String?,
       contractUrl: json['contract_url'] as String?,
       proposalUrl: json['proposal_url'] as String?,

@@ -7,13 +7,15 @@ import 'package:warebook_mobile/controllers/StudentCreativityProgram/student_cre
 import 'package:warebook_mobile/controllers/Thesis/thesis_controller.dart';
 import 'package:warebook_mobile/controllers/Thesis/thesis_document_controller.dart';
 import 'package:warebook_mobile/helpers/string_formating.dart';
-import 'package:warebook_mobile/themes/colors.dart';
 import 'package:warebook_mobile/views/components/button/outline_button.dart';
 import 'package:warebook_mobile/views/components/button/solid_button.dart';
 import 'package:warebook_mobile/views/components/popup/custom_pop_up_menu.dart';
 import 'package:warebook_mobile/views/components/popup/custom_dialog.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/dashboard.dart';
+import 'package:warebook_mobile/views/pages/studentResearch/edit_repo_student_creativity_program.dart';
+import 'package:warebook_mobile/views/pages/studentResearch/student_research_view.dart';
 import 'package:warebook_mobile/views/pages/thesis/edit_repo_thesis.dart';
+import 'package:warebook_mobile/views/pages/thesis/manage_thesis_document_repo.dart';
 import 'package:warebook_mobile/views/pages/thesis/thesis_view.dart';
 
 class MyRepositoryPage extends StatelessWidget {
@@ -85,9 +87,18 @@ class MyRepositoryPage extends StatelessWidget {
                         trailing: PopUpMenuComponent(menuList: [
                           PopupMenuItem(
                               child: ListTile(
+                            title: Text("Kelola Dokumen"),
+                            onTap: () {
+                              Get.to(() => ManageThesisDocumentPage(),
+                                  arguments: {
+                                    "id": thesisController.listData[i].id
+                                  });
+                            },
+                          )),
+                          PopupMenuItem(
+                              child: ListTile(
                             title: Text("Perbaharui Data"),
                             onTap: () {
-                              print(thesisController.listData[i].id);
                               Get.to(() => ThesisEditView(), arguments: {
                                 "id": thesisController.listData[i].id
                               });
@@ -179,130 +190,106 @@ class MyRepositoryPage extends StatelessWidget {
                     itemCount:
                         studentCreativityProgramController.listData.length,
                     itemBuilder: (ctx, i) {
-                      return Container(
-                        decoration: BoxDecoration(
-                            border: Border(
-                                bottom: BorderSide(
-                                    color: Color.fromARGB(255, 218, 218, 218),
-                                    width: 1))),
-                        child: ListTile(
-                          contentPadding: EdgeInsets.symmetric(vertical: 5),
-                          onTap: () {},
-                          leading: SvgPicture.asset(
-                            ImagePath.idea,
-                            height: 80.0,
-                          ),
-                          title: Text(
+                      return ListTile(
+                        onTap: () {
+                          studentCreativityProgramController
+                              .getStudentCreativityProgramDetails(
+                                  studentCreativityProgramController
+                                      .listData[i].id);
+                          Get.to(() => StudentCreativityProgramView(),
+                              arguments: {
+                                "id": studentCreativityProgramController
+                                    .listData[i].id
+                              });
+                        },
+                        leading: SvgPicture.asset(
+                          ImagePath.folder,
+                          height: 72.0,
+                        ),
+                        title: Text(
                             stringFormating.truncateWithEllipsis(
                                 20,
                                 studentCreativityProgramController
                                     .listData[i].title
                                     .toString()),
-                            style: TextStyle(
-                                fontFamily: 'Nunito Sans', fontSize: 20),
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(stringFormating.truncateWithEllipsis(
-                                  60,
-                                  studentCreativityProgramController
-                                      .listData[i].abstract
-                                      .toString())),
-                              Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: ColorsTheme.lightBlue),
-                                margin: EdgeInsets.symmetric(vertical: 10.0),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 5.0, horizontal: 15.0),
-                                  child: Text(
-                                    studentCreativityProgramController
-                                        .listData[i].aliases
-                                        .toString(),
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: 'Nunito Sans',
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 10),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          trailing: PopUpMenuComponent(menuList: [
-                            PopupMenuItem(
-                                child: ListTile(
-                              title: Text("Perbaharui Data"),
-                              onTap: () {
-                                print(studentCreativityProgramController
-                                    .listData[i].id);
-                                Get.to(() => ThesisEditView(), arguments: {
-                                  "id": thesisController.listData[i].id
-                                });
-                              },
-                            )),
-                            PopupMenuItem(
-                                child: ListTile(
-                              title: Text("Hapus"),
-                              onTap: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return CustomPopUpDialog(
-                                        title: 'Hapus Data',
-                                        desc: 'Yakin ingin menghapus PKM?',
-                                        button: [
-                                          SolidButton(
-                                            onTap: () {
-                                              studentCreativityProgramController
-                                                  .deleteStudentCreativityProgram(
-                                                      studentCreativityProgramController
-                                                          .listData[i].id)
-                                                  .then((value) {
-                                                if (value) {
-                                                  Navigator.pop(context);
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(SnackBar(
-                                                    backgroundColor:
-                                                        Colors.blue,
-                                                    content: Text(
-                                                        'PKM Berhasil Dihapus'),
-                                                  ));
-                                                } else {
-                                                  Navigator.pop(context);
+                            style: TextStyle(fontFamily: 'Nunito Sans')),
+                        subtitle: Text(stringFormating.truncateWithEllipsis(
+                            60,
+                            studentCreativityProgramController
+                                .listData[i].abstract
+                                .toString())),
+                        trailing: PopUpMenuComponent(menuList: [
+                          PopupMenuItem(
+                              child: ListTile(
+                            title: Text("Perbaharui Data"),
+                            onTap: () {
+                              Get.to(
+                                  () => EditRepoStudentCreativityProgramView(),
+                                  arguments: {
+                                    "id": studentCreativityProgramController
+                                        .listData[i].id
+                                  });
+                            },
+                          )),
+                          PopupMenuItem(
+                              child: ListTile(
+                            title: Text("Hapus"),
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return CustomPopUpDialog(
+                                      title: 'Hapus Data',
+                                      desc:
+                                          'Yakin ingin menghapus Repository PKM?',
+                                      button: [
+                                        SolidButton(
+                                          onTap: () {
+                                            studentCreativityProgramController
+                                                .deleteStudentCreativityProgram(
+                                                    studentCreativityProgramController
+                                                        .listData[i].id)
+                                                .then((value) {
+                                              if (value) {
+                                                Navigator.pop(context);
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                  backgroundColor: Colors.blue,
+                                                  content: Text(
+                                                      'PKM Berhasil Dihapus'),
+                                                ));
+                                              } else {
+                                                Navigator.pop(context);
 
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(SnackBar(
-                                                    backgroundColor: Colors.red,
-                                                    content:
-                                                        Text(value.toString()),
-                                                  ));
-                                                }
-                                              });
-                                            },
-                                            title: 'Hapus',
-                                            width: 120,
-                                            color: Colors.red,
-                                          ),
-                                          OutlineButton(
-                                            onTap: () {
-                                              Navigator.pop(context);
-                                            },
-                                            title: 'Batalkan',
-                                            width: 120,
-                                            color: Colors.red,
-                                            textColor: Colors.red,
-                                          )
-                                        ],
-                                      );
-                                    });
-                              },
-                            ))
-                          ], icons: Icon(Icons.more_vert)),
-                          isThreeLine: true,
-                        ),
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                  backgroundColor: Colors.red,
+                                                  content:
+                                                      Text(value.toString()),
+                                                ));
+                                              }
+                                            });
+                                          },
+                                          title: 'Hapus',
+                                          width: 120,
+                                          color: Colors.red,
+                                        ),
+                                        OutlineButton(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          title: 'Batalkan',
+                                          width: 120,
+                                          color: Colors.red,
+                                          textColor: Colors.red,
+                                        )
+                                      ],
+                                    );
+                                  });
+                            },
+                          ))
+                        ], icons: Icon(Icons.more_vert)),
+                        isThreeLine: true,
                       );
                     });
               } else {
@@ -315,7 +302,7 @@ class MyRepositoryPage extends StatelessWidget {
                             'assets/images/lottie/not-found.json'),
                       ),
                       Text(
-                        'Kamu Belum Punya Program Kreativitas',
+                        'Kamu Belum Punya Repository',
                         style: TextStyle(
                             fontFamily: 'Nunito Sans',
                             fontWeight: FontWeight.w600,
@@ -325,7 +312,7 @@ class MyRepositoryPage extends StatelessWidget {
                   ),
                 );
               }
-            })
+            }),
           ]),
         ));
   }

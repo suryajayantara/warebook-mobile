@@ -40,7 +40,7 @@ class InternalResearchController extends GetxController {
     });
   }
 
-  InternalResearch getInternalResearctDetails(int id) {
+  InternalResearch getInternalResearctDetails(id) {
     return detailsData = listData.firstWhere((element) => element.id == id);
   }
 
@@ -74,7 +74,23 @@ class InternalResearchController extends GetxController {
             multipartProposal)
         .then((value) {
       getAllData();
-      Get.to(() => DosenRepositoryPage());
+      Get.to(() => DosenRepositoryPage(
+            activePage: 1,
+          ));
+    }).catchError((e) {
+      throw e;
+    });
+  }
+
+  // Delete Data
+  Future<bool> deleteInternalResearch(id) async {
+    return await service.deleteInternalResearch(id).then((value) {
+      getAllData();
+      if (value) {
+        return true;
+      } else {
+        return false;
+      }
     }).catchError((e) {
       throw e;
     });

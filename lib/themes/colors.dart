@@ -6,5 +6,6 @@ class ColorsTheme {
 
   static const Color white = Color(0xFFFFFFFF);
   static const Color grey = Color(0xFFEBEBEB);
+  static const Color black = Color(0xFF333333);
 }
 

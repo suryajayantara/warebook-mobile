@@ -12,9 +12,9 @@ Users _$UsersFromJson(Map<String, dynamic> json) => Users(
       password: json['password'] as String?,
       token: json['token'] as String?,
       uniqueId: json['uniqueId'] as String?,
-      study: json['study'] == null
+      study: json['studies'] == null
           ? null
-          : Study.fromJson(json['study'] as Map<String, dynamic>),
+          : Study.fromJson(json['studies'] as Map<String, dynamic>),
       departement: json['departement'] == null
           ? null
           : Departement.fromJson(json['departement'] as Map<String, dynamic>),
@@ -34,7 +34,7 @@ Map<String, dynamic> _$UsersToJson(Users instance) {
   val['password'] = instance.password;
   writeNotNull('token', toNull(instance.token));
   writeNotNull('uniqueId', toNull(instance.uniqueId));
-  writeNotNull('study', toNull(instance.study));
+  writeNotNull('studies', toNull(instance.study));
   writeNotNull('departement', toNull(instance.departement));
   return val;
 }

@@ -75,14 +75,7 @@ class JournalTopicCreateView extends StatelessWidget {
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
                       },
                     ),
-                    // UploadField(
-                    //     description: (thesisController.statusData)
-                    //         ? thesisController.filename.toString()
-                    //         : "Pilih Satu File",
-                    //     padding: EdgeInsets.symmetric(vertical: 10),
-                    //     ontap: () {
-                    //       thesisController.selectFile();
-                    //     }),
+                    
                   ],
                 )),
           )

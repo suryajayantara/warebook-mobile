@@ -61,7 +61,7 @@ class ThesisController extends GetxController {
         activePage: 0,
       ));
     }).catchError((e) {
-      print(e);
+      
     });
     // Show Details Data
   }
@@ -85,9 +85,11 @@ class ThesisController extends GetxController {
 
     thesisService.updateThesis(form, id).then((value) {
       getAllData();
-      Get.offAll(MyRepositoryPage());
+      Get.to(MyRepositoryPage(
+        activePage: 0,
+      ));
     }).catchError((e) {
-      print(e);
+      
     });
   }
 

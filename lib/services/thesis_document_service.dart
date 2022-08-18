@@ -40,4 +40,39 @@ class ThesisDocumentService extends GetConnect {
     });
   }
 
+  Future<ThesisDocument> updateThesisDocument(
+    FormData form,
+    int id,
+  ) async {
+    String token = dataStorage.read('token');
+    return await post(
+            Uri.parse(url_path.serviceUrl() + '${routeName}/${id}').toString(),
+            form,
+            headers: url_path.header(token.toString()))
+        .then((value) {
+      if (value.body != null && value.isOk) {
+        print(value.body);
+        return ThesisDocument();
+      } else {
+        throw "${value.bodyString} ${value.statusCode}";
+      }
+    });
+  }
+
+  Future<bool> deleteThesisDocument(id) async {
+    String token = dataStorage.read('token');
+    return await delete(
+            Uri.parse(url_path.serviceUrl() + '${routeName}/${id}').toString(),
+            headers: url_path.header(token.toString()))
+        .then((value) {
+      if (value.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    }).catchError((e) {
+      throw e;
+    });
+  }
+
 }

@@ -25,7 +25,7 @@ class CustomPopUpDialog extends StatelessWidget {
             Container(
               margin: EdgeInsets.symmetric(vertical: 20),
               child: Text(
-                'Yakin Hapus Data?',
+                title.toString(),
                 style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w800,
@@ -33,7 +33,7 @@ class CustomPopUpDialog extends StatelessWidget {
               ),
             ),
             Text(
-              'Datamu akan terhapus beserta dengan dokumen repositorymu',
+              desc.toString(),
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontFamily: 'Nunito Sans',

@@ -52,16 +52,9 @@ class JournalTopicService extends GetConnect {
   */
 
   Future<JournalTopic> createJournalTopic(
-    JournalTopic journalTopic,
+    FormData form,
   ) async {
     String token = dataStorage.read('token');
-
-    var form = FormData({
-      'title': journalTopic.title,
-      'description': journalTopic.description,
-      'subject': journalTopic.subject
-    });
-
     return await post(
             Uri.parse(url_path.serviceUrl() + 'journalTopic').toString(), form,
             headers: url_path.header(token.toString()))
@@ -71,6 +64,45 @@ class JournalTopicService extends GetConnect {
       } else {
         throw "${value.bodyString} ${value.statusCode}";
       }
+    });
+  }
+
+  Future<JournalTopic> updateJournalTopic(
+    FormData form,
+    int id,
+  ) async {
+    String token = dataStorage.read('token');
+
+    return await post(
+            Uri.parse(url_path.serviceUrl() + 'journalTopic/${id}').toString(),
+            form,
+            headers: url_path.header(token.toString()))
+        .then((value) {
+      if (value.body != null && value.isOk) {
+        // return Thesis.fromJson(value.body['data']);
+        print(value.body);
+        return JournalTopic();
+      } else {
+        throw "${value.bodyString} ${value.statusCode}";
+      }
+    });
+  }
+
+  Future<bool> deleteJournalTopic(id) async {
+    String token = dataStorage.read('token');
+    return await delete(
+            Uri.parse(url_path.serviceUrl() + 'journalTopic/${id}').toString(),
+            headers: url_path.header(token.toString()))
+        .then((value) {
+      if (value.statusCode == 200) {
+        print(value.body);
+        return true;
+      } else {
+        print(value.body);
+        return false;
+      }
+    }).catchError((e) {
+      throw e;
     });
   }
 }

@@ -39,6 +39,12 @@ class StudentCreativityProgramController extends GetxController {
     });
   }
 
+  StudentCreativityProgram getStudentCreativityProgramDetails(id) {
+    return detailsData = listData.firstWhere((element) => element.id == id);
+  }
+
+
+
   void createStudentCreativityProgram() async {
     File documentFile = File(getDocument!.files.single.path.toString());
 
@@ -75,6 +81,34 @@ class StudentCreativityProgramController extends GetxController {
     year.text = detailsData.year.toString();
     supervisor.text = detailsData.supervisor.toString();
   }
+
+  void updateData(id) async {
+    FormData formData = FormData({
+      'creativity_type': creativityType.value.text,
+      'aliases': aliases.value.text,
+      'title': title.value.text,
+      'abstract': abstract.value.text,
+      'year': year.value.text,
+      'supervisor': supervisor.value.text,
+    });
+
+    if (getDocument != null) {
+      File documentFile = File(getDocument!.files.single.path.toString());
+      MultipartFile multipartDocument = MultipartFile(
+          await documentFile.readAsBytes(),
+          filename: getDocument!.files.single.name);
+
+      formData.files.add(MapEntry('document_url', multipartDocument));
+    }
+
+    service.updateStuedentCreativity(formData, id).then((value) {
+      getAllData();
+      Get.to(MyRepositoryPage(
+        activePage: 1,
+      ));
+    }).catchError((e) {});
+  }
+
 
   // Delete Data
   Future<bool> deleteStudentCreativityProgram(id) async {

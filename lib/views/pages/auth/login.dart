@@ -79,6 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                                   const EdgeInsets.symmetric(vertical: 10.0),
                               label: 'Password',
                               hintText: 'Masukan Passwordmu disini',
+                              isPassword: true,
                               controller: _loginController.password,
                               validator: (value) {
                                 if (value == null) {

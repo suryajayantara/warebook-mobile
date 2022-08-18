@@ -17,7 +17,7 @@ class Users {
   String? token;
   @JsonKey(toJson: toNull, includeIfNull: false)
   String? uniqueId;
-  @JsonKey(toJson: toNull, includeIfNull: false)
+  @JsonKey(toJson: toNull, includeIfNull: false, name: 'studies')
   Study? study;
   @JsonKey(toJson: toNull, includeIfNull: false)
   Departement? departement;

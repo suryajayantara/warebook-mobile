@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:warebook_mobile/views/pages/menu/dashboard/dashboard.dart';
 import 'package:warebook_mobile/views/onboarding.dart';
-import 'package:warebook_mobile/views/pages/internalResearch/create_repo_internal_research.dart';
-import 'package:warebook_mobile/views/pages/journal/create_repo_journal_topic.dart';
+import 'package:warebook_mobile/views/pages/menu/dashboard/dashboard.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/lecturer_repository.dart';
-import 'package:warebook_mobile/views/pages/studentResearch/create_repo_student_creativity_program.dart';
-import 'package:warebook_mobile/views/pages/thesis/create_document_thesis.dart';
-import 'package:warebook_mobile/views/pages/thesis/create_repo_thesis.dart';
+import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/student_repository.dart';
+
 
 void main(List<String> args) async {
   await GetStorage.init();

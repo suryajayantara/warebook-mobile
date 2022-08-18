@@ -25,8 +25,6 @@ class StudentCreativityProgramService extends GetConnect {
 
   Future<StudentCreativityProgram> createStudentCreativityProgram(
       FormData form) async {
-   
-
     return await post(
             Uri.parse(url_path.serviceUrl() + routeName).toString(), form,
             headers: url_path.header(dataStorage.read('token')))
@@ -35,6 +33,26 @@ class StudentCreativityProgramService extends GetConnect {
         return StudentCreativityProgram();
       } else {
         throw "${value.bodyString}";
+      }
+    });
+  }
+
+  Future<StudentCreativityProgram> updateStuedentCreativity(
+    FormData form,
+    int id,
+  ) async {
+    String token = dataStorage.read('token');
+    return await post(
+            Uri.parse(url_path.serviceUrl() + '${routeName}/${id}').toString(),
+            form,
+            headers: url_path.header(token.toString()))
+        .then((value) {
+      if (value.body != null && value.isOk) {
+        // return Thesis.fromJson(value.body['data']);
+        print(value.body);
+        return StudentCreativityProgram();
+      } else {
+        throw "${value.bodyString} ${value.statusCode}";
       }
     });
   }

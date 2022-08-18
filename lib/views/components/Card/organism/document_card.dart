@@ -7,9 +7,18 @@ class DocumentCard extends StatelessWidget {
   final Function()? onTap;
   String? title;
   String? desc;
+  bool isEdit;
+  final Function()? onDelete;
+  final Function()? onUpdate;
 
   DocumentCard(
-      {Key? key, required this.onTap, required this.title, required this.desc})
+      {Key? key,
+      required this.onTap,
+      required this.title,
+      required this.desc,
+      this.isEdit = false,
+      this.onDelete,
+      this.onUpdate})
       : super(key: key);
 
   @override
@@ -66,7 +75,27 @@ class DocumentCard extends StatelessWidget {
                     ],
                   ),
                 ),
-              )
+              ),
+              if (isEdit)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        Icons.edit,
+                        color: Colors.amber,
+                      ),
+                      onPressed: onUpdate,
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.delete,
+                        color: Colors.red,
+                      ),
+                      onPressed: onDelete,
+                    ),
+                  ],
+                )
             ],
           ),
         ),

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/models/thesis/thesis_document.dart';
 import 'package:warebook_mobile/services/thesis_document_service.dart';
+import 'package:warebook_mobile/views/pages/thesis/manage_thesis_document_repo.dart';
 import 'package:warebook_mobile/views/pages/thesis/thesis_view.dart';
 class ThesisDocumentController extends GetxController {
   // Data
@@ -18,9 +19,9 @@ class ThesisDocumentController extends GetxController {
   FilePickerResult? getDocument;
   // Service
   final thesisDocumentService = ThesisDocumentService();
+  
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
   }
 
@@ -34,7 +35,7 @@ class ThesisDocumentController extends GetxController {
         throw "$e";
       });
     } catch (e) {
-      throw e;
+  
     }
   }
 
@@ -53,7 +54,49 @@ class ThesisDocumentController extends GetxController {
 
     thesisDocumentService.createThesisDocument(form).then((value) {
       getByThesisId(id);
-      Get.off(() => ThesisDetailsPage(), arguments: {'id': id});
+      Get.off(() => ManageThesisDocumentPage(), arguments: {'id': id});
+    }).catchError((e) {
+      throw e;
+    });
+  }
+
+  void editThesisDocument(id) {
+    detailsData = listData.firstWhere((element) => element.id == id);
+    documentName.text = detailsData.documentName.toString();
+  }
+
+  void updateThesisDocument(id, thesisId) async {
+    FormData formData = FormData({
+      'thesis_id': thesisId,
+      'document_name': documentName.value.text,
+    });
+
+    if (getDocument != null) {
+      File documentFile = File(getDocument!.files.single.path.toString());
+      MultipartFile multipartDocument = MultipartFile(
+          await documentFile.readAsBytes(),
+          filename: getDocument!.files.single.name);
+
+      formData.files.add(MapEntry('document_url', multipartDocument));
+    }
+
+    thesisDocumentService.updateThesisDocument(formData, id).then((value) {
+      getByThesisId(thesisId);
+      Get.off(() => ManageThesisDocumentPage(), arguments: {"id": thesisId});
+    }).catchError((e) {
+      throw e;
+    });
+  }
+
+  // Delete Data
+  Future<bool> deleteThesisDocument(id, thesisId) async {
+    return await thesisDocumentService.deleteThesisDocument(id).then((value) {
+      getByThesisId(thesisId);
+      if (value) {
+        return true;
+      } else {
+        return false;
+      }
     }).catchError((e) {
       throw e;
     });

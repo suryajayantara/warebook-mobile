@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:warebook_mobile/controllers/Thesis/thesis_controller.dart';
+import 'package:warebook_mobile/controllers/Journal/journal_topic_controller.dart';
 import 'package:warebook_mobile/views/components/appbar/form_appbar.dart';
 import 'package:warebook_mobile/views/components/form/custom_input_form.dart';
 import 'package:warebook_mobile/views/components/form/organism/simple_form.dart';
 
-class ThesisEditView extends StatelessWidget {
-  ThesisEditView({Key? key}) : super(key: key);
-  final thesisController = Get.put(ThesisController());
+class EditJournalTopic extends StatelessWidget {
+  final journalTopicController = Get.find<JournalTopicController>();
   final _key = GlobalKey<FormState>();
+
+  EditJournalTopic({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     int id = Get.arguments['id'];
-    thesisController.editData(id);
-
+    journalTopicController.editData(id);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -36,7 +35,7 @@ class ThesisEditView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text(
-                        "Thesis Baru",
+                        "Topik Jurnal",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w800,
@@ -44,18 +43,18 @@ class ThesisEditView extends StatelessWidget {
                       ),
                     ),
                     CustomInputForm(
-                      controller: thesisController.title,
-                      label: 'Judul',
-                      hintText: 'Masukan Judul Disini',
+                      controller: journalTopicController.title,
+                      label: 'Judul Topik',
+                      hintText: 'Masukan Judul Topik Disini',
                       padding: EdgeInsets.symmetric(vertical: 10),
                       validator: (value) {
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
                       },
                     ),
                     CustomInputForm(
-                      controller: thesisController.abstract,
-                      label: 'Abstrak',
-                      hintText: 'Tuliskan Abstrak disini',
+                      controller: journalTopicController.description,
+                      label: 'Deskripsi',
+                      hintText: 'Tuliskan Deskripsi disini',
                       maxLines: 6,
                       padding: EdgeInsets.symmetric(vertical: 10),
                       inputType: TextInputType.multiline,
@@ -64,23 +63,9 @@ class ThesisEditView extends StatelessWidget {
                       },
                     ),
                     CustomInputForm(
-                      controller: thesisController.tags,
-                      label: 'Kata Kunci',
-                      hintText: 'Masukan kata kunci disini',
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(
-                      label: "Tahun Pembuatan",
-                      controller: thesisController.createdYear,
-                      hintText: 'Masukan Tahun Pembuatan',
-                      maxLenght: 4,
-                      inputTextFormater: [
-                        // Format hanya angka
-                        FilteringTextInputFormatter.allow(RegExp('[0-9.,]+'))
-                      ],
+                      controller: journalTopicController.subject,
+                      label: 'Subjek',
+                      hintText: 'Masukan Subjek disini',
                       padding: EdgeInsets.symmetric(vertical: 10),
                       validator: (value) {
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
@@ -91,7 +76,7 @@ class ThesisEditView extends StatelessWidget {
           )
         ],
         action: () {
-          thesisController.updateData(id);
+          journalTopicController.updateData(id);
         },
       ),
     );

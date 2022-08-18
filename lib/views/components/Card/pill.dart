@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:warebook_mobile/themes/colors.dart';
 
 class Pill extends StatelessWidget {
   String? text;
@@ -13,11 +14,15 @@ class Pill extends StatelessWidget {
       padding: padding,
       margin: margin,
       decoration: BoxDecoration(
-          color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+          border: Border.all(color: ColorsTheme.lightBlue),
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(20)),
       child: Text(
         text.toString(),
         style: TextStyle(
-            color: Colors.white, fontSize: 12, fontWeight: FontWeight.w900),
+            color: ColorsTheme.lightBlue,
+            fontSize: 12,
+            fontWeight: FontWeight.w900),
       ),
     );
   }

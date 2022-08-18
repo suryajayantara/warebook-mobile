@@ -73,10 +73,9 @@ class ThesisService extends GetConnect {
             headers: url_path.header(token.toString()))
         .then((value) {
       if (value.statusCode == 200) {
-        print(value.body);
+      
         return true;
       } else {
-        print(value.body);
         return false;
       }
     }).catchError((e) {

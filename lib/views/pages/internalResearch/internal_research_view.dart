@@ -79,9 +79,13 @@ class InternalResearchDetailsPage extends StatelessWidget {
                                   onTap: () {
                                     //  final
                                     Timer(Duration(seconds: 3), () {
-                                      Get.to(() => PDFView(), arguments: {
-                                      'url': internalResearchController
-                                          .detailsData.documentUrl
+                                      Get.to(
+                                          () => PDFView(
+                                              url: internalResearchController
+                                                  .detailsData.documentUrl
+                                                  .toString()),
+                                          arguments: {
+                                      
                                     });
                                     });
                                   },
@@ -92,9 +96,14 @@ class InternalResearchDetailsPage extends StatelessWidget {
                                   onTap: () {
                                     //  final
                                     Timer(Duration(seconds: 3), () {
-                                      Get.to(() => PDFView(), arguments: {
-                                      'url': internalResearchController
-                                          .detailsData.proposalUrl
+                                      Get.to(
+                                          () => PDFView(
+                                                url: internalResearchController
+                                                    .detailsData.proposalUrl
+                                                    .toString(),
+                                              ),
+                                          arguments: {
+                                     
                                     });
                                     });
                                   },

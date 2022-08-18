@@ -23,7 +23,13 @@ class ImagePath {
   static String file = imgFolder + 'icons/file.svg';
   static String folder = imgFolder + 'icons/folder.svg';
   static String idea = imgFolder + 'icons/idea.svg';
+  static String pdfIcon = imgFolder + 'icons/document.svg';
+  static String repo = imgFolder + 'icons/repo.svg';
+  static String favorite = imgFolder + 'icons/favorite.svg';
+  static String user = imgFolder + 'icons/user.svg';
+  static String setting = imgFolder + 'icons/setting.svg';
   
+
   static String askLottie = imgFolder + 'lottie/ask.json';
 
 

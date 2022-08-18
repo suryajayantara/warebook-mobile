@@ -98,4 +98,24 @@ class InternalResearchService extends GetConnect {
     
   }
 
+
+  Future<bool> deleteInternalResearch(id) async {
+    String token = dataStorage.read('token');
+    return await delete(
+            Uri.parse(urlPath.serviceUrl() + '${routeName}/${id}').toString(),
+            headers: urlPath.header(token.toString()))
+        .then((value) {
+      if (value.statusCode == 200) {
+        print(value.body);
+        return true;
+      } else {
+        print(value.body);
+        return false;
+      }
+    }).catchError((e) {
+      throw e;
+    });
+  }
+
+
 }
