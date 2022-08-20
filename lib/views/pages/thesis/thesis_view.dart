@@ -29,11 +29,9 @@ class ThesisDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     thesiscontrollers.getThesisDetails(id);
     thesisDocumentController.getByThesisId(id);
-    
 
     return SafeArea(
       child: Scaffold(
-        
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 1,
@@ -66,7 +64,6 @@ class ThesisDetailsPage extends StatelessWidget {
                           EdgeInsets.symmetric(vertical: 5, horizontal: 10)),
                 ],
               ),
-              
               Text(
                 thesiscontrollers.detailsData.title.toString(),
                 style: TextStyle(
@@ -74,7 +71,7 @@ class ThesisDetailsPage extends StatelessWidget {
                     fontSize: 30,
                     fontWeight: FontWeight.w800,
                     color: ColorsTheme.black),
-              ),    
+              ),
               Container(
                   margin: EdgeInsets.symmetric(vertical: 10),
                   child: UserSection(
@@ -105,8 +102,7 @@ class ThesisDetailsPage extends StatelessWidget {
                                     text: thesiscontrollers.detailsData.tags,
                                     style: TextStyle(color: Colors.blueAccent))
                               ]),
-                        )
-)
+                        ))
                   ],
                 ),
               ),
@@ -172,7 +168,6 @@ class ThesisDetailsPage extends StatelessWidget {
                   }
                 }),
               ),
-              
             ],
           ),
         )),

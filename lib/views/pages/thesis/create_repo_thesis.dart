@@ -19,91 +19,93 @@ class ThesisCreateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: FormAppBar(),
-        automaticallyImplyLeading: false,
-      ),
-      resizeToAvoidBottomInset: false,
-      body: SimpleForm(
-        widgetList: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-            child: Form(
-                key: _key,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Text(
-                        "Thesis Baru",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w800,
-                            fontFamily: 'Nunito Sans'),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: FormAppBar(),
+          automaticallyImplyLeading: false,
+        ),
+        resizeToAvoidBottomInset: false,
+        body: SimpleForm(
+          widgetList: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+              child: Form(
+                  key: _key,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: Text(
+                          "Thesis Baru",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w800,
+                              fontFamily: 'Nunito Sans'),
+                        ),
                       ),
-                    ),
-                    CustomInputForm(
-                      controller: thesisController.title,
-                      label: 'Judul',
-                      hintText: 'Masukan Judul Disini',
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(
-                      controller: thesisController.abstract,
-                      label: 'Abstrak',
-                      hintText: 'Tuliskan Abstrak disini',
-                      maxLines: 6,
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      inputType: TextInputType.multiline,
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(
-                      controller: thesisController.tags,
-                      label: 'Kata Kunci',
-                      hintText: 'Masukan kata kunci disini',
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(
-                      label: "Tahun Pembuatan",
-                      controller: thesisController.createdYear,
-                      hintText: 'Masukan Tahun Pembuatan',
-                      maxLenght: 4,
-                      inputTextFormater: [
-                        // Format hanya angka
-                        FilteringTextInputFormatter.allow(RegExp('[0-9.,]+'))
-                      ],
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    // UploadField(
-                    //     description: (thesisController.statusData)
-                    //         ? thesisController.filename.toString()
-                    //         : "Pilih Satu File",
-                    //     padding: EdgeInsets.symmetric(vertical: 10),
-                    //     ontap: () {
-                    //       thesisController.selectFile();
-                    //     }),
-                  ],
-                )),
-          )
-        ],
-        action: () {
-          thesisController.addData();
-        },
+                      CustomInputForm(
+                        controller: thesisController.title,
+                        label: 'Judul',
+                        hintText: 'Masukan Judul Disini',
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      CustomInputForm(
+                        controller: thesisController.abstract,
+                        label: 'Abstrak',
+                        hintText: 'Tuliskan Abstrak disini',
+                        maxLines: 6,
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        inputType: TextInputType.multiline,
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      CustomInputForm(
+                        controller: thesisController.tags,
+                        label: 'Kata Kunci',
+                        hintText: 'Masukan kata kunci disini',
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      CustomInputForm(
+                        label: "Tahun Pembuatan",
+                        controller: thesisController.createdYear,
+                        hintText: 'Masukan Tahun Pembuatan',
+                        maxLenght: 4,
+                        inputTextFormater: [
+                          // Format hanya angka
+                          FilteringTextInputFormatter.allow(RegExp('[0-9.,]+'))
+                        ],
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      // UploadField(
+                      //     description: (thesisController.statusData)
+                      //         ? thesisController.filename.toString()
+                      //         : "Pilih Satu File",
+                      //     padding: EdgeInsets.symmetric(vertical: 10),
+                      //     ontap: () {
+                      //       thesisController.selectFile();
+                      //     }),
+                    ],
+                  )),
+            )
+          ],
+          action: () {
+            thesisController.addData();
+          },
+        ),
       ),
     );
   }

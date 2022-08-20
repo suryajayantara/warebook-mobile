@@ -19,106 +19,108 @@ class JournalCreateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: FormAppBar(),
-        automaticallyImplyLeading: false,
-      ),
-      resizeToAvoidBottomInset: false,
-      body: SimpleForm(
-        widgetList: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-            child: Form(
-                key: _key,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Text(
-                        "Journal Baru",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w800,
-                            fontFamily: 'Nunito Sans'),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: FormAppBar(),
+          automaticallyImplyLeading: false,
+        ),
+        resizeToAvoidBottomInset: false,
+        body: SimpleForm(
+          widgetList: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+              child: Form(
+                  key: _key,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: Text(
+                          "Journal Baru",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w800,
+                              fontFamily: 'Nunito Sans'),
+                        ),
                       ),
-                    ),
-                    CustomInputForm(
-                      controller: journalTopicController.title,
-                      label: 'Judul Journal',
-                      hintText: 'Masukan Judul Disini',
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(
-                      controller: journalTopicController.author,
-                      label: 'Pengarang',
-                      hintText: 'Masukan Nama Pengarang Disini',
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(
-                      controller: journalTopicController.abstract,
-                      label: 'Abstrak',
-                      hintText: 'Tuliskan Abstrak disini',
-                      maxLines: 6,
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      inputType: TextInputType.multiline,
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(
-                      controller: journalTopicController.year,
-                      label: 'Tahun Terbit',
-                      hintText: 'Masukan Tahun Terbit disini',
-                      inputType: TextInputType.number,
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(
-                      controller: journalTopicController.tags,
-                      label: 'Kata Kunci',
-                      hintText: 'Masukan kata kunci disini',
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(
-                      controller: journalTopicController.doi,
-                      label: 'DOI',
-                      hintText: 'Masukan DOI disini',
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    
-                    // UploadField(
-                    //     description: (thesisController.statusData)
-                    //         ? thesisController.filename.toString()
-                    //         : "Pilih Satu File",
-                    //     padding: EdgeInsets.symmetric(vertical: 10),
-                    //     ontap: () {
-                    //       thesisController.selectFile();
-                    //     }),
-                  ],
-                )),
-          )
-        ],
-        action: () {
-          // thesisController.addData();
-        },
+                      CustomInputForm(
+                        controller: journalTopicController.title,
+                        label: 'Judul Journal',
+                        hintText: 'Masukan Judul Disini',
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      CustomInputForm(
+                        controller: journalTopicController.author,
+                        label: 'Pengarang',
+                        hintText: 'Masukan Nama Pengarang Disini',
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      CustomInputForm(
+                        controller: journalTopicController.abstract,
+                        label: 'Abstrak',
+                        hintText: 'Tuliskan Abstrak disini',
+                        maxLines: 6,
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        inputType: TextInputType.multiline,
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      CustomInputForm(
+                        controller: journalTopicController.year,
+                        label: 'Tahun Terbit',
+                        hintText: 'Masukan Tahun Terbit disini',
+                        inputType: TextInputType.number,
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      CustomInputForm(
+                        controller: journalTopicController.tags,
+                        label: 'Kata Kunci',
+                        hintText: 'Masukan kata kunci disini',
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      CustomInputForm(
+                        controller: journalTopicController.doi,
+                        label: 'DOI',
+                        hintText: 'Masukan DOI disini',
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      
+                      // UploadField(
+                      //     description: (thesisController.statusData)
+                      //         ? thesisController.filename.toString()
+                      //         : "Pilih Satu File",
+                      //     padding: EdgeInsets.symmetric(vertical: 10),
+                      //     ontap: () {
+                      //       thesisController.selectFile();
+                      //     }),
+                    ],
+                  )),
+            )
+          ],
+          action: () {
+            // thesisController.addData();
+          },
+        ),
       ),
     );
   }

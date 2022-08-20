@@ -19,70 +19,72 @@ class JournalTopicCreateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: FormAppBar(),
-        automaticallyImplyLeading: false,
-      ),
-      resizeToAvoidBottomInset: false,
-      body: SimpleForm(
-        widgetList: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-            child: Form(
-                key: _key,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Text(
-                        "Topik Jurnal",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w800,
-                            fontFamily: 'Nunito Sans'),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: FormAppBar(),
+          automaticallyImplyLeading: false,
+        ),
+        resizeToAvoidBottomInset: false,
+        body: SimpleForm(
+          widgetList: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+              child: Form(
+                  key: _key,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: Text(
+                          "Topik Jurnal",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w800,
+                              fontFamily: 'Nunito Sans'),
+                        ),
                       ),
-                    ),
-                    CustomInputForm(
-                      controller: journalTopicController.title,
-                      label: 'Judul Topik',
-                      hintText: 'Masukan Judul Topik Disini',
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(
-                      controller: journalTopicController.description,
-                      label: 'Deskripsi',
-                      hintText: 'Tuliskan Deskripsi disini',
-                      maxLines: 6,
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      inputType: TextInputType.multiline,
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(
-                      controller: journalTopicController.subject,
-                      label: 'Subjek',
-                      hintText: 'Masukan Subjek disini',
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    
-                  ],
-                )),
-          )
-        ],
-        action: () {
-          journalTopicController.create();
-        },
+                      CustomInputForm(
+                        controller: journalTopicController.title,
+                        label: 'Judul Topik',
+                        hintText: 'Masukan Judul Topik Disini',
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      CustomInputForm(
+                        controller: journalTopicController.description,
+                        label: 'Deskripsi',
+                        hintText: 'Tuliskan Deskripsi disini',
+                        maxLines: 6,
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        inputType: TextInputType.multiline,
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      CustomInputForm(
+                        controller: journalTopicController.subject,
+                        label: 'Subjek',
+                        hintText: 'Masukan Subjek disini',
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      
+                    ],
+                  )),
+            )
+          ],
+          action: () {
+            journalTopicController.create();
+          },
+        ),
       ),
     );
   }

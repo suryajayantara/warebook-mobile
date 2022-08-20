@@ -90,142 +90,144 @@ class _InternalResearchCreateViewState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: FormAppBar(),
-        automaticallyImplyLeading: false,
-      ),
-      resizeToAvoidBottomInset: false,
-      body: SimpleForm(
-        widgetList: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-            child: Form(
-                key: _key,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Text(
-                        "Internal Research Baru",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w800,
-                            fontFamily: 'Nunito Sans'),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: FormAppBar(),
+          automaticallyImplyLeading: false,
+        ),
+        resizeToAvoidBottomInset: false,
+        body: SimpleForm(
+          widgetList: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+              child: Form(
+                  key: _key,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: Text(
+                          "Internal Research Baru",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w800,
+                              fontFamily: 'Nunito Sans'),
+                        ),
                       ),
-                    ),
-                    CustomInputForm(
-                      controller: internalResearchController.title,
-                      label: 'Judul Penelitian Atau Pengabdian',
-                      hintText: 'Masukan Judul Disini',
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(
-                      controller: internalResearchController.abstract,
-                      label: 'Abstrak',
-                      hintText: 'Tuliskan Abstrak disini',
-                      maxLines: 6,
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      inputType: TextInputType.multiline,
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(  
-                      controller: internalResearchController.budgetType,
-                      label: 'Sumber Dana',
-                      hintText: 'Masukan Sumber Dana disini',
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(
-                      icons: Icon(Icons.payments),
-                      controller: internalResearchController.budget,
-                      label: 'Jumlah Pendanaan',
-                      hintText: 'Masukan Jumlah Pendanaan disini',
-                      inputType: TextInputType.number,
-                      inputTextFormater: [
-                        // Format hanya angka
-                        FilteringTextInputFormatter.allow(RegExp('[0-9.,]+'))
-                      ],
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-
-                    DateSelectForm(
+                      CustomInputForm(
+                        controller: internalResearchController.title,
+                        label: 'Judul Penelitian Atau Pengabdian',
+                        hintText: 'Masukan Judul Disini',
                         padding: EdgeInsets.symmetric(vertical: 10),
-                      controller: internalResearchController.projectStartedAt,
-                        label: 'Tanggal Pengajuan',
-                        hint: DateFormat('dd/mm/yyyy').format(DateTime.now()),
-                        onTap: selectStartDate,
-                        Icon: Icon(Icons.calendar_today_rounded)),
-                    DateSelectForm(
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      CustomInputForm(
+                        controller: internalResearchController.abstract,
+                        label: 'Abstrak',
+                        hintText: 'Tuliskan Abstrak disini',
+                        maxLines: 6,
                         padding: EdgeInsets.symmetric(vertical: 10),
-                        controller: internalResearchController.projectFinishAt,
-                        label: 'Tanggal Penyelesaian',
-                        hint: DateFormat('dd/mm/yyyy').format(DateTime.now()),
-                        onTap: selectFinishDate,
-                        Icon: Icon(Icons.calendar_month_outlined)),
-
-                    CustomInputForm(
-                      controller: internalResearchController.contractNumber,
-                      label: 'No. Kontrak',
-                      hintText: 'Masukan No. Kontrak disini',
-                      inputTextFormater: [
-                        // Format hanya angka
-                        FilteringTextInputFormatter.allow(RegExp('[0-9.,]+'))
-                      ],
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    CustomInputForm(
-                      controller: internalResearchController.teamMember,
-                      label: 'Anggota Pengusul',
-                      hintText: 'Masukan Nama Anggota Pengusul disini',
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    UploadField(
-                        description: (dokumentName != null)
-                            ? dokumentName
-                            : "Pilih Dokument Penelitian",
+                        inputType: TextInputType.multiline,
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      CustomInputForm(  
+                        controller: internalResearchController.budgetType,
+                        label: 'Sumber Dana',
+                        hintText: 'Masukan Sumber Dana disini',
                         padding: EdgeInsets.symmetric(vertical: 10),
-                        ontap: () {
-                          selectDocument();
-                        }),
-                    UploadField(
-                        description: (proposalName != null)
-                            ? proposalName
-                            : "Pilih Proposal Penelitian",
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      CustomInputForm(
+                        icons: Icon(Icons.payments),
+                        controller: internalResearchController.budget,
+                        label: 'Jumlah Pendanaan',
+                        hintText: 'Masukan Jumlah Pendanaan disini',
+                        inputType: TextInputType.number,
+                        inputTextFormater: [
+                          // Format hanya angka
+                          FilteringTextInputFormatter.allow(RegExp('[0-9.,]+'))
+                        ],
                         padding: EdgeInsets.symmetric(vertical: 10),
-                        ontap: () {
-                          selectProposal();
-                        }),
-                    SizedBox(
-                      height: 50,
-                    )
-                  ],
-                )),
-          )
-        ],
-        action: () {
-          // thesisController.addData();
-          internalResearchController.createInternalResearch();
-        },
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+    
+                      DateSelectForm(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                        controller: internalResearchController.projectStartedAt,
+                          label: 'Tanggal Pengajuan',
+                          hint: DateFormat('dd/mm/yyyy').format(DateTime.now()),
+                          onTap: selectStartDate,
+                          Icon: Icon(Icons.calendar_today_rounded)),
+                      DateSelectForm(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          controller: internalResearchController.projectFinishAt,
+                          label: 'Tanggal Penyelesaian',
+                          hint: DateFormat('dd/mm/yyyy').format(DateTime.now()),
+                          onTap: selectFinishDate,
+                          Icon: Icon(Icons.calendar_month_outlined)),
+    
+                      CustomInputForm(
+                        controller: internalResearchController.contractNumber,
+                        label: 'No. Kontrak',
+                        hintText: 'Masukan No. Kontrak disini',
+                        inputTextFormater: [
+                          // Format hanya angka
+                          FilteringTextInputFormatter.allow(RegExp('[0-9.,]+'))
+                        ],
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      CustomInputForm(
+                        controller: internalResearchController.teamMember,
+                        label: 'Anggota Pengusul',
+                        hintText: 'Masukan Nama Anggota Pengusul disini',
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      UploadField(
+                          description: (dokumentName != null)
+                              ? dokumentName
+                              : "Pilih Dokument Penelitian",
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          ontap: () {
+                            selectDocument();
+                          }),
+                      UploadField(
+                          description: (proposalName != null)
+                              ? proposalName
+                              : "Pilih Proposal Penelitian",
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          ontap: () {
+                            selectProposal();
+                          }),
+                      SizedBox(
+                        height: 50,
+                      )
+                    ],
+                  )),
+            )
+          ],
+          action: () {
+            // thesisController.addData();
+            internalResearchController.createInternalResearch();
+          },
+        ),
       ),
     );
   }

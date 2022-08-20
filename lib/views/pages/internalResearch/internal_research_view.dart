@@ -18,9 +18,9 @@ class InternalResearchDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     internalResearchController.getInternalResearctDetails(id);
-    return Scaffold(
-        body: SafeArea(
-      child: ListView(
+    return SafeArea(
+      child: Scaffold(
+        body: ListView(
         children: [
           Container(
             child: Stack(children: [
@@ -143,6 +143,7 @@ class InternalResearchDetailsPage extends StatelessWidget {
           )
         ],
       ),
-    ));
+          ),
+    );
   }
 }
