@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/themes/colors.dart';
+import 'package:warebook_mobile/views/components/Card/card.dart';
 import 'package:warebook_mobile/views/pages/journal/journal_document/create_repo_journal_topic.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/student_repository.dart';
 
@@ -14,7 +15,6 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
@@ -45,9 +45,7 @@ class DashboardPage extends StatelessWidget {
                               color: Colors.white,
                               size: 30,
                             ),
-                            onPressed: () {
-                              
-                            },
+                            onPressed: () {},
                           )
                         ]),
                   ),
@@ -143,6 +141,30 @@ class DashboardPage extends StatelessWidget {
                         ),
                       ],
                     ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                    top: 300,
+                    left: 25,
+                  ),
+                  height: 175,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      CardView(),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      CardView(),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      CardView(),
+                      SizedBox(
+                        width: 15,
+                      ),
+                    ],
                   ),
                 ),
               ],
