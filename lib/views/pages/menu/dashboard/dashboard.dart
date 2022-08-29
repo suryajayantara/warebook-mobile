@@ -4,14 +4,12 @@ import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/themes/colors.dart';
 import 'package:warebook_mobile/views/components/Card/card.dart';
-import 'package:warebook_mobile/views/pages/journal/journal_document/create_repo_journal_topic.dart';
-import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/student_repository.dart';
+import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/lecturer_repository.dart';
+import 'package:warebook_mobile/views/pages/thesis/create_repo_thesis.dart';
 
 class DashboardPage extends StatelessWidget {
   DashboardPage({Key? key}) : super(key: key);
-
   // sandbox
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,24 +102,29 @@ class DashboardPage extends StatelessWidget {
                                     ],
                                   ),
                                   onTap: () {
-                                    Get.to(() => MyRepositoryPage());
+                                    Get.to(() => ThesisCreateView());
                                   },
                                 ),
-                                Column(
-                                  children: [
-                                    SvgPicture.asset(
-                                      ImagePath.folder,
-                                      height: 50,
+                                GestureDetector(
+                                    child: Column(
+                                      children: [
+                                        SvgPicture.asset(
+                                          ImagePath.folder,
+                                          height: 50,
+                                        ),
+                                        Text(
+                                          'Repository Ku',
+                                          style: TextStyle(
+                                              fontFamily: 'Nunito Sans',
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black
+                                                  .withOpacity(0.4)),
+                                        )
+                                      ],
                                     ),
-                                    Text(
-                                      'Repository Ku',
-                                      style: TextStyle(
-                                          fontFamily: 'Nunito Sans',
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black.withOpacity(0.4)),
-                                    )
-                                  ],
-                                ),
+                                    onTap: () {
+                                      Get.to(() => DosenRepositoryPage());
+                                    }),
                                 Column(
                                   children: [
                                     SvgPicture.asset(

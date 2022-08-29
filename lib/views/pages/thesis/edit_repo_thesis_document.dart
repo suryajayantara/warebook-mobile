@@ -37,61 +37,63 @@ class _EditThesisDocumentRepositoryPageState
   @override
   Widget build(BuildContext context) {
     thesisDocumentController.editThesisDocument(id);
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: FormAppBar(),
-        automaticallyImplyLeading: false,
-      ),
-      resizeToAvoidBottomInset: false,
-      body: SimpleForm(
-        widgetList: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-            child: Form(
-                key: _key,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Text(
-                        "Edit Dokument Tugas Akhir / Skripsi",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w800,
-                            fontFamily: 'Nunito Sans'),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: FormAppBar(),
+          automaticallyImplyLeading: false,
+        ),
+        resizeToAvoidBottomInset: false,
+        body: SimpleForm(
+          widgetList: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+              child: Form(
+                  key: _key,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: Text(
+                          "Edit Dokument Tugas Akhir / Skripsi",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w800,
+                              fontFamily: 'Nunito Sans'),
+                        ),
                       ),
-                    ),
-                    CustomInputForm(
-                      controller: thesisDocumentController.documentName,
-                      label: 'Judul',
-                      hintText: 'Masukan Nama Dokumen',
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      validator: (value) {
-                        if (value!.isEmpty) return ("Tidak Boleh Kosong");
-                      },
-                    ),
-                    UploadField(
-                        hasFile: (documentName != null) ? true : false,
-                        description: (documentName != null)
-                            ? documentName
-                            : "Pilih Dokument Penelitian",
+                      CustomInputForm(
+                        controller: thesisDocumentController.documentName,
+                        label: 'Judul',
+                        hintText: 'Masukan Nama Dokumen',
                         padding: EdgeInsets.symmetric(vertical: 10),
-                        ontap: () {
-                          selectDocument();
-                        }),
-                  ],
-                )),
-          )
-        ],
-        action: () {
-          // thesisController.addData();
-          thesisDocumentController.updateThesisDocument(id, idThesis);
+                        validator: (value) {
+                          if (value!.isEmpty) return ("Tidak Boleh Kosong");
+                        },
+                      ),
+                      UploadField(
+                          hasFile: (documentName != null) ? true : false,
+                          description: (documentName != null)
+                              ? documentName
+                              : "Pilih Dokument Penelitian",
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          ontap: () {
+                            selectDocument();
+                          }),
+                    ],
+                  )),
+            )
+          ],
+          action: () {
+            // thesisController.addData();
+            thesisDocumentController.updateThesisDocument(id, idThesis);
 
-          // print(documentName);
-        },
+            // print(documentName);
+          },
+        ),
       ),
     );
   }

@@ -8,6 +8,7 @@ part of 'journal_document.dart';
 
 JournalDocument _$JournalDocumentFromJson(Map<String, dynamic> json) =>
     JournalDocument(
+      id: json['id'] as int,
       title: json['title'] as String?,
       author: json['author'] as String?,
       abstract: json['abstract'] as String?,
@@ -23,6 +24,7 @@ JournalDocument _$JournalDocumentFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$JournalDocumentToJson(JournalDocument instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'title': instance.title,
       'author': instance.author,
       'abstract': instance.abstract,

@@ -21,6 +21,7 @@ class AuthService extends GetConnect {
         }).then((value) {
       // print(url_path.toString() + 'login');
       if (value.isOk && value.body != null) {
+        // print(value.body);
         return Users.fromJson(value.body);
       } else {
         throw "${value.statusCode} : ${value.body['message']}";
@@ -59,7 +60,6 @@ class AuthService extends GetConnect {
             headers: url_path.header(token))
         .then(
       (value) {
-        // print(value.body);
         return Users.fromJson(value.body);
       },
     ).catchError((e) {

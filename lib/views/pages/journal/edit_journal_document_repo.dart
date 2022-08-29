@@ -1,27 +1,26 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/controllers/Journal/journal_document_controller.dart';
-import 'package:warebook_mobile/controllers/Thesis/thesis_controller.dart';
-import 'package:warebook_mobile/themes/colors.dart';
-import 'package:warebook_mobile/views/components/alert/custom_alert.dart';
+import 'package:warebook_mobile/controllers/Journal/journal_topic_controller.dart';
 import 'package:warebook_mobile/views/components/appbar/form_appbar.dart';
 import 'package:warebook_mobile/views/components/form/custom_input_form.dart';
 import 'package:warebook_mobile/views/components/form/organism/simple_form.dart';
 import 'package:warebook_mobile/views/components/form/upload_file_field.dart';
 
-class JournalCreateView extends StatefulWidget {
-  JournalCreateView({Key? key}) : super(key: key);
+class JournalDocumentEditRepo extends StatefulWidget {
+  const JournalDocumentEditRepo({Key? key}) : super(key: key);
 
   @override
-  State<JournalCreateView> createState() => _JournalCreateViewState();
+  State<JournalDocumentEditRepo> createState() =>
+      _JournalDocumentEditRepoState();
 }
 
-class _JournalCreateViewState extends State<JournalCreateView> {
-  int id = Get.arguments['id'];
+class _JournalDocumentEditRepoState extends State<JournalDocumentEditRepo> {
+  var id = Get.arguments['id'];
+  var idJournal = Get.arguments['idJournal'];
   final journalDocumentController = Get.put(JournalDocumentController());
+  final journalTopicController = Get.put(JournalTopicController());
   String? documentName;
   final _key = GlobalKey<FormState>();
 
@@ -38,6 +37,7 @@ class _JournalCreateViewState extends State<JournalCreateView> {
 
   @override
   Widget build(BuildContext context) {
+    journalDocumentController.editThesisDocument(id);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -140,7 +140,7 @@ class _JournalCreateViewState extends State<JournalCreateView> {
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
                       },
                     ),
-                    
+
                     // UploadField(
                     //     description: (thesisController.statusData)
                     //         ? thesisController.filename.toString()
@@ -154,7 +154,7 @@ class _JournalCreateViewState extends State<JournalCreateView> {
           )
         ],
         action: () {
-          journalDocumentController.create(id);
+          journalDocumentController.updateJournalDocument(id, idJournal);
         },
       ),
     );

@@ -40,8 +40,8 @@ class ThesisDocumentController extends GetxController {
   }
 
   void createThesisDocument(id) async {
-    File documentFile = File(getDocument!.files.single.path.toString());
-
+    try {
+      File documentFile = File(getDocument!.files.single.path.toString());
     MultipartFile multipartDocument = MultipartFile(
         await documentFile.readAsBytes(),
         filename: getDocument!.files.single.name);
@@ -58,6 +58,9 @@ class ThesisDocumentController extends GetxController {
     }).catchError((e) {
       throw e;
     });
+    } catch (e) {
+      throw e;
+    }
   }
 
   void editThesisDocument(id) {

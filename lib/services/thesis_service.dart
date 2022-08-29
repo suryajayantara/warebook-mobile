@@ -23,17 +23,9 @@ class ThesisService extends GetConnect {
   // Ntar jangan lupa pindahin form datanya ke controller
 
   Future<Thesis> addThesis(
-    Thesis thesis,
+    FormData form,
   ) async {
     String token = dataStorage.read('token');
-
-    var form = FormData({
-      'title': thesis.title,
-      'abstract': thesis.abstract,
-      'tags': thesis.tags,
-      'thesis_type': 'Tugas Akhir'
-    });
-
     return await post(
             Uri.parse(url_path.serviceUrl() + 'thesis').toString(), form,
             headers: url_path.header(token.toString()))

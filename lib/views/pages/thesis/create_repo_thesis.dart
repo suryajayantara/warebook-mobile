@@ -102,7 +102,7 @@ class ThesisCreateView extends StatelessWidget {
           )
         ],
         action: () {
-          thesisController.addData();
+          thesisController.addData('Tugas Akhir');
         },
       ),
     );
