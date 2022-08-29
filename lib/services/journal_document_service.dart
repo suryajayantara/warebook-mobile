@@ -23,23 +23,25 @@ class JournalDocumentService extends GetConnect {
   }
 
   // Add
-  Future<JournalDocument> createJournalDocument(JournalDocument journalDocument,
-      Uint8List fileByte, String fileName, String journalTopic) async {
-    var filePart = MultipartFile(fileByte, filename: fileName);
-    var form = FormData({
-      'document_url': filePart,
-      'journal_topic': journalTopic,
-      'title': journalDocument.title,
-      'author': journalDocument.author,
-      'abstract': journalDocument.abstract,
-      'year': journalDocument.abstract,
-      'original_url': journalDocument.originalUrl,
-      'tags': journalDocument.tags,
-      'doi': journalDocument.doi
-    });
+  Future<JournalDocument> createJournalDocument(FormData form) async {
     return await post(
             Uri.parse(url_path.serviceUrl() + routeName).toString(), form,
-            headers: url_path.header(dataStorage.read('key')))
+            headers: url_path.header(dataStorage.read('token')))
+        .then((value) {
+      if (value.body != null && value.isOk) {
+        return JournalDocument.fromJson(value.body['data']);
+      } else {
+        throw "${value.bodyString}";
+      }
+    });
+  }
+
+  Future<JournalDocument> updateJournalDocument(FormData form, int id) async {
+    
+    return await post(
+            Uri.parse(url_path.serviceUrl() + "${routeName}/$id").toString(),
+            form,
+            headers: url_path.header(dataStorage.read('token')))
         .then((value) {
       if (value.body != null && value.isOk) {
         return JournalDocument.fromJson(value.body['data']);

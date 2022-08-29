@@ -65,21 +65,8 @@ class InternalResearchService extends GetConnect {
   */
 
   Future<void> createInternalResearch(
-      InternalResearch internalResearch,
-      MultipartFile multipartDocument,
-      MultipartFile multipartProposal) async {
-    var form = FormData({
-      'title': internalResearch.title,
-      'abstract': internalResearch.abstract,
-      'budget': internalResearch.budget,
-      'budget_type': internalResearch.budgetType,
-      'contract_number': internalResearch.contractNumber,
-      'project_started_at': internalResearch.projectStartedAt,
-      'project_finish_at': internalResearch.projectFinishAt,
-      'team_member': internalResearch.teamMember,
-      'proposal_url': multipartProposal,
-      'document_url': multipartDocument,
-    });
+      form) async {
+    
     await post(
             Uri.parse(urlPath.serviceUrl() + routeName).toString(), form,
             headers: urlPath.header(dataStorage.read('token')))
@@ -87,7 +74,6 @@ class InternalResearchService extends GetConnect {
       if (value.body != null && value.isOk) {
         // Problem here
         // return InternalResearch();
-
         // print(internalResearch.fromJson(value.body['data']));
       } else {
         throw "${value.bodyString} - ${value.statusCode} - ${value.body}";
@@ -96,6 +82,26 @@ class InternalResearchService extends GetConnect {
       throw e;
     });
     
+  }
+
+  Future<InternalResearch> updateIntenralResearch(
+    FormData form,
+    int id,
+  ) async {
+    String token = dataStorage.read('token');
+    return await post(
+            Uri.parse(urlPath.serviceUrl() + '${routeName}/${id}').toString(),
+            form,
+            headers: urlPath.header(token.toString()))
+        .then((value) {
+      if (value.body != null && value.isOk) {
+        print(value.body);
+        return InternalResearch();
+      } else {
+        print(value.bodyBytes);
+        throw "${value.bodyString} ${value}";
+      }
+    });
   }
 
 

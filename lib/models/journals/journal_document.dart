@@ -3,10 +3,13 @@ import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'package:warebook_mobile/models/journals/journal_topic.dart';
+
 part 'journal_document.g.dart';
 
 @JsonSerializable()
 class JournalDocument {
+  @JsonKey(includeIfNull: false)
+  int? id;
   String? title;
   String? author;
   String? abstract;
@@ -19,6 +22,7 @@ class JournalDocument {
   String? doi;
   JournalTopic? journalTopic;
   JournalDocument({
+    this.id,
     this.title,
     this.author,
     this.abstract,
@@ -31,6 +35,7 @@ class JournalDocument {
   });
 
   JournalDocument copyWith({
+    int? id,
     String? title,
     String? author,
     String? abstract,
@@ -42,6 +47,7 @@ class JournalDocument {
     JournalTopic? journalTopic,
   }) {
     return JournalDocument(
+      id: id ?? this.id,
       title: title ?? this.title,
       author: author ?? this.author,
       abstract: abstract ?? this.abstract,
@@ -61,14 +67,15 @@ class JournalDocument {
 
   @override
   String toString() {
-    return 'JournalDocument(title: $title, author: $author, abstract: $abstract, documentUrl: $documentUrl, originalUrl: $originalUrl, year: $year, tags: $tags, doi: $doi, journalTopic: $journalTopic)';
+    return 'JournalDocument(id: $id, title: $title, author: $author, abstract: $abstract, documentUrl: $documentUrl, originalUrl: $originalUrl, year: $year, tags: $tags, doi: $doi, journalTopic: $journalTopic)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
+  
     return other is JournalDocument &&
+        other.id == id &&
         other.title == title &&
         other.author == author &&
         other.abstract == abstract &&
@@ -82,7 +89,8 @@ class JournalDocument {
 
   @override
   int get hashCode {
-    return title.hashCode ^
+    return id.hashCode ^
+        title.hashCode ^
         author.hashCode ^
         abstract.hashCode ^
         documentUrl.hashCode ^

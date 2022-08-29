@@ -10,8 +10,12 @@ import 'package:warebook_mobile/views/components/button/outline_button.dart';
 import 'package:warebook_mobile/views/components/button/solid_button.dart';
 import 'package:warebook_mobile/views/components/popup/custom_dialog.dart';
 import 'package:warebook_mobile/views/components/popup/custom_pop_up_menu.dart';
-import 'package:warebook_mobile/views/pages/journal/journal_document/edit_repo_journal_topic.dart';
-import 'package:warebook_mobile/views/pages/journal/journal_document/journal_topic.dart';
+import 'package:warebook_mobile/views/pages/internalResearch/edit_internal_research_repo.dart';
+import 'package:warebook_mobile/views/pages/internalResearch/internal_research_view.dart';
+import 'package:warebook_mobile/views/pages/journal/create_repo_journal.dart';
+import 'package:warebook_mobile/views/pages/journal/journal_topic/edit_repo_journal_topic.dart';
+import 'package:warebook_mobile/views/pages/journal/journal_topic/journal_topic.dart';
+import 'package:warebook_mobile/views/pages/journal/manage_journal_repo.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/dashboard.dart';
 
 class DosenRepositoryPage extends StatelessWidget {
@@ -25,8 +29,6 @@ class DosenRepositoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return DefaultTabController(
         initialIndex: activePage,
         length: 2,
@@ -87,6 +89,15 @@ class DosenRepositoryPage extends StatelessWidget {
                             journalTopicController.listData[i].description
                                 .toString())),
                         trailing: PopUpMenuComponent(menuList: [
+                          PopupMenuItem(
+                              child: ListTile(
+                            title: Text("Kelola Jurnal"),
+                            onTap: () {
+                              Get.to(() => ManageJournalRepo(), arguments: {
+                                'id': journalTopicController.listData[i].id
+                              });
+                            },
+                          )),
                           PopupMenuItem(
                               child: ListTile(
                             title: Text("Perbaharui Data"),
@@ -185,15 +196,12 @@ class DosenRepositoryPage extends StatelessWidget {
                     itemBuilder: (ctx, i) {
                       return ListTile(
                         onTap: () {
-                          // internalResearchController
-                          //     .getInternalResearctDetails(
-                          //         internalResearchController
-                          //             .listData[i].id);
-                          // Get.to(() => StudentCreativityProgramView(),
-                          //     arguments: {
-                          //       "id": internalResearchController
-                          //           .listData[i].id
-                          //     });
+                          internalResearchController.getInternalResearctDetails(
+                              internalResearchController.listData[i].id);
+                          Get.to(() => InternalResearchDetailsPage(),
+                              arguments: {
+                                "id": internalResearchController.listData[i].id
+                              });
                         },
                         leading: SvgPicture.asset(
                           ImagePath.folder,
@@ -214,12 +222,11 @@ class DosenRepositoryPage extends StatelessWidget {
                               child: ListTile(
                             title: Text("Perbaharui Data"),
                             onTap: () {
-                              // Get.to(
-                              //     () => EditRepoStudentCreativityProgramView(),
-                              //     arguments: {
-                              //       "id": studentCreativityProgramController
-                              //           .listData[i].id
-                              //     });
+                              Get.to(() => InternalResearchEditView(),
+                                  arguments: {
+                                    "id": internalResearchController
+                                        .listData[i].id
+                                  });
                             },
                           )),
                           PopupMenuItem(

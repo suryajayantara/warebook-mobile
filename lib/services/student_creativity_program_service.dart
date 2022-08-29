@@ -12,8 +12,9 @@ class StudentCreativityProgramService extends GetConnect {
   Future<List<StudentCreativityProgram>> getAll() async {
     return await get(Uri.parse(url_path.serviceUrl() + routeName).toString())
         .then((value) {
+      print(value.body["data"]["data"]);
       if (value.body != null && value.isOk) {
-        return List<StudentCreativityProgram>.from(value.body["data"]
+        return List<StudentCreativityProgram>.from(value.body["data"]['data']
             .map((e) => StudentCreativityProgram.fromJson(e)));
       } else {
         throw "${value.body} - ${value.statusCode}";
@@ -48,8 +49,6 @@ class StudentCreativityProgramService extends GetConnect {
             headers: url_path.header(token.toString()))
         .then((value) {
       if (value.body != null && value.isOk) {
-        // return Thesis.fromJson(value.body['data']);
-        print(value.body);
         return StudentCreativityProgram();
       } else {
         throw "${value.bodyString} ${value.statusCode}";

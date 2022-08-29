@@ -59,19 +59,21 @@ class InternalResearchController extends GetxController {
     MultipartFile multipartProposal = MultipartFile(
         await proposalFile.readAsBytes(),
         filename: getProposal!.files.single.name);
+
+    var form = FormData({
+      'title': title.value.text,
+      'abstract': abstract.value.text,
+      'budget': budget.value.text,
+      'budget_type': budgetType.value.text,
+      'contract_number': contractNumber.value.text,
+      'project_started_at': projectStartedAt.value.text,
+      'project_finish_at': projectFinishAt.value.text,
+      'team_member': teamMember.value.text,
+      'proposal_url': multipartProposal,
+      'document_url': multipartDocument,
+    });
     await service
-        .createInternalResearch(
-            InternalResearch(
-                title: title.value.text,
-                abstract: abstract.value.text,
-                budget: int.parse(budget.value.text),
-                budgetType: budgetType.value.text,
-                projectStartedAt: DateTime.parse(projectStartedAt.value.text),
-                projectFinishAt: DateTime.parse(projectFinishAt.value.text),
-                contractNumber: int.parse(contractNumber.value.text),
-                teamMember: teamMember.value.text),
-            multipartDocument,
-            multipartProposal)
+        .createInternalResearch(form)
         .then((value) {
       getAllData();
       Get.to(() => DosenRepositoryPage(
@@ -81,6 +83,58 @@ class InternalResearchController extends GetxController {
       throw e;
     });
   }
+
+  void editData(id) {
+    detailsData = listData.firstWhere((element) => element.id == id);
+    title.text = detailsData.title.toString();
+    abstract.text = detailsData.abstract.toString();
+    budget.text = detailsData.budget.toString();
+    budgetType.text = detailsData.budgetType.toString();
+    projectStartedAt.text = detailsData.projectStartedAt.toString();
+    projectFinishAt.text = detailsData.projectFinishAt.toString();
+    contractNumber.text = detailsData.contractNumber.toString();
+    teamMember.text = detailsData.teamMember.toString();
+  }
+
+  void updateInternalResearch(id) async {
+    FormData formData = FormData({
+      'title': title.value.text.toString(),
+      'abstract': abstract.value.text.toString(),
+      'budget': budget.value.text.toString(),
+      'budget_type': budgetType.value.text.toString(),
+      'contract_number': contractNumber.value.text.toString(),
+      'project_started_at': projectStartedAt.value.text.toString(),
+      'project_finish_at': projectFinishAt.value.text.toString(),
+      'team_member': teamMember.value.text.toString(),
+    });
+
+    if (getDocument != null) {
+      File documentFile = File(getDocument!.files.single.path.toString());
+      MultipartFile multipartDocument = MultipartFile(
+          await documentFile.readAsBytes(),
+          filename: getDocument!.files.single.name);
+
+      formData.files.add(MapEntry('document_url', multipartDocument));
+    }
+
+    if (getProposal != null) {
+      File proposalFile = File(getProposal!.files.single.path.toString());
+      MultipartFile multipartDocument = MultipartFile(
+          await proposalFile.readAsBytes(),
+          filename: getProposal!.files.single.name);
+      formData.files.add(MapEntry('document_url', multipartDocument));
+    }
+
+    service.updateIntenralResearch(formData, id).then((value) {
+      getAllData();
+      Get.off(() => DosenRepositoryPage(
+            activePage: 1,
+          ));
+    }).catchError((e) {
+      throw e;
+    });
+  }
+
 
   // Delete Data
   Future<bool> deleteInternalResearch(id) async {
@@ -97,3 +151,4 @@ class InternalResearchController extends GetxController {
   }
 
 }
+

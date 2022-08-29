@@ -2,7 +2,9 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:warebook_mobile/controllers/Auth/user_controller.dart';
 import 'package:warebook_mobile/models/thesis/thesis.dart';
+import 'package:warebook_mobile/models/users.dart';
 import 'package:warebook_mobile/services/thesis_service.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/student_repository.dart';
 
@@ -25,6 +27,7 @@ class ThesisController extends GetxController {
 
   // Service
   final thesisService = ThesisService();
+  final _userController = Get.put(UserController());
 
   @override
   void onInit() {
@@ -46,22 +49,26 @@ class ThesisController extends GetxController {
   }
 
   // Simpan Data
-  void addData() async {
+  void addData(type) async {
+    Users data = await _userController.getUserDetail();
+
+    FormData form = FormData({
+      'thesisType': type,
+      'tags': tags.value.text,
+      'title': title.value.text,
+      'author': data.name,
+      'abstract': abstract.value.text
+    });
+
     thesisService
-        .addThesis(
-            Thesis(
-                thesisType: 'Tugas Akhir',
-                tags: tags.value.text,
-                title: title.value.text,
-                abstract: abstract.value.text),
-    )
+        .addThesis(form)
         .then((value) {
       getAllData();
       Get.to(MyRepositoryPage(
         activePage: 0,
       ));
     }).catchError((e) {
-      
+      throw e;
     });
     // Show Details Data
   }

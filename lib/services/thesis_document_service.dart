@@ -25,19 +25,23 @@ class ThesisDocumentService extends GetConnect {
   }
 
   Future<ThesisDocument> createThesisDocument(FormData formData) async {
-    return await post(
+    try {
+      return await post(
       Uri.parse(url_path.serviceUrl() + routeName).toString(),
       formData,
+              headers: url_path.headerFiles(dataStorage.read('token'))
     )
         .then((value) {
-      if (value.body != null && value.isOk) {
-        print(value.body);
+        if (value.body != null && value.isOk) {
         return ThesisDocument();
       } else {
-        throw "${value.bodyString}";
+          throw "${value.bodyString} ${value.statusCode}";
       }
 
     });
+    } catch (e) {
+      throw e;
+    }
   }
 
   Future<ThesisDocument> updateThesisDocument(
@@ -54,7 +58,8 @@ class ThesisDocumentService extends GetConnect {
         print(value.body);
         return ThesisDocument();
       } else {
-        throw "${value.bodyString} ${value.statusCode}";
+        print(value.bodyBytes);
+        throw "${value.bodyString} ${value}";
       }
     });
   }

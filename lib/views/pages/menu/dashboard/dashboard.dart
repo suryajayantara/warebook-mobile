@@ -3,14 +3,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/themes/colors.dart';
-import 'package:warebook_mobile/views/pages/journal/journal_document/create_repo_journal_topic.dart';
+import 'package:warebook_mobile/views/pages/internalResearch/create_repo_internal_research.dart';
+import 'package:warebook_mobile/views/pages/journal/create_repo_journal.dart';
+import 'package:warebook_mobile/views/pages/journal/journal_topic/create_repo_journal_topic.dart';
+import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/lecturer_repository.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/student_repository.dart';
+import 'package:warebook_mobile/views/pages/studentResearch/create_repo_student_creativity_program.dart';
+import 'package:warebook_mobile/views/pages/thesis/create_repo_thesis.dart';
 
 class DashboardPage extends StatelessWidget {
   DashboardPage({Key? key}) : super(key: key);
-
   // sandbox
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,10 +109,11 @@ class DashboardPage extends StatelessWidget {
                                     ],
                                   ),
                                   onTap: () {
-                                    Get.to(() => MyRepositoryPage());
+                                    Get.to(() => ThesisCreateView());
                                   },
                                 ),
-                                Column(
+                                GestureDetector(
+                                    child: Column(
                                   children: [
                                     SvgPicture.asset(
                                       ImagePath.folder,
@@ -123,7 +127,10 @@ class DashboardPage extends StatelessWidget {
                                           color: Colors.black.withOpacity(0.4)),
                                     )
                                   ],
-                                ),
+                                    ),
+                                    onTap: () {
+                                      Get.to(() => DosenRepositoryPage());
+                                    }),
                                 Column(
                                   children: [
                                     SvgPicture.asset(

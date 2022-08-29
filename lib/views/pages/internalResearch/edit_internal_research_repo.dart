@@ -1,29 +1,28 @@
-import 'package:flutter/services.dart';
-import 'package:warebook_mobile/views/components/form/date_select_form.dart';
-import 'package:intl/intl.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:warebook_mobile/controllers/InternalResearch/internal_research_controller.dart';
 import 'package:warebook_mobile/views/components/appbar/form_appbar.dart';
 import 'package:warebook_mobile/views/components/form/custom_input_form.dart';
+import 'package:warebook_mobile/views/components/form/date_select_form.dart';
 import 'package:warebook_mobile/views/components/form/organism/simple_form.dart';
 import 'package:warebook_mobile/views/components/form/upload_file_field.dart';
 
-class InternalResearchCreateView extends StatefulWidget {
-  InternalResearchCreateView({Key? key}) : super(key: key);
+class InternalResearchEditView extends StatefulWidget {
+  const InternalResearchEditView({Key? key}) : super(key: key);
+
   @override
-  State<InternalResearchCreateView> createState() =>
-      _InternalResearchCreateViewState();
+  State<InternalResearchEditView> createState() =>
+      _InternalResearchEditViewState();
 }
 
-class _InternalResearchCreateViewState
-    extends State<InternalResearchCreateView> {
+class _InternalResearchEditViewState extends State<InternalResearchEditView> {
+  @override
   int id = Get.arguments['id'];
   final internalResearchController = Get.put(InternalResearchController());
   final _key = GlobalKey<FormState>();
-
-
 
   // FileName
   String? proposalName;
@@ -80,20 +79,8 @@ class _InternalResearchCreateViewState
     });
   }
 
-  // Function untuk ambil file Proposal
-  // void selectProposal() async {
-  //   FilePickerResult? dataDocument = await FilePicker.platform
-  //       .pickFiles(type: FileType.custom, allowedExtensions: ['pdf']);
-  //   if (dataDocument != null) {
-  //     dataProposal = dataDocument;
-  //     proposal.value = dataDocument.files.single.name;
-  //   }
-  // }
-
-
-  @override
   Widget build(BuildContext context) {
-  
+    internalResearchController.editData(id);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -141,7 +128,7 @@ class _InternalResearchCreateViewState
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
                       },
                     ),
-                    CustomInputForm(  
+                    CustomInputForm(
                       controller: internalResearchController.budgetType,
                       label: 'Sumber Dana',
                       hintText: 'Masukan Sumber Dana disini',
@@ -165,10 +152,9 @@ class _InternalResearchCreateViewState
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
                       },
                     ),
-
                     DateSelectForm(
                         padding: EdgeInsets.symmetric(vertical: 10),
-                      controller: internalResearchController.projectStartedAt,
+                        controller: internalResearchController.projectStartedAt,
                         label: 'Tanggal Pengajuan',
                         hint: DateFormat('dd/mm/yyyy').format(DateTime.now()),
                         onTap: selectStartDate,
@@ -180,7 +166,6 @@ class _InternalResearchCreateViewState
                         hint: DateFormat('dd/mm/yyyy').format(DateTime.now()),
                         onTap: selectFinishDate,
                         Icon: Icon(Icons.calendar_month_outlined)),
-
                     CustomInputForm(
                       controller: internalResearchController.contractNumber,
                       label: 'No. Kontrak',
@@ -228,7 +213,7 @@ class _InternalResearchCreateViewState
         ],
         action: () {
           // thesisController.addData();
-          internalResearchController.createInternalResearch();
+          internalResearchController.updateInternalResearch(id);
         },
       ),
     );

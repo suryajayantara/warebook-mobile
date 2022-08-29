@@ -30,291 +30,300 @@ class MyRepositoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-        initialIndex: activePage,
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            leading: IconButton(
-                onPressed: () {
-                  Get.to(DashboardPage());
-                },
-                icon: Icon(Icons.arrow_back_ios_rounded)),
-            titleSpacing: 0,
-            title: Text(
-              'Repositori ku',
-              style: TextStyle(
-                  fontFamily: 'Nunito Sans', fontWeight: FontWeight.w700),
+    return SafeArea(
+      child: DefaultTabController(
+          initialIndex: activePage,
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+              elevation: 0,
+              leading: IconButton(
+                  onPressed: () {
+                    Get.to(DashboardPage());
+                  },
+                  icon: Icon(Icons.arrow_back_ios_rounded)),
+              titleSpacing: 0,
+              title: Text(
+                'Repositori ku',
+                style: TextStyle(
+                    fontFamily: 'Nunito Sans', fontWeight: FontWeight.w700),
+              ),
+              bottom: TabBar(
+                  indicator:
+                      TriangleTabIndicator(color: Colors.white, radius: 0.0),
+                  splashFactory: NoSplash.splashFactory,
+                  tabs: [
+                    Tab(
+                      child: Text('Tugas Akhir / Skripsi'),
+                    ),
+                    Tab(
+                      child: Text('PKM'),
+                    )
+                  ]),
             ),
-            bottom: TabBar(
-                indicator:
-                    TriangleTabIndicator(color: Colors.white, radius: 0.0),
-                splashFactory: NoSplash.splashFactory,
-                tabs: [
-                  Tab(
-                    child: Text('Tugas Akhir / Skripsi'),
-                  ),
-                  Tab(
-                    child: Text('PKM'),
-                  )
-                ]),
-          ),
-          body: TabBarView(children: [
-            Obx(() {
-              if (thesisController.listData.length > 0) {
-                return ListView.builder(
-                    itemCount: thesisController.listData.length,
-                    itemBuilder: (ctx, i) {
-                      return ListTile(
-                        onTap: () {
-                          thesisDocumentController
-                              .getByThesisId(thesisController.listData[i].id);
-                          Get.to(() => ThesisDetailsPage(), arguments: {
-                            "id": thesisController.listData[i].id
-                          });
-                        },
-                        leading: SvgPicture.asset(
-                          ImagePath.folder,
-                          height: 72.0,
-                        ),
-                        title: Text(
-                            stringFormating.truncateWithEllipsis(20,
-                                thesisController.listData[i].title.toString()),
-                            style: TextStyle(fontFamily: 'Nunito Sans')),
-                        subtitle: Text(stringFormating.truncateWithEllipsis(60,
-                            thesisController.listData[i].abstract.toString())),
-                        trailing: PopUpMenuComponent(menuList: [
-                          PopupMenuItem(
-                              child: ListTile(
-                            title: Text("Kelola Dokumen"),
-                            onTap: () {
-                              Get.to(() => ManageThesisDocumentPage(),
-                                  arguments: {
-                                    "id": thesisController.listData[i].id
-                                  });
-                            },
-                          )),
-                          PopupMenuItem(
-                              child: ListTile(
-                            title: Text("Perbaharui Data"),
-                            onTap: () {
-                              Get.to(() => ThesisEditView(), arguments: {
-                                "id": thesisController.listData[i].id
-                              });
-                            },
-                          )),
-                          PopupMenuItem(
-                              child: ListTile(
-                            title: Text("Hapus"),
-                            onTap: () {
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return CustomPopUpDialog(
-                                      title: 'Hapus Data',
-                                      desc: 'Yakin ingin menghapus data?',
-                                      button: [
-                                        SolidButton(
-                                          onTap: () {
-                                            thesisController
-                                                .deleteThesis(thesisController
-                                                    .listData[i].id)
-                                                .then((value) {
-                                              if (value) {
-                                                Navigator.pop(context);
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(SnackBar(
-                                                  backgroundColor: Colors.blue,
-                                                  content: Text(
-                                                      'Data Berhasil Dihapus'),
-                                                ));
-                                              } else {
-                                                Navigator.pop(context);
+            body: TabBarView(children: [
+              Obx(() {
+                if (thesisController.listData.length > 0) {
+                  return ListView.builder(
+                      itemCount: thesisController.listData.length,
+                      itemBuilder: (ctx, i) {
+                        return ListTile(
+                          onTap: () {
+                            thesisDocumentController
+                                .getByThesisId(thesisController.listData[i].id);
+                            Get.to(() => ThesisDetailsPage(), arguments: {
+                              "id": thesisController.listData[i].id
+                            });
+                          },
+                          leading: SvgPicture.asset(
+                            ImagePath.folder,
+                            height: 72.0,
+                          ),
+                          title: Text(
+                              stringFormating.truncateWithEllipsis(
+                                  20,
+                                  thesisController.listData[i].title
+                                      .toString()),
+                              style: TextStyle(fontFamily: 'Nunito Sans')),
+                          subtitle: Text(stringFormating.truncateWithEllipsis(
+                              60,
+                              thesisController.listData[i].abstract
+                                  .toString())),
+                          trailing: PopUpMenuComponent(menuList: [
+                            PopupMenuItem(
+                                child: ListTile(
+                              title: Text("Kelola Dokumen"),
+                              onTap: () {
+                                Get.to(() => ManageThesisDocumentPage(),
+                                    arguments: {
+                                      "id": thesisController.listData[i].id
+                                    });
+                              },
+                            )),
+                            PopupMenuItem(
+                                child: ListTile(
+                              title: Text("Perbaharui Data"),
+                              onTap: () {
+                                Get.to(() => ThesisEditView(), arguments: {
+                                  "id": thesisController.listData[i].id
+                                });
+                              },
+                            )),
+                            PopupMenuItem(
+                                child: ListTile(
+                              title: Text("Hapus"),
+                              onTap: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return CustomPopUpDialog(
+                                        title: 'Hapus Data',
+                                        desc: 'Yakin ingin menghapus data?',
+                                        button: [
+                                          SolidButton(
+                                            onTap: () {
+                                              thesisController
+                                                  .deleteThesis(thesisController
+                                                      .listData[i].id)
+                                                  .then((value) {
+                                                if (value) {
+                                                  Navigator.pop(context);
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(SnackBar(
+                                                    backgroundColor:
+                                                        Colors.blue,
+                                                    content: Text(
+                                                        'Data Berhasil Dihapus'),
+                                                  ));
+                                                } else {
+                                                  Navigator.pop(context);
 
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(SnackBar(
-                                                  backgroundColor: Colors.red,
-                                                  content:
-                                                      Text(value.toString()),
-                                                ));
-                                              }
-                                            });
-                                          },
-                                          title: 'Hapus',
-                                          width: 120,
-                                          color: Colors.red,
-                                        ),
-                                        OutlineButton(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          title: 'Batalkan',
-                                          width: 120,
-                                          color: Colors.red,
-                                          textColor: Colors.red,
-                                        )
-                                      ],
-                                    );
-                                  });
-                            },
-                          ))
-                        ], icons: Icon(Icons.more_vert)),
-                        isThreeLine: true,
-                      );
-                    });
-              } else {
-                return Center(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 350,
-                        child: LottieBuilder.asset(
-                            'assets/images/lottie/not-found.json'),
-                      ),
-                      Text(
-                        'Kamu Belum Punya Repository',
-                        style: TextStyle(
-                            fontFamily: 'Nunito Sans',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18),
-                      )
-                    ],
-                  ),
-                );
-              }
-            }),
-            Obx(() {
-              if (studentCreativityProgramController.listData.length > 0) {
-                return ListView.builder(
-                    itemCount:
-                        studentCreativityProgramController.listData.length,
-                    itemBuilder: (ctx, i) {
-                      return ListTile(
-                        onTap: () {
-                          studentCreativityProgramController
-                              .getStudentCreativityProgramDetails(
-                                  studentCreativityProgramController
-                                      .listData[i].id);
-                          Get.to(() => StudentCreativityProgramView(),
-                              arguments: {
-                                "id": studentCreativityProgramController
-                                    .listData[i].id
-                              });
-                        },
-                        leading: SvgPicture.asset(
-                          ImagePath.folder,
-                          height: 72.0,
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(SnackBar(
+                                                    backgroundColor: Colors.red,
+                                                    content:
+                                                        Text(value.toString()),
+                                                  ));
+                                                }
+                                              });
+                                            },
+                                            title: 'Hapus',
+                                            width: 120,
+                                            color: Colors.red,
+                                          ),
+                                          OutlineButton(
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                            title: 'Batalkan',
+                                            width: 120,
+                                            color: Colors.red,
+                                            textColor: Colors.red,
+                                          )
+                                        ],
+                                      );
+                                    });
+                              },
+                            ))
+                          ], icons: Icon(Icons.more_vert)),
+                          isThreeLine: true,
+                        );
+                      });
+                } else {
+                  return Center(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 350,
+                          child: LottieBuilder.asset(
+                              'assets/images/lottie/not-found.json'),
                         ),
-                        title: Text(
-                            stringFormating.truncateWithEllipsis(
-                                20,
-                                studentCreativityProgramController
-                                    .listData[i].title
-                                    .toString()),
-                            style: TextStyle(fontFamily: 'Nunito Sans')),
-                        subtitle: Text(stringFormating.truncateWithEllipsis(
-                            60,
+                        Text(
+                          'Kamu Belum Punya Repository',
+                          style: TextStyle(
+                              fontFamily: 'Nunito Sans',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18),
+                        )
+                      ],
+                    ),
+                  );
+                }
+              }),
+              Obx(() {
+                if (studentCreativityProgramController.listData.length > 0) {
+                  return ListView.builder(
+                      itemCount:
+                          studentCreativityProgramController.listData.length,
+                      itemBuilder: (ctx, i) {
+                        return ListTile(
+                          onTap: () {
                             studentCreativityProgramController
-                                .listData[i].abstract
-                                .toString())),
-                        trailing: PopUpMenuComponent(menuList: [
-                          PopupMenuItem(
-                              child: ListTile(
-                            title: Text("Perbaharui Data"),
-                            onTap: () {
-                              Get.to(
-                                  () => EditRepoStudentCreativityProgramView(),
-                                  arguments: {
-                                    "id": studentCreativityProgramController
-                                        .listData[i].id
-                                  });
-                            },
-                          )),
-                          PopupMenuItem(
-                              child: ListTile(
-                            title: Text("Hapus"),
-                            onTap: () {
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return CustomPopUpDialog(
-                                      title: 'Hapus Data',
-                                      desc:
-                                          'Yakin ingin menghapus Repository PKM?',
-                                      button: [
-                                        SolidButton(
-                                          onTap: () {
-                                            studentCreativityProgramController
-                                                .deleteStudentCreativityProgram(
-                                                    studentCreativityProgramController
-                                                        .listData[i].id)
-                                                .then((value) {
-                                              if (value) {
-                                                Navigator.pop(context);
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(SnackBar(
-                                                  backgroundColor: Colors.blue,
-                                                  content: Text(
-                                                      'PKM Berhasil Dihapus'),
-                                                ));
-                                              } else {
-                                                Navigator.pop(context);
+                                .getStudentCreativityProgramDetails(
+                                    studentCreativityProgramController
+                                        .listData[i].id);
+                            Get.to(() => StudentCreativityProgramView(),
+                                arguments: {
+                                  "id": studentCreativityProgramController
+                                      .listData[i].id
+                                });
+                          },
+                          leading: SvgPicture.asset(
+                            ImagePath.folder,
+                            height: 72.0,
+                          ),
+                          title: Text(
+                              stringFormating.truncateWithEllipsis(
+                                  20,
+                                  studentCreativityProgramController
+                                      .listData[i].title
+                                      .toString()),
+                              style: TextStyle(fontFamily: 'Nunito Sans')),
+                          subtitle: Text(stringFormating.truncateWithEllipsis(
+                              60,
+                              studentCreativityProgramController
+                                  .listData[i].abstract
+                                  .toString())),
+                          trailing: PopUpMenuComponent(menuList: [
+                            PopupMenuItem(
+                                child: ListTile(
+                              title: Text("Perbaharui Data"),
+                              onTap: () {
+                                Get.to(
+                                    () =>
+                                        EditRepoStudentCreativityProgramView(),
+                                    arguments: {
+                                      "id": studentCreativityProgramController
+                                          .listData[i].id
+                                    });
+                              },
+                            )),
+                            PopupMenuItem(
+                                child: ListTile(
+                              title: Text("Hapus"),
+                              onTap: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return CustomPopUpDialog(
+                                        title: 'Hapus Data',
+                                        desc:
+                                            'Yakin ingin menghapus Repository PKM?',
+                                        button: [
+                                          SolidButton(
+                                            onTap: () {
+                                              studentCreativityProgramController
+                                                  .deleteStudentCreativityProgram(
+                                                      studentCreativityProgramController
+                                                          .listData[i].id)
+                                                  .then((value) {
+                                                if (value) {
+                                                  Navigator.pop(context);
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(SnackBar(
+                                                    backgroundColor:
+                                                        Colors.blue,
+                                                    content: Text(
+                                                        'PKM Berhasil Dihapus'),
+                                                  ));
+                                                } else {
+                                                  Navigator.pop(context);
 
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(SnackBar(
-                                                  backgroundColor: Colors.red,
-                                                  content:
-                                                      Text(value.toString()),
-                                                ));
-                                              }
-                                            });
-                                          },
-                                          title: 'Hapus',
-                                          width: 120,
-                                          color: Colors.red,
-                                        ),
-                                        OutlineButton(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          title: 'Batalkan',
-                                          width: 120,
-                                          color: Colors.red,
-                                          textColor: Colors.red,
-                                        )
-                                      ],
-                                    );
-                                  });
-                            },
-                          ))
-                        ], icons: Icon(Icons.more_vert)),
-                        isThreeLine: true,
-                      );
-                    });
-              } else {
-                return Center(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 350,
-                        child: LottieBuilder.asset(
-                            'assets/images/lottie/not-found.json'),
-                      ),
-                      Text(
-                        'Kamu Belum Punya Repository',
-                        style: TextStyle(
-                            fontFamily: 'Nunito Sans',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18),
-                      )
-                    ],
-                  ),
-                );
-              }
-            }),
-          ]),
-        ));
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(SnackBar(
+                                                    backgroundColor: Colors.red,
+                                                    content:
+                                                        Text(value.toString()),
+                                                  ));
+                                                }
+                                              });
+                                            },
+                                            title: 'Hapus',
+                                            width: 120,
+                                            color: Colors.red,
+                                          ),
+                                          OutlineButton(
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                            title: 'Batalkan',
+                                            width: 120,
+                                            color: Colors.red,
+                                            textColor: Colors.red,
+                                          )
+                                        ],
+                                      );
+                                    });
+                              },
+                            ))
+                          ], icons: Icon(Icons.more_vert)),
+                          isThreeLine: true,
+                        );
+                      });
+                } else {
+                  return Center(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 350,
+                          child: LottieBuilder.asset(
+                              'assets/images/lottie/not-found.json'),
+                        ),
+                        Text(
+                          'Kamu Belum Punya Repository',
+                          style: TextStyle(
+                              fontFamily: 'Nunito Sans',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18),
+                        )
+                      ],
+                    ),
+                  );
+                }
+              }),
+            ]),
+          )),
+    );
   }
 }
 
