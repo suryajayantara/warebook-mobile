@@ -147,26 +147,50 @@ class DashboardPage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(
-                    top: 300,
-                    left: 25,
-                  ),
-                  height: 175,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
+                  margin: EdgeInsets.only(top: 260, left: 0, right: 0),
+                  child: Column(
                     children: [
-                      CardView(),
-                      SizedBox(
-                        width: 15,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        child: Container(
+                          margin: EdgeInsets.only(left: 25),
+                          child: Row(
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Tugas Akhir di Jurusanmu',
+                                    style: TextStyle(
+                                        fontFamily: 'Nunito Sans',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w800),
+                                  ),
+                                  Text(
+                                    'Liat Journal tebaik di jurusanmu',
+                                    style: TextStyle(
+                                        fontFamily: 'Nunito Sans',
+                                        fontSize: 15),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
                       ),
-                      CardView(),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      CardView(),
-                      SizedBox(
-                        width: 15,
-                      ),
+                      Container(
+                        height: 175,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            CardView(),
+                            CardView(),
+                            CardView(),
+                            CardView(),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),

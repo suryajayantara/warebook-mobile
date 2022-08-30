@@ -8,6 +8,7 @@ class CardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        margin: EdgeInsets.only(left: 15),
         width: 300,
         decoration: BoxDecoration(
             color: Colors.white,
@@ -23,7 +24,7 @@ class CardView extends StatelessWidget {
                 offset: Offset(0, 5), // changes position of shadow
               ),
             ],
-            borderRadius: BorderRadius.circular(5)),
+            borderRadius: BorderRadius.circular(10)),
         child: Container(
           margin: EdgeInsets.all(15),
           child: Column(
@@ -42,9 +43,7 @@ class CardView extends StatelessWidget {
                   style: TextStyle(color: ColorsTheme.white, fontSize: 10),
                 )),
               ),
-              SizedBox(
-                height: 10,
-              ),
+
               Container(
                 height: 67,
                 child: Row(
@@ -66,27 +65,20 @@ class CardView extends StatelessWidget {
                     SizedBox(
                       width: 10,
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        height: 50,
-                        width: 50,
-                        color: Colors.blue,
-                      ),
-                    )
+                   
                   ],
                 ),
               ),
               SizedBox(
-                height: 5,
+                height: 12,
               ),
               Container(
-                height: 3,
+                height: 1,
                 width: 300,
                 color: Colors.black,
               ),
               SizedBox(
-                height: 5,
+                height: 10,
               ),
               Container(
                   child: Row(
@@ -103,14 +95,15 @@ class CardView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Nama Anda",
+                          "Surya Jayantara I Putu",
                           style: TextStyle(
                             fontSize: 12,
                             fontFamily: 'Nunito Sans',
+                              fontWeight: FontWeight.w700
                           ),
                         ),
                         Text(
-                          "D3 Manajemen Informatika - 2019",
+                          "D3 Manajemen Informatika",
                           style: TextStyle(
                             fontSize: 12,
                             fontFamily: 'Nunito Sans',
