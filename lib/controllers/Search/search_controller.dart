@@ -5,6 +5,7 @@ import 'package:warebook_mobile/controllers/Thesis/thesis_controller.dart';
 import 'package:warebook_mobile/services/journal_topic_service.dart';
 import 'package:warebook_mobile/services/student_creativity_program_service.dart';
 import 'package:warebook_mobile/services/thesis_service.dart';
+import 'package:warebook_mobile/views/pages/search/search_view.dart';
 
 class SearchController extends GetxController {
   final listData = [].obs;
@@ -41,6 +42,6 @@ class SearchController extends GetxController {
       listData.assignAll(res);
     }
 
-    print(listData);
+    Get.to(() => SearchView(), arguments: {'typeOfRepos': searchType});
   }
 }
