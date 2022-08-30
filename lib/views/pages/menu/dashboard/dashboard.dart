@@ -3,12 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/themes/colors.dart';
-import 'package:warebook_mobile/views/pages/internalResearch/create_repo_internal_research.dart';
-import 'package:warebook_mobile/views/pages/journal/create_repo_journal.dart';
-import 'package:warebook_mobile/views/pages/journal/journal_topic/create_repo_journal_topic.dart';
+import 'package:warebook_mobile/views/components/Card/card.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/lecturer_repository.dart';
-import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/student_repository.dart';
-import 'package:warebook_mobile/views/pages/studentResearch/create_repo_student_creativity_program.dart';
 import 'package:warebook_mobile/views/pages/thesis/create_repo_thesis.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -17,7 +13,6 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
@@ -48,9 +43,7 @@ class DashboardPage extends StatelessWidget {
                               color: Colors.white,
                               size: 30,
                             ),
-                            onPressed: () {
-                              
-                            },
+                            onPressed: () {},
                           )
                         ]),
                   ),
@@ -114,19 +107,20 @@ class DashboardPage extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                     child: Column(
-                                  children: [
-                                    SvgPicture.asset(
-                                      ImagePath.folder,
-                                      height: 50,
-                                    ),
-                                    Text(
-                                      'Repository Ku',
-                                      style: TextStyle(
-                                          fontFamily: 'Nunito Sans',
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black.withOpacity(0.4)),
-                                    )
-                                  ],
+                                      children: [
+                                        SvgPicture.asset(
+                                          ImagePath.folder,
+                                          height: 50,
+                                        ),
+                                        Text(
+                                          'Repository Ku',
+                                          style: TextStyle(
+                                              fontFamily: 'Nunito Sans',
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black
+                                                  .withOpacity(0.4)),
+                                        )
+                                      ],
                                     ),
                                     onTap: () {
                                       Get.to(() => DosenRepositoryPage());
@@ -150,6 +144,54 @@ class DashboardPage extends StatelessWidget {
                         ),
                       ],
                     ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 260, left: 0, right: 0),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        child: Container(
+                          margin: EdgeInsets.only(left: 25),
+                          child: Row(
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Tugas Akhir di Jurusanmu',
+                                    style: TextStyle(
+                                        fontFamily: 'Nunito Sans',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w800),
+                                  ),
+                                  Text(
+                                    'Liat Journal tebaik di jurusanmu',
+                                    style: TextStyle(
+                                        fontFamily: 'Nunito Sans',
+                                        fontSize: 15),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 175,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            CardView(),
+                            CardView(),
+                            CardView(),
+                            CardView(),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ],
