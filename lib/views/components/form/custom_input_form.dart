@@ -17,6 +17,7 @@ class CustomInputForm extends StatelessWidget {
   final TextEditingController? controller;
   final Icon? icons;
   final bool isPassword;
+  final IconButton? suffixIconButton;
 
   CustomInputForm(
       {Key? key,
@@ -30,7 +31,8 @@ class CustomInputForm extends StatelessWidget {
       this.maxLenght,
       this.inputTextFormater,
       this.validator,
-      this.controller})
+      this.controller,
+      this.suffixIconButton})
       : super(key: key);
 
   @override
@@ -48,6 +50,7 @@ class CustomInputForm extends StatelessWidget {
         obscureText: isPassword,
         // obscureText: (isPassword) ? true : false,
         decoration: InputDecoration(
+            suffixIcon: suffixIconButton,
             prefixIcon: icons,
             label: Text(label),
             counterText: "",

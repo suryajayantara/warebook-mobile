@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:warebook_mobile/views/onboarding.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/dashboard.dart';
+import 'package:warebook_mobile/views/pages/search/search_type_view.dart';
 
 void main(List<String> args) async {
   await GetStorage.init();
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       home: (dataStorage.read('token') == null)
           ? OnboardingView()
           : DashboardPage(),
+      // home: SearchViewRepository(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,

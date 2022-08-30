@@ -70,11 +70,11 @@ class _JournalTopicViewState extends State<JournalTopicView> {
                     fontWeight: FontWeight.w800,
                     color: ColorsTheme.black),
               ),
-              Container(
-                  margin: EdgeInsets.symmetric(vertical: 10),
-                  child: UserSection(
-                      userName: 'Risa Rynanda',
-                      userDepartement: 'D3 Manajemen Informatika')),
+              // Container(
+              //     margin: EdgeInsets.symmetric(vertical: 10),
+              //     child: UserSection(
+              //         userName: 'Risa Rynanda',
+              //         userDepartement: 'D3 Manajemen Informatika')),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: Column(
@@ -109,7 +109,7 @@ class _JournalTopicViewState extends State<JournalTopicView> {
                               title: journalDocumentController.listData[i].title
                                   .toString(),
                               desc: journalDocumentController
-                                  .listData[i].originalUrl
+                                  .listData[i].abstract
                                   .toString());
                         },
                       );
