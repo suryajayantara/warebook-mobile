@@ -41,6 +41,12 @@ class JournalDocumentController extends GetxController {
     });
   }
 
+  
+  JournalDocument getJournalDocumentDetails(int id) {
+    return detailsData = listData.firstWhere((element) => element.id == id);
+  }
+
+
   void editThesisDocument(id) {
     detailsData = listData.firstWhere((element) => element.id == id);
     title.text = detailsData.title.toString();

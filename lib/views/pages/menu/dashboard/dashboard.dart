@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
+import 'package:warebook_mobile/controllers/Auth/login_controller.dart';
+import 'package:warebook_mobile/controllers/Auth/user_controller.dart';
 import 'package:warebook_mobile/themes/colors.dart';
 import 'package:warebook_mobile/views/components/Card/card.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/lecturer_repository.dart';
+import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/student_repository.dart';
+import 'package:warebook_mobile/views/pages/repository/select_repository_type_view.dart';
+import 'package:warebook_mobile/views/pages/search/search_select.dart';
 import 'package:warebook_mobile/views/pages/thesis/create_repo_thesis.dart';
 
 class DashboardPage extends StatelessWidget {
   DashboardPage({Key? key}) : super(key: key);
+  GetStorage dataStorage = GetStorage('auth');
+  final _loginController = Get.put(LoginController());
   // sandbox
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(() => SelectRepositoryTypeView());
+        },
+        child: Icon(Icons.file_upload_rounded),
+      ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
@@ -43,7 +57,9 @@ class DashboardPage extends StatelessWidget {
                               color: Colors.white,
                               size: 30,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              _loginController.logoutMethod();
+                            },
                           )
                         ]),
                   ),
@@ -102,7 +118,7 @@ class DashboardPage extends StatelessWidget {
                                     ],
                                   ),
                                   onTap: () {
-                                    Get.to(() => ThesisCreateView());
+                                    Get.to(() => SearchSelectorRepository());
                                   },
                                 ),
                                 GestureDetector(
@@ -123,7 +139,13 @@ class DashboardPage extends StatelessWidget {
                                       ],
                                     ),
                                     onTap: () {
-                                      Get.to(() => DosenRepositoryPage());
+                                      print(dataStorage.read('role'));
+                                      if (dataStorage.read('role') !=
+                                          'student') {
+                                        Get.to(() => DosenRepositoryPage());
+                                      } else {
+                                        Get.to(() => DosenRepositoryPage());
+                                      }
                                     }),
                                 Column(
                                   children: [

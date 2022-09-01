@@ -8,7 +8,7 @@ part of 'journal_document.dart';
 
 JournalDocument _$JournalDocumentFromJson(Map<String, dynamic> json) =>
     JournalDocument(
-      id: json['id'] as int,
+      id: json['id'] as int?,
       title: json['title'] as String?,
       author: json['author'] as String?,
       abstract: json['abstract'] as String?,
@@ -22,16 +22,24 @@ JournalDocument _$JournalDocumentFromJson(Map<String, dynamic> json) =>
           : JournalTopic.fromJson(json['journalTopic'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$JournalDocumentToJson(JournalDocument instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
-      'author': instance.author,
-      'abstract': instance.abstract,
-      'document_url': instance.documentUrl,
-      'original_url': instance.originalUrl,
-      'year': instance.year,
-      'tags': instance.tags,
-      'doi': instance.doi,
-      'journalTopic': instance.journalTopic,
-    };
+Map<String, dynamic> _$JournalDocumentToJson(JournalDocument instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id);
+  val['title'] = instance.title;
+  val['author'] = instance.author;
+  val['abstract'] = instance.abstract;
+  val['document_url'] = instance.documentUrl;
+  val['original_url'] = instance.originalUrl;
+  val['year'] = instance.year;
+  val['tags'] = instance.tags;
+  val['doi'] = instance.doi;
+  val['journalTopic'] = instance.journalTopic;
+  return val;
+}

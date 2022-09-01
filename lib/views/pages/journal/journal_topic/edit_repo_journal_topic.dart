@@ -35,7 +35,7 @@ class EditJournalTopic extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text(
-                        "Topik Jurnal",
+                        "Edit Topik Jurnal",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w800,

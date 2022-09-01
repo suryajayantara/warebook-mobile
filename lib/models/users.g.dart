@@ -7,10 +7,12 @@ part of 'users.dart';
 // **************************************************************************
 
 Users _$UsersFromJson(Map<String, dynamic> json) => Users(
+      id: json['id'] as int?,
       name: json['name'] as String?,
       email: json['email'] as String?,
       password: json['password'] as String?,
       token: json['token'] as String?,
+      role: json['role'] as String?,
       uniqueId: json['uniqueId'] as String?,
       study: json['studies'] == null
           ? null
@@ -21,7 +23,9 @@ Users _$UsersFromJson(Map<String, dynamic> json) => Users(
     );
 
 Map<String, dynamic> _$UsersToJson(Users instance) {
-  final val = <String, dynamic>{};
+  final val = <String, dynamic>{
+    'id': instance.id,
+  };
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -33,6 +37,7 @@ Map<String, dynamic> _$UsersToJson(Users instance) {
   val['email'] = instance.email;
   val['password'] = instance.password;
   writeNotNull('token', toNull(instance.token));
+  writeNotNull('role', toNull(instance.role));
   writeNotNull('uniqueId', toNull(instance.uniqueId));
   writeNotNull('studies', toNull(instance.study));
   writeNotNull('departement', toNull(instance.departement));

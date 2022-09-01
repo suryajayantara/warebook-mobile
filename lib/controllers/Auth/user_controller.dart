@@ -13,7 +13,6 @@ class UserController extends GetxController {
   }
 
   Future<Users> getUserDetail() async {
-
     String token = dataStorage.read('token');
 
     return _authService

@@ -105,10 +105,27 @@ class StudentCreativityProgramView extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           fontSize: 14,
                           color: ColorsTheme.black),
-                    )
+                    ),
+                    Container(
+                        margin: EdgeInsets.symmetric(vertical: 20),
+                        child: RichText(
+                          text: TextSpan(
+                              text: 'Kata Kunci : ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.black),
+                              children: [
+                                TextSpan(
+                                    text: studentCreativityProgramController
+                                        .detailsData.supervisor,
+                                    style: TextStyle(color: Colors.blueAccent))
+                              ]),
+                        )
+)
                   ],
                 ),
               ),
+              
               Container(
                 child: DocumentCard(
                   onTap: () {

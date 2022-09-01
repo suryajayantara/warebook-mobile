@@ -10,6 +10,7 @@ import 'package:warebook_mobile/themes/colors.dart';
 import 'package:warebook_mobile/views/components/card/organism/document_card.dart';
 import 'package:warebook_mobile/views/components/card/pill.dart';
 import 'package:warebook_mobile/views/components/users/user_section.dart';
+import 'package:warebook_mobile/views/pages/journal/journal.dart';
 import 'package:warebook_mobile/views/pages/utils/pdf_view.dart';
 
 class JournalTopicView extends StatefulWidget {
@@ -70,11 +71,11 @@ class _JournalTopicViewState extends State<JournalTopicView> {
                     fontWeight: FontWeight.w800,
                     color: ColorsTheme.black),
               ),
-              Container(
-                  margin: EdgeInsets.symmetric(vertical: 10),
-                  child: UserSection(
-                      userName: 'Risa Rynanda',
-                      userDepartement: 'D3 Manajemen Informatika')),
+              // Container(
+              //     margin: EdgeInsets.symmetric(vertical: 10),
+              //     child: UserSection(
+              //         userName: 'Risa Rynanda',
+              //         userDepartement: 'D3 Manajemen Informatika')),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: Column(
@@ -100,16 +101,14 @@ class _JournalTopicViewState extends State<JournalTopicView> {
                         itemBuilder: (ctx, i) {
                           return DocumentCard(
                               onTap: () {
-                                Get.to(() => PDFView(
-                                      url: journalDocumentController
-                                          .listData[i].documentUrl
-                                          .toString(),
-                                    ));
+                                Get.to(() => JournalView(), arguments: {
+                                  'id': journalDocumentController.listData[i].id
+                                });
                               },
                               title: journalDocumentController.listData[i].title
                                   .toString(),
                               desc: journalDocumentController
-                                  .listData[i].originalUrl
+                                  .listData[i].abstract
                                   .toString());
                         },
                       );

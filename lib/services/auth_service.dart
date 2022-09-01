@@ -5,7 +5,6 @@ import 'package:warebook_mobile/models/users.dart';
 class AuthService extends GetConnect {
   final url_path = NetworkUtility();
 
-
   /* 
 
     Login Function : Digunakan untuk melakukan login

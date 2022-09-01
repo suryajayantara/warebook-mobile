@@ -58,7 +58,7 @@ class _JournalDocumentEditRepoState extends State<JournalDocumentEditRepo> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text(
-                        "Journal Baru",
+                        "Edit Journal",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w800,
