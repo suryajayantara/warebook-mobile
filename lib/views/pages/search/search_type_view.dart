@@ -43,7 +43,7 @@ class SearchTypeViewRepository extends StatelessWidget {
                 child: CustomInputForm(
                   icons: Icon(Icons.search),
                   hintText: "Search",
-                  label: "",
+                  label: "Apa yang ingin anda cari?",
                   padding: EdgeInsets.all(0),
                   controller: _searchController.search,
                 ),
