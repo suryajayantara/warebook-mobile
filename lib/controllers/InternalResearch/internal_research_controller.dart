@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:intl/intl.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -69,18 +70,26 @@ class InternalResearchController extends GetxController {
         await proposalFile.readAsBytes(),
         filename: getProposal!.files.single.name);
 
+
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+    DateTime date = DateTime.now();
+    print(
+        "${projectStartedAt.value.text} ${date.hour}:${date.minute}:${date.second}");
     var form = FormData({
       'title': title.value.text,
       'abstract': abstract.value.text,
       'budget': budget.value.text,
       'budget_type': budgetType.value.text,
       'contract_number': contractNumber.value.text,
-      'project_started_at': projectStartedAt.value.text,
-      'project_finish_at': projectFinishAt.value.text,
+      'project_started_at': dateFormat.parse(
+          "${projectStartedAt.value.text} ${date.hour}:${date.minute}:${date.second}"),
+      'project_finish_at': dateFormat.parse(
+          "${projectFinishAt.value.text} ${date.hour}:${date.minute}:${date.second}"),
       'team_member': teamMember.value.text,
       'proposal_url': multipartProposal,
       'document_url': multipartDocument,
     });
+
     await service
         .createInternalResearch(form)
         .then((value) {

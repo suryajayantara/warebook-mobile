@@ -101,7 +101,7 @@ class _InternalResearchEditViewState extends State<InternalResearchEditView> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text(
-                        "Internal Research Baru",
+                        "Edit Pengabdian",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w800,
@@ -191,15 +191,17 @@ class _InternalResearchEditViewState extends State<InternalResearchEditView> {
                     UploadField(
                         description: (dokumentName != null)
                             ? dokumentName
-                            : "Pilih Dokument Penelitian",
+                            : "Dokument Pengabdian",
                         padding: EdgeInsets.symmetric(vertical: 10),
+                        hasFile: true,
                         ontap: () {
                           selectDocument();
                         }),
                     UploadField(
+                        hasFile: true,
                         description: (proposalName != null)
                             ? proposalName
-                            : "Pilih Proposal Penelitian",
+                            : "Proposal Penelitian",
                         padding: EdgeInsets.symmetric(vertical: 10),
                         ontap: () {
                           selectProposal();

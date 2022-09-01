@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/themes/colors.dart';
 import 'package:warebook_mobile/views/components/Card/select_search_card.dart';
+import 'package:warebook_mobile/views/pages/internalResearch/create_repo_internal_research.dart';
 import 'package:warebook_mobile/views/pages/search/search_type_view.dart';
 import 'package:warebook_mobile/views/pages/studentResearch/create_repo_student_creativity_program.dart';
 import 'package:warebook_mobile/views/pages/thesis/create_repo_thesis.dart';
@@ -63,8 +64,7 @@ class SelectRepositoryTypeView extends StatelessWidget {
                   ),
                   SelectSearchCard(
                     ontap: () {
-                      Get.to(() => ThesisCreateView(),
-                          arguments: {'type': 'Tugas Akhir'});
+                      Get.to(() => ThesisCreateView());
                     },
                     margin: EdgeInsets.symmetric(vertical: 15.0),
                     title: 'Tugas Akhir',
@@ -74,8 +74,7 @@ class SelectRepositoryTypeView extends StatelessWidget {
                   ),
                   SelectSearchCard(
                     ontap: () {
-                      Get.to(() => ThesisCreateView(),
-                          arguments: {'type': 'Skripsi'});
+                      Get.to(() => ThesisCreateView());
                     },
                     margin: EdgeInsets.symmetric(vertical: 0.15),
                     title: 'Skripsi',
@@ -85,14 +84,23 @@ class SelectRepositoryTypeView extends StatelessWidget {
                   ),
                   SelectSearchCard(
                     ontap: () {
-                      Get.to(() => StudentCreativityProgramCreateView(),
-                          arguments: {'searchType': 'journal'});
+                      Get.to(() => StudentCreativityProgramCreateView());
                     },
                     margin: EdgeInsets.symmetric(vertical: 15.0),
                     title: 'PKM',
                     urlImage: 'assets/images/search/journal.svg',
                     height: 100,
                     desc: 'Punya PKM ? Upload Disini',
+                  ),
+                  SelectSearchCard(
+                    ontap: () {
+                      Get.to(() => InternalResearchCreateView());
+                    },
+                    margin: EdgeInsets.symmetric(vertical: 15.0),
+                    title: 'Pengabdian',
+                    urlImage: 'assets/images/search/journal.svg',
+                    height: 100,
+                    desc: 'Punya Pengabdian ? Upload Disini',
                   ),
                 ]),
               )

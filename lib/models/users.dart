@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'package:warebook_mobile/models/departement.dart';
+import 'package:warebook_mobile/models/roles.dart';
 import 'package:warebook_mobile/models/study.dart';
 
 part 'users.g.dart';
@@ -16,22 +17,21 @@ class Users {
   String? password;
   @JsonKey(toJson: toNull, includeIfNull: false)
   String? token;
-  @JsonKey(toJson: toNull, includeIfNull: false)
-  String? role;
+  @JsonKey(toJson: toNull)
+  Roles? roles;
   @JsonKey(toJson: toNull, includeIfNull: false)
   String? uniqueId;
   @JsonKey(toJson: toNull, includeIfNull: false, name: 'studies')
   Study? study;
   @JsonKey(toJson: toNull, includeIfNull: false)
   Departement? departement;
-
   Users(
       {this.id,
       this.name,
       this.email,
       this.password,
       this.token,
-      this.role,
+      this.roles,
       this.uniqueId,
       this.study,
       this.departement});
@@ -42,7 +42,7 @@ class Users {
     String? email,
     String? password,
     String? token,
-    String? role,
+    Roles? roles,
     String? uniqueId,
     Study? study,
     Departement? departement,
@@ -53,7 +53,7 @@ class Users {
       email: email ?? this.email,
       password: password ?? this.password,
       token: token ?? this.token,
-      role: role ?? this.role,
+      roles: roles ?? this.roles,
       uniqueId: uniqueId ?? this.uniqueId,
       study: study ?? this.study,
       departement: departement ?? this.departement,
@@ -66,7 +66,7 @@ class Users {
 
   @override
   String toString() {
-    return 'Users(id: $id, name: $name, email: $email, password: $password, token: $token, role: $role, uniqueId: $uniqueId, study: $study, departement: $departement)';
+    return 'Users(id: $id, name: $name, email: $email, password: $password, token: $token, roles: $roles, uniqueId: $uniqueId, study: $study, departement: $departement)';
   }
 
   @override
@@ -79,7 +79,7 @@ class Users {
         other.email == email &&
         other.password == password &&
         other.token == token &&
-        other.role == role &&
+        other.roles == roles &&
         other.uniqueId == uniqueId &&
         other.study == study &&
         other.departement == departement;
@@ -92,13 +92,11 @@ class Users {
         email.hashCode ^
         password.hashCode ^
         token.hashCode ^
-        role.hashCode ^
+        roles.hashCode ^
         uniqueId.hashCode ^
         study.hashCode ^
         departement.hashCode;
   }
-
- 
 }
 
 toNull(_) => null;

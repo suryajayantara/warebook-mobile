@@ -18,7 +18,7 @@ class AuthService extends GetConnect {
           'Content-type': 'application/json',
           'Accept': 'application/json',
         }).then((value) {
-      // print(url_path.toString() + 'login');
+      print(url_path.toString() + 'login');
       if (value.isOk && value.body != null) {
         // print(value.body);
         return Users.fromJson(value.body);

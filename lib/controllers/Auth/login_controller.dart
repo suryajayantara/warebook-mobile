@@ -23,9 +23,11 @@ class LoginController extends GetxController {
         .login(Users(password: password, email: email))
           .then((value) {
       if (value.token != null) {
-        dataStorage.write('token', value.token);
-          dataStorage.write('role', value.role);
+          // print(value);
+          dataStorage.write('token', value.token);
+          // dataStorage.write('role', value.roles?.roleName);
           Get.offAll(() => DashboardPage());
+          // print(value.roles);
       }
     });
     } catch (e) {

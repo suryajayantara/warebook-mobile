@@ -19,7 +19,7 @@ class InternalResearchCreateView extends StatefulWidget {
 
 class _InternalResearchCreateViewState
     extends State<InternalResearchCreateView> {
-  int id = Get.arguments['id'];
+  // int id = Get.arguments['id'];
   final internalResearchController = Get.put(InternalResearchController());
   final _key = GlobalKey<FormState>();
 

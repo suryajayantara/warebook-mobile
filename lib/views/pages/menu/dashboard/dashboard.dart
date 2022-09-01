@@ -17,9 +17,12 @@ class DashboardPage extends StatelessWidget {
   DashboardPage({Key? key}) : super(key: key);
   GetStorage dataStorage = GetStorage('auth');
   final _loginController = Get.put(LoginController());
+
   // sandbox
   @override
   Widget build(BuildContext context) {
+    
+    print(dataStorage.read('role'));
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -144,7 +147,7 @@ class DashboardPage extends StatelessWidget {
                                           'student') {
                                         Get.to(() => DosenRepositoryPage());
                                       } else {
-                                        Get.to(() => DosenRepositoryPage());
+                                        Get.to(() => MyRepositoryPage());
                                       }
                                     }),
                                 Column(
