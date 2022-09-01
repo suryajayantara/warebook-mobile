@@ -3,12 +3,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/themes/colors.dart';
-import 'package:warebook_mobile/views/components/Card/card.dart';
 import 'package:warebook_mobile/views/components/Card/select_search_card.dart';
 import 'package:warebook_mobile/views/pages/search/search_type_view.dart';
+import 'package:warebook_mobile/views/pages/studentResearch/create_repo_student_creativity_program.dart';
 
-class SearchSelectorRepository extends StatelessWidget {
-  SearchSelectorRepository({Key? key}) : super(key: key);
+class SelectRepositoryTypeView extends StatelessWidget {
+  const SelectRepositoryTypeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,14 +44,14 @@ class SearchSelectorRepository extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          'Cari di Tipe Repository',
+                          'Pilih Tipe Repository',
                           style: TextStyle(
                               fontFamily: 'Nunito Sans',
                               fontSize: 20,
                               fontWeight: FontWeight.w800),
                         ),
                         Text(
-                          'Pilih Tipe Repository yang akan kamu cari ',
+                          'Pilih Tipe Repository yang akan kamu upload ',
                           style: TextStyle(
                               fontFamily: 'Nunito Sans',
                               fontSize: 12,
@@ -66,10 +66,10 @@ class SearchSelectorRepository extends StatelessWidget {
                           arguments: {'searchType': 'thesis'});
                     },
                     margin: EdgeInsets.symmetric(vertical: 15.0),
-                    title: 'Thesis',
+                    title: 'Tugas Akhir',
                     urlImage: 'assets/images/search/thesis.svg',
                     height: 100,
-                    desc: 'Cari Tugas Akhir / Skripsi yang kamu butuhkan',
+                    desc: 'Upload hasil tugas akhirmu disini',
                   ),
                   SelectSearchCard(
                     ontap: () {
@@ -77,22 +77,21 @@ class SearchSelectorRepository extends StatelessWidget {
                           arguments: {'searchType': 'studentResearch'});
                     },
                     margin: EdgeInsets.symmetric(vertical: 0.15),
-                    title: 'PKM',
+                    title: 'Skripsi',
                     urlImage: 'assets/images/search/pkm.svg',
                     height: 100,
-                    desc:
-                        'Cari Program Kreativitas Mahasiswa yang kamu butuhkan',
+                    desc: 'Upload Skripsi yang kamu kerjakan Disini',
                   ),
                   SelectSearchCard(
                     ontap: () {
-                      Get.to(() => SearchTypeViewRepository(),
+                      Get.to(() => StudentCreativityProgramCreateView(),
                           arguments: {'searchType': 'journal'});
                     },
                     margin: EdgeInsets.symmetric(vertical: 15.0),
-                    title: 'Jurnal',
+                    title: 'PKM',
                     urlImage: 'assets/images/search/journal.svg',
                     height: 100,
-                    desc: 'Cari Jurnal yang kamu butuhkan',
+                    desc: 'Punya PKM ? Upload Disini',
                   ),
                 ]),
               )

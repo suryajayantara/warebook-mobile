@@ -7,6 +7,7 @@ import 'package:warebook_mobile/themes/colors.dart';
 import 'package:warebook_mobile/views/components/Card/card.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/lecturer_repository.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/student_repository.dart';
+import 'package:warebook_mobile/views/pages/repository/select_repository_type_view.dart';
 import 'package:warebook_mobile/views/pages/search/search_select.dart';
 import 'package:warebook_mobile/views/pages/thesis/create_repo_thesis.dart';
 
@@ -18,7 +19,9 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.to(() => SelectRepositoryTypeView());
+        },
         child: Icon(Icons.file_upload_rounded),
       ),
       body: SafeArea(
