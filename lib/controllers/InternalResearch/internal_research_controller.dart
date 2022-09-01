@@ -2,7 +2,9 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:warebook_mobile/controllers/Auth/user_controller.dart';
 import 'package:warebook_mobile/models/internalResearch/internal_research.dart';
+import 'package:warebook_mobile/models/users.dart';
 import 'package:warebook_mobile/services/internal_research_service.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/lecturer_repository.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
@@ -42,6 +44,13 @@ class InternalResearchController extends GetxController {
 
   InternalResearch getInternalResearctDetails(id) {
     return detailsData = listData.firstWhere((element) => element.id == id);
+  }
+
+  Future<InternalResearch> getInternalResearctbyUser() async {
+    final _userController = Get.put(UserController());
+    Users users = await _userController.getUserDetail();
+    return detailsData =
+        listData.firstWhere((element) => element.users == users);
   }
 
   /*

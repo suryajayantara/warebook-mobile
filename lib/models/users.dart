@@ -9,13 +9,14 @@ part 'users.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Users {
+  int? id;
   @JsonKey(toJson: toNull, includeIfNull: false)
   String? name;
   String? email;
   String? password;
   @JsonKey(toJson: toNull, includeIfNull: false)
   String? token;
-  @JsonKey(toJson: toNull)
+  @JsonKey(toJson: toNull, includeIfNull: false)
   String? role;
   @JsonKey(toJson: toNull, includeIfNull: false)
   String? uniqueId;
@@ -25,7 +26,8 @@ class Users {
   Departement? departement;
 
   Users(
-      {this.name,
+      {this.id,
+      this.name,
       this.email,
       this.password,
       this.token,
@@ -35,6 +37,7 @@ class Users {
       this.departement});
 
   Users copyWith({
+    int? id,
     String? name,
     String? email,
     String? password,
@@ -45,6 +48,7 @@ class Users {
     Departement? departement,
   }) {
     return Users(
+      id: id ?? this.id,
       name: name ?? this.name,
       email: email ?? this.email,
       password: password ?? this.password,
@@ -62,7 +66,7 @@ class Users {
 
   @override
   String toString() {
-    return 'Users(name: $name, email: $email, password: $password, token: $token, role: $role, uniqueId: $uniqueId, study: $study, departement: $departement)';
+    return 'Users(id: $id, name: $name, email: $email, password: $password, token: $token, role: $role, uniqueId: $uniqueId, study: $study, departement: $departement)';
   }
 
   @override
@@ -70,6 +74,7 @@ class Users {
     if (identical(this, other)) return true;
   
     return other is Users &&
+        other.id == id &&
         other.name == name &&
         other.email == email &&
         other.password == password &&
@@ -82,7 +87,8 @@ class Users {
 
   @override
   int get hashCode {
-    return name.hashCode ^
+    return id.hashCode ^
+        name.hashCode ^
         email.hashCode ^
         password.hashCode ^
         token.hashCode ^
@@ -91,6 +97,8 @@ class Users {
         study.hashCode ^
         departement.hashCode;
   }
+
+ 
 }
 
 toNull(_) => null;

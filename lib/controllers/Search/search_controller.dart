@@ -18,6 +18,9 @@ class SearchController extends GetxController {
   
 
   void getSearch(searchType) async {
+
+    String keyword = "";
+
     final res = [];
     listData.clear();
     switch (searchType) {
@@ -39,10 +42,14 @@ class SearchController extends GetxController {
     if (search.value.text != null && search.value.text != "") {
       listData.assignAll(res.where((element) =>
           element.title.toString().toLowerCase().contains(search.value.text)));
+      keyword = search.value.text;
     } else {
       listData.assignAll(res);
     }
 
-    Get.to(() => SearchView(), arguments: {'typeOfRepos': searchType});
+    
+
+    Get.to(() => SearchView(),
+        arguments: {'typeOfRepos': searchType, 'keyword': keyword});
   }
 }

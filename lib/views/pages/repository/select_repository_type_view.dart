@@ -6,6 +6,7 @@ import 'package:warebook_mobile/themes/colors.dart';
 import 'package:warebook_mobile/views/components/Card/select_search_card.dart';
 import 'package:warebook_mobile/views/pages/search/search_type_view.dart';
 import 'package:warebook_mobile/views/pages/studentResearch/create_repo_student_creativity_program.dart';
+import 'package:warebook_mobile/views/pages/thesis/create_repo_thesis.dart';
 
 class SelectRepositoryTypeView extends StatelessWidget {
   const SelectRepositoryTypeView({Key? key}) : super(key: key);
@@ -62,8 +63,8 @@ class SelectRepositoryTypeView extends StatelessWidget {
                   ),
                   SelectSearchCard(
                     ontap: () {
-                      Get.to(() => SearchTypeViewRepository(),
-                          arguments: {'searchType': 'thesis'});
+                      Get.to(() => ThesisCreateView(),
+                          arguments: {'type': 'Tugas Akhir'});
                     },
                     margin: EdgeInsets.symmetric(vertical: 15.0),
                     title: 'Tugas Akhir',
@@ -73,8 +74,8 @@ class SelectRepositoryTypeView extends StatelessWidget {
                   ),
                   SelectSearchCard(
                     ontap: () {
-                      Get.to(() => SearchTypeViewRepository(),
-                          arguments: {'searchType': 'studentResearch'});
+                      Get.to(() => ThesisCreateView(),
+                          arguments: {'type': 'Skripsi'});
                     },
                     margin: EdgeInsets.symmetric(vertical: 0.15),
                     title: 'Skripsi',

@@ -36,7 +36,7 @@ class ThesisEditView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text(
-                        "Thesis Baru",
+                        "Edit Thesis",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w800,

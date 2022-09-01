@@ -12,6 +12,7 @@ import 'package:warebook_mobile/views/components/form/organism/simple_form.dart'
 import 'package:warebook_mobile/views/components/form/upload_file_field.dart';
 
 class ThesisCreateView extends StatelessWidget {
+  String type = Get.arguments['type'];
   final thesisController = Get.put(ThesisController());
   final _key = GlobalKey<FormState>();
 
@@ -102,7 +103,7 @@ class ThesisCreateView extends StatelessWidget {
           )
         ],
         action: () {
-          thesisController.addData('Tugas Akhir');
+          thesisController.addData(type);
         },
       ),
     );
