@@ -15,6 +15,7 @@ class SearchController extends GetxController {
   final _thesisService = ThesisService();
   final _journalService = JournalTopicService();
   final _studentResearch = StudentCreativityProgramService();
+  
 
   void getSearch(searchType) async {
     final res = [];

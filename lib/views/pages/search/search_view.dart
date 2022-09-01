@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
+import 'package:warebook_mobile/controllers/Journal/journal_topic_controller.dart';
 import 'package:warebook_mobile/controllers/Search/search_controller.dart';
+import 'package:warebook_mobile/controllers/StudentCreativityProgram/student_creativity_program_controller.dart';
+import 'package:warebook_mobile/controllers/Thesis/thesis_controller.dart';
+import 'package:warebook_mobile/controllers/Thesis/thesis_document_controller.dart';
 import 'package:warebook_mobile/helpers/string_formating.dart';
+import 'package:warebook_mobile/models/journals/journal_topic.dart';
 import 'package:warebook_mobile/themes/colors.dart';
+import 'package:warebook_mobile/views/pages/journal/journal_topic/journal_topic.dart';
+import 'package:warebook_mobile/views/pages/studentResearch/student_research_view.dart';
+import 'package:warebook_mobile/views/pages/thesis/thesis_view.dart';
 
 class SearchView extends StatelessWidget {
   SearchView({Key? key}) : super(key: key);
@@ -36,16 +45,39 @@ class SearchView extends StatelessWidget {
             ),
           ),
           body: Obx(() {
-            return ListView.builder(
+            if (_searchController.listData.length > 0) {
+              return ListView.builder(
               itemCount: _searchController.listData.length,
               itemBuilder: (context, i) {
                 return ListTile(
                   onTap: () {
-                    // journalTopicController.getJournalTopicDetails(
-                    //     journalTopicController.listData[i].id);
-                    // Get.to(() => JournalTopicView(), arguments: {
-                    //   "id": journalTopicController.listData[i].id
-                    // });
+                      switch (typeOfRepos) {
+                        case "thesis":
+                          final _thesisController = Get.put(ThesisController());
+                          final _thesisDocumentController =
+                              Get.put(ThesisDocumentController());
+
+                          Get.to(() => ThesisDetailsPage(), arguments: {
+                            "id": _searchController.listData[i].id
+                          });
+                          break;
+                        case "studentResearch":
+                          final _studentResearchController =
+                              Get.put(StudentCreativityProgramController());
+                          Get.to(() => StudentCreativityProgramView(),
+                              arguments: {
+                                "id": _searchController.listData[i].id
+                              });
+                          break;
+                        case "journal":
+                          final _journalController =
+                              Get.put(JournalTopicController());
+                          Get.to(() => JournalTopicView(), arguments: {
+                            "id": _searchController.listData[i].id
+                          });
+                          break;
+                        default:
+                      }
                   },
                   leading: SvgPicture.asset(
                     ImagePath.folder,
@@ -64,6 +96,20 @@ class SearchView extends StatelessWidget {
                 );
               },
             );
+            } else {
+              return Center(
+                  child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    height: 250,
+                    child: LottieBuilder.asset(
+                        'assets/images/lottie/loading.json'),
+                  ),
+                  Text('Sedang Mencari Data...')
+                ],
+              ));
+            }
           })),
     );
   }
