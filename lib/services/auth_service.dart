@@ -33,6 +33,24 @@ class AuthService extends GetConnect {
     });
   }
 
+  Future<Users> registerUser(
+    FormData form,
+  ) async {
+    print(Uri.parse(url_path.serviceUrl() + 'register').toString());
+    return await post(
+            Uri.parse(url_path.serviceUrl() + 'register').toString(), form)
+        .then((value) {
+      print(value.body);
+      if (value.body != null && value.isOk) {
+        print(value.body['user']);
+        return Users();
+      } else {
+        throw "${value.bodyString} ${value.statusCode}";
+      }
+    });
+  }
+
+
   /*
 
       Logout Function => Method yang digunakan untuk melakukan Logout

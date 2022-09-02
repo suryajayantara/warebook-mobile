@@ -91,7 +91,6 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             SolidButton(
                               onTap: () {
-                                print('he');
                                 _loginController.loginMethod(
                                     _loginController.email.value.text
                                         .toString(),
