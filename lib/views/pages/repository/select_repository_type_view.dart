@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/themes/colors.dart';
 import 'package:warebook_mobile/views/components/Card/select_search_card.dart';
 import 'package:warebook_mobile/views/pages/internalResearch/create_repo_internal_research.dart';
+import 'package:warebook_mobile/views/pages/journal/journal_topic/create_repo_journal_topic.dart';
 import 'package:warebook_mobile/views/pages/search/search_type_view.dart';
 import 'package:warebook_mobile/views/pages/studentResearch/create_repo_student_creativity_program.dart';
 import 'package:warebook_mobile/views/pages/thesis/create_repo_thesis.dart';
 
 class SelectRepositoryTypeView extends StatelessWidget {
-  const SelectRepositoryTypeView({Key? key}) : super(key: key);
+  SelectRepositoryTypeView({Key? key}) : super(key: key);
+  GetStorage dataStorage = GetStorage('auth');
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +44,7 @@ class SelectRepositoryTypeView extends StatelessWidget {
             children: [
               Center(
                 child: Column(children: [
+                  
                   Container(
                     margin: EdgeInsets.symmetric(vertical: 10.0),
                     child: Column(
@@ -62,6 +66,7 @@ class SelectRepositoryTypeView extends StatelessWidget {
                       ],
                     ),
                   ),
+                  if (dataStorage.read('role') != "lecture") ...{
                   SelectSearchCard(
                     ontap: () {
                       Get.to(() => ThesisCreateView());
@@ -92,16 +97,30 @@ class SelectRepositoryTypeView extends StatelessWidget {
                     height: 100,
                     desc: 'Punya PKM ? Upload Disini',
                   ),
-                  SelectSearchCard(
+                  } else ...{
+                    SelectSearchCard(
+                      ontap: () {
+                        Get.to(() => JournalTopicCreateView());
+                      },
+                      margin: EdgeInsets.symmetric(vertical: 15.0),
+                      title: 'Jurnal',
+                      urlImage: 'assets/images/search/journal.svg',
+                      height: 100,
+                      desc: 'ingin membuat jurnal ? Upload Disini',
+                    ),
+                    SelectSearchCard(
                     ontap: () {
                       Get.to(() => InternalResearchCreateView());
                     },
-                    margin: EdgeInsets.symmetric(vertical: 15.0),
+                      margin: EdgeInsets.symmetric(vertical: 0.0),
                     title: 'Pengabdian',
                     urlImage: 'assets/images/search/journal.svg',
                     height: 100,
                     desc: 'Punya Pengabdian ? Upload Disini',
                   ),
+                    
+                  }
+                  
                 ]),
               )
             ],

@@ -22,7 +22,7 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    print(dataStorage.read('role'));
+    
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -143,11 +143,11 @@ class DashboardPage extends StatelessWidget {
                                     ),
                                     onTap: () {
                                       print(dataStorage.read('role'));
-                                      if (dataStorage.read('role') !=
+                                      if (dataStorage.read('role') ==
                                           'student') {
-                                        Get.to(() => DosenRepositoryPage());
-                                      } else {
                                         Get.to(() => MyRepositoryPage());
+                                      } else {
+                                        Get.to(() => DosenRepositoryPage());
                                       }
                                     }),
                                 Column(

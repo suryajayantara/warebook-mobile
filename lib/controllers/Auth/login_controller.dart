@@ -22,12 +22,9 @@ class LoginController extends GetxController {
       await _authService
         .login(Users(password: password, email: email))
           .then((value) {
-      if (value.token != null) {
-          // print(value);
+        if (value.token != null) {
           dataStorage.write('token', value.token);
-          // dataStorage.write('role', value.roles?.roleName);
           Get.offAll(() => DashboardPage());
-          // print(value.roles);
       }
     });
     } catch (e) {
@@ -38,6 +35,7 @@ class LoginController extends GetxController {
   void logoutMethod() {
     _authService.logout(dataStorage.read('token'));
     dataStorage.remove('token');
+    dataStorage.remove('roles');
     Get.offAll(const LoginPage());
   }
 }

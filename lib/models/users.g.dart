@@ -11,10 +11,10 @@ Users _$UsersFromJson(Map<String, dynamic> json) => Users(
       name: json['name'] as String?,
       email: json['email'] as String?,
       password: json['password'] as String?,
-      token: json['token'] as String?,
       roles: json['roles'] == null
           ? null
-          : Roles.fromJson(json['roles'] as String),
+          : Roles.fromJson(json['roles'] as Map<String, dynamic>),
+      token: json['token'] as String?,
       uniqueId: json['uniqueId'] as String?,
       study: json['studies'] == null
           ? null
@@ -38,8 +38,8 @@ Map<String, dynamic> _$UsersToJson(Users instance) {
   writeNotNull('name', toNull(instance.name));
   val['email'] = instance.email;
   val['password'] = instance.password;
-  writeNotNull('token', toNull(instance.token));
   val['roles'] = toNull(instance.roles);
+  writeNotNull('token', toNull(instance.token));
   writeNotNull('uniqueId', toNull(instance.uniqueId));
   writeNotNull('studies', toNull(instance.study));
   writeNotNull('departement', toNull(instance.departement));

@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:warebook_mobile/commons/network_utility.dart';
+import 'package:warebook_mobile/models/roles.dart';
 import 'package:warebook_mobile/models/users.dart';
 
 class AuthService extends GetConnect {
   final url_path = NetworkUtility();
-
+  GetStorage dataStorage = GetStorage('auth');
   /* 
 
     Login Function : Digunakan untuk melakukan login
@@ -18,9 +20,10 @@ class AuthService extends GetConnect {
           'Content-type': 'application/json',
           'Accept': 'application/json',
         }).then((value) {
-      print(url_path.toString() + 'login');
       if (value.isOk && value.body != null) {
-        // print(value.body);
+        // print(value.body["role"]);
+        print(value.body["role"]);
+        dataStorage.write('role', value.body["role"]);
         return Users.fromJson(value.body);
       } else {
         throw "${value.statusCode} : ${value.body['message']}";

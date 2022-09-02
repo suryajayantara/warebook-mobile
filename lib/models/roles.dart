@@ -1,12 +1,13 @@
 import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
+
 part 'roles.g.dart';
 
 @JsonSerializable()
 class Roles {
   int? id;
-  @JsonKey(name: 'role_name')
+  @JsonKey(name: 'role')
   String? roleName;
   @JsonKey(name: 'guard_name')
   String? guardName;
@@ -28,25 +29,11 @@ class Roles {
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'roleName': roleName,
-      'guardName': guardName,
-    };
-  }
+  Map<String, dynamic> toJson() => _$RolesToJson(this);
 
-  factory Roles.fromMap(Map<String, dynamic> map) {
-    return Roles(
-      id: map['id']?.toInt(),
-      roleName: map['roleName'],
-      guardName: map['guardName'],
-    );
-  }
+  factory Roles.fromJson(Map<String, dynamic> map) => _$RolesFromJson(map);
 
-  String toJson() => json.encode(toMap());
-
-  factory Roles.fromJson(String source) => Roles.fromMap(json.decode(source));
+ 
 
   @override
   String toString() =>
@@ -64,4 +51,5 @@ class Roles {
 
   @override
   int get hashCode => id.hashCode ^ roleName.hashCode ^ guardName.hashCode;
+
 }

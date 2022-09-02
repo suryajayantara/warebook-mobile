@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/themes/colors.dart';
 import 'package:warebook_mobile/views/components/Card/card.dart';
@@ -9,6 +10,8 @@ import 'package:warebook_mobile/views/pages/search/search_type_view.dart';
 
 class SearchSelectorRepository extends StatelessWidget {
   SearchSelectorRepository({Key? key}) : super(key: key);
+  GetStorage dataStorage = GetStorage('auth');
+
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +97,20 @@ class SearchSelectorRepository extends StatelessWidget {
                     height: 100,
                     desc: 'Cari Jurnal yang kamu butuhkan',
                   ),
+
+                  if (dataStorage.read('role') == 'lecture') ...{
+                    SelectSearchCard(
+                      ontap: () {
+                        Get.to(() => SearchTypeViewRepository(),
+                            arguments: {'searchType': 'journal'});
+                      },
+                      margin: EdgeInsets.symmetric(vertical: 0.0),
+                      title: 'Penelitian ',
+                      urlImage: 'assets/images/search/journal.svg',
+                      height: 100,
+                      desc: 'Cari Pengabdian yang kamu butuhkan',
+                    ),
+                  }
                 ]),
               )
             ],

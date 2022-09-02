@@ -15,10 +15,10 @@ class Users {
   String? name;
   String? email;
   String? password;
+  @JsonKey(toJson: toNull, name: 'roles')
+  Roles? roles;
   @JsonKey(toJson: toNull, includeIfNull: false)
   String? token;
-  @JsonKey(toJson: toNull)
-  Roles? roles;
   @JsonKey(toJson: toNull, includeIfNull: false)
   String? uniqueId;
   @JsonKey(toJson: toNull, includeIfNull: false, name: 'studies')
@@ -30,8 +30,8 @@ class Users {
       this.name,
       this.email,
       this.password,
-      this.token,
       this.roles,
+      this.token,
       this.uniqueId,
       this.study,
       this.departement});
@@ -41,8 +41,8 @@ class Users {
     String? name,
     String? email,
     String? password,
-    String? token,
     Roles? roles,
+    String? token,
     String? uniqueId,
     Study? study,
     Departement? departement,
@@ -52,8 +52,8 @@ class Users {
       name: name ?? this.name,
       email: email ?? this.email,
       password: password ?? this.password,
-      token: token ?? this.token,
       roles: roles ?? this.roles,
+      token: token ?? this.token,
       uniqueId: uniqueId ?? this.uniqueId,
       study: study ?? this.study,
       departement: departement ?? this.departement,
@@ -66,7 +66,7 @@ class Users {
 
   @override
   String toString() {
-    return 'Users(id: $id, name: $name, email: $email, password: $password, token: $token, roles: $roles, uniqueId: $uniqueId, study: $study, departement: $departement)';
+    return 'Users(id: $id, name: $name, email: $email, password: $password, roles: $roles, token: $token, uniqueId: $uniqueId, study: $study, departement: $departement)';
   }
 
   @override
@@ -78,8 +78,8 @@ class Users {
         other.name == name &&
         other.email == email &&
         other.password == password &&
-        other.token == token &&
         other.roles == roles &&
+        other.token == token &&
         other.uniqueId == uniqueId &&
         other.study == study &&
         other.departement == departement;
@@ -91,8 +91,8 @@ class Users {
         name.hashCode ^
         email.hashCode ^
         password.hashCode ^
-        token.hashCode ^
         roles.hashCode ^
+        token.hashCode ^
         uniqueId.hashCode ^
         study.hashCode ^
         departement.hashCode;
