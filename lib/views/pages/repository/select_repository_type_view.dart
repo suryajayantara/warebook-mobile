@@ -11,12 +11,21 @@ import 'package:warebook_mobile/views/pages/search/search_type_view.dart';
 import 'package:warebook_mobile/views/pages/studentResearch/create_repo_student_creativity_program.dart';
 import 'package:warebook_mobile/views/pages/thesis/create_repo_thesis.dart';
 
+
+
 class SelectRepositoryTypeView extends StatelessWidget {
   SelectRepositoryTypeView({Key? key}) : super(key: key);
   GetStorage dataStorage = GetStorage('auth');
 
+  Widget listTile = ListTile();
+
+  Widget row = Row(
+    children: [listTile],
+  );
+
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -69,7 +78,8 @@ class SelectRepositoryTypeView extends StatelessWidget {
                   if (dataStorage.read('role') != "lecture") ...{
                   SelectSearchCard(
                     ontap: () {
-                      Get.to(() => ThesisCreateView());
+                        Get.to(() => ThesisCreateView(),
+                            arguments: {'type': 'Tugas Akhir'});
                     },
                     margin: EdgeInsets.symmetric(vertical: 15.0),
                     title: 'Tugas Akhir',
@@ -79,7 +89,8 @@ class SelectRepositoryTypeView extends StatelessWidget {
                   ),
                   SelectSearchCard(
                     ontap: () {
-                      Get.to(() => ThesisCreateView());
+                        Get.to(() => ThesisCreateView(),
+                            arguments: {'type': 'Skripsi'});
                     },
                     margin: EdgeInsets.symmetric(vertical: 0.15),
                     title: 'Skripsi',
