@@ -37,6 +37,33 @@ class JournalTopicService extends GetConnect {
 
   
   /* 
+    Get All Journal Topics By Auth (Auth Needed)
+    Method : GET
+    URL : api.com/journalTopic
+    Desc : Untuk mendapaktan semua data journal topic, berisi selasi topic dan juga user yang memiliki repo 
+    Header  : 
+                - Accept : application/json
+                - Authencticatop : Baerer Token
+    Body    : NaN
+  */
+
+  Future<List<JournalTopic>> getAllByAuth() async {
+    String token = dataStorage.read('token');
+    return await get(
+            Uri.parse(url_path.serviceUrl() + 'journalTopic/auth').toString(),
+            headers: url_path.header(token))
+        .then((value) {
+      if (value.body != null && value.isOk) {
+        return List<JournalTopic>.from(
+            value.body["data"].map((e) => JournalTopic.fromJson(e)));
+      } else {
+        throw "${value.body} - ${value.statusCode}";
+      }
+    });
+  }
+
+  
+  /* 
     Create Journal Topics (Auth Needed)
     Method  : POST
     URL     : api.com/journalTopic

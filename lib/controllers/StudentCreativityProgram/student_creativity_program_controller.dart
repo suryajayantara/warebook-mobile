@@ -27,7 +27,6 @@ class StudentCreativityProgramController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getAllData();
   }
 
   void getAllData() async {
@@ -38,6 +37,15 @@ class StudentCreativityProgramController extends GetxController {
       throw "$e";
     });
   }
+
+  void getAllDataByAuth() async {
+    return service.getAllByAuth().then((value) {
+      listData.assignAll(value);
+    }).catchError((e) {
+      throw "$e";
+    });
+  }
+
 
   StudentCreativityProgram getStudentCreativityProgramDetails(id) {
     return detailsData = listData.firstWhere((element) => element.id == id);
@@ -63,7 +71,7 @@ class StudentCreativityProgramController extends GetxController {
     });
 
     service.createStudentCreativityProgram(form).then((value) {
-      getAllData();
+      getAllDataByAuth();
       Get.to(() => MyRepositoryPage(
             activePage: 1,
           ));
@@ -102,7 +110,7 @@ class StudentCreativityProgramController extends GetxController {
     }
 
     service.updateStuedentCreativity(formData, id).then((value) {
-      getAllData();
+      getAllDataByAuth();
       Get.to(MyRepositoryPage(
         activePage: 1,
       ));
@@ -113,7 +121,7 @@ class StudentCreativityProgramController extends GetxController {
   // Delete Data
   Future<bool> deleteStudentCreativityProgram(id) async {
     return await service.deleteStudentCreativityProgram(id).then((value) {
-      getAllData();
+      getAllDataByAuth();
       if (value) {
         return true;
       } else {

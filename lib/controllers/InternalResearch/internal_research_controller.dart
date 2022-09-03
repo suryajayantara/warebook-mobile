@@ -42,16 +42,18 @@ class InternalResearchController extends GetxController {
     });
   }
 
+  void getAllDataByAuth() async {
+    return service.getAllByAuth().then((value) {
+      listData.assignAll(value);
+    }).catchError((e) {
+      throw e;
+    });
+  }
+
   InternalResearch getInternalResearctDetails(id) {
     return detailsData = listData.firstWhere((element) => element.id == id);
   }
 
-  Future<InternalResearch> getInternalResearctbyUser() async {
-    final _userController = Get.put(UserController());
-    Users users = await _userController.getUserDetail();
-    return detailsData =
-        listData.firstWhere((element) => element.users == users);
-  }
 
   /*
 
@@ -92,7 +94,7 @@ class InternalResearchController extends GetxController {
     await service
         .createInternalResearch(form)
         .then((value) {
-      getAllData();
+      getAllDataByAuth();
       Get.to(() => DosenRepositoryPage(
             activePage: 1,
           ));
@@ -143,7 +145,7 @@ class InternalResearchController extends GetxController {
     }
 
     service.updateIntenralResearch(formData, id).then((value) {
-      getAllData();
+      getAllDataByAuth();
       Get.off(() => DosenRepositoryPage(
             activePage: 1,
           ));
@@ -156,7 +158,7 @@ class InternalResearchController extends GetxController {
   // Delete Data
   Future<bool> deleteInternalResearch(id) async {
     return await service.deleteInternalResearch(id).then((value) {
-      getAllData();
+      getAllDataByAuth();
       if (value) {
         return true;
       } else {

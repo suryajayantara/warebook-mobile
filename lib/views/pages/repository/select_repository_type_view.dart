@@ -17,12 +17,6 @@ class SelectRepositoryTypeView extends StatelessWidget {
   SelectRepositoryTypeView({Key? key}) : super(key: key);
   GetStorage dataStorage = GetStorage('auth');
 
-  Widget listTile = ListTile();
-
-  Widget row = Row(
-    children: [listTile],
-  );
-
   @override
   Widget build(BuildContext context) {
 

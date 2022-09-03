@@ -32,12 +32,19 @@ class ThesisController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getAllData();
   }
 
 
   void getAllData() async {
     return thesisService.getAll().then((value) {
+      listData.assignAll(value);
+    }).catchError((e) {
+      throw "$e";
+    });
+  }
+
+  void getAllDataByAuth() async {
+    return thesisService.getAllByAuth().then((value) {
       listData.assignAll(value);
     }).catchError((e) {
       throw "$e";
@@ -63,7 +70,7 @@ class ThesisController extends GetxController {
     thesisService
         .addThesis(form)
         .then((value) {
-      getAllData();
+      getAllDataByAuth();
       Get.to(MyRepositoryPage(
         activePage: 0,
       ));
@@ -91,7 +98,7 @@ class ThesisController extends GetxController {
     });
 
     thesisService.updateThesis(form, id).then((value) {
-      getAllData();
+      getAllDataByAuth();
       Get.to(MyRepositoryPage(
         activePage: 0,
       ));
@@ -103,7 +110,7 @@ class ThesisController extends GetxController {
   // Delete Data
   Future<bool> deleteThesis(id) async {
     return await thesisService.deleteThesis(id).then((value) {
-      getAllData();
+      getAllDataByAuth();
       if (value) {
         return true;
       } else {

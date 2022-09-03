@@ -29,7 +29,8 @@ class DosenRepositoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    internalResearchController.getAllData();
+    internalResearchController.getAllDataByAuth();
+    journalTopicController.getAllDataByAuth();
     return DefaultTabController(
         initialIndex: activePage,
         length: 2,

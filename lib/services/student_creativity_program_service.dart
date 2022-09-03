@@ -22,6 +22,23 @@ class StudentCreativityProgramService extends GetConnect {
     });
   }
 
+  Future<List<StudentCreativityProgram>> getAllByAuth() async {
+    String token = dataStorage.read('token');
+    return await get(
+            Uri.parse(
+              url_path.serviceUrl() + routeName + "/auth",
+            ).toString(),
+            headers: url_path.header(token))
+        .then((value) {
+      if (value.body != null && value.isOk) {
+        return List<StudentCreativityProgram>.from(value.body["data"]['data']
+            .map((e) => StudentCreativityProgram.fromJson(e)));
+      } else {
+        throw "${value.body} - ${value.statusCode}";
+      }
+    });
+  }
+
   
 
   Future<StudentCreativityProgram> createStudentCreativityProgram(

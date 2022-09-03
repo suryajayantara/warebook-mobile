@@ -91,11 +91,13 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             SolidButton(
                               onTap: () {
+
                                 _loginController.loginMethod(
                                     _loginController.email.value.text
                                         .toString(),
                                     _loginController.password.value.text
                                         .toString());
+                                
                               },
                               title: "Masuk",
                               color: ColorsTheme.lightBlue,
@@ -117,6 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                                           color: ColorsTheme.lightBlue),
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {
+                                          
                                           Get.to(() => SelectAccountTypeView());
                                         },
                                     ),

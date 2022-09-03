@@ -36,6 +36,20 @@ class InternalResearchService extends GetConnect {
     });
   }
 
+  Future<List<InternalResearch>> getAllByAuth() async {
+    return await get(
+            Uri.parse(urlPath.serviceUrl() + routeName + '/auth').toString(),
+            headers: urlPath.header(dataStorage.read('token')))
+        .then((value) {
+      if (value.body != null && value.isOk) {
+        return List<InternalResearch>.from(
+            value.body["data"].map((e) => InternalResearch.fromJson(e)));
+      } else {
+        throw "${value.body} - ${value.statusCode}";
+      }
+    });
+  }
+
   Future<InternalResearch> getDetails(int id) async {
     return await get(
             Uri.parse(urlPath.serviceUrl() + routeName + '/${id}').toString())

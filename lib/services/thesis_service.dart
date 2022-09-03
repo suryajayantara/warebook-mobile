@@ -20,6 +20,21 @@ class ThesisService extends GetConnect {
     });
   }
 
+  Future<List<Thesis>> getAllByAuth() async {
+    String token = dataStorage.read('token');
+    return await get(
+            Uri.parse(url_path.serviceUrl() + 'thesis/auth').toString(),
+            headers: url_path.header(token))
+        .then((value) {
+      if (value.body != null && value.isOk) {
+        return List<Thesis>.from(
+            value.body["data"].map((e) => Thesis.fromJson(e)));
+      } else {
+        throw "${value.body} - ${value.statusCode}";
+      }
+    });
+  }
+
   // Ntar jangan lupa pindahin form datanya ke controller
 
   Future<Thesis> addThesis(

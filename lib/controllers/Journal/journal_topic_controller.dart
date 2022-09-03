@@ -19,13 +19,19 @@ class JournalTopicController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    getAllData();
   }
 
   void getAllData() async {
     return journalService.getAll().then((value) {
       listData.assignAll(value);
-      print(value);
+    }).catchError((e) {
+      throw "$e";
+    });
+  }
+
+  void getAllDataByAuth() async {
+    return journalService.getAllByAuth().then((value) {
+      listData.assignAll(value);
     }).catchError((e) {
       throw "$e";
     });
@@ -66,7 +72,7 @@ class JournalTopicController extends GetxController {
     });
 
     journalService.updateJournalTopic(form, id).then((value) {
-      getAllData();
+      getAllDataByAuth();
       Get.to(DosenRepositoryPage(
         activePage: 0,
       ));
@@ -76,7 +82,7 @@ class JournalTopicController extends GetxController {
   // Delete Data
   Future<bool> deleteJournalTopic(id) async {
     return await journalService.deleteJournalTopic(id).then((value) {
-      getAllData();
+      getAllDataByAuth();
       if (value) {
         return true;
       } else {
