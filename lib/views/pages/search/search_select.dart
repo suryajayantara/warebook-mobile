@@ -23,7 +23,9 @@ class SearchSelectorRepository extends StatelessWidget {
           automaticallyImplyLeading: false,
           centerTitle: true,
           leading: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+              },
               icon: const Icon(
                 Icons.arrow_back_ios_new,
                 color: ColorsTheme.lightBlue,
@@ -102,7 +104,7 @@ class SearchSelectorRepository extends StatelessWidget {
                     SelectSearchCard(
                       ontap: () {
                         Get.to(() => SearchTypeViewRepository(),
-                            arguments: {'searchType': 'journal'});
+                            arguments: {'searchType': 'internalResearch'});
                       },
                       margin: EdgeInsets.symmetric(vertical: 0.0),
                       title: 'Penelitian ',

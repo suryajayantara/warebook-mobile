@@ -31,7 +31,6 @@ class InternalResearchController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getAllData();
   }
 
   // Get All Data Controller

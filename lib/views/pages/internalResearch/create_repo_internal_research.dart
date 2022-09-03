@@ -187,7 +187,7 @@ class _InternalResearchCreateViewState
                       hintText: 'Masukan No. Kontrak disini',
                       inputTextFormater: [
                         // Format hanya angka
-                        FilteringTextInputFormatter.allow(RegExp('[0-9.,]+'))
+                        // FilteringTextInputFormatter.allow(RegExp('[0-9.,]+'))
                       ],
                       padding: EdgeInsets.symmetric(vertical: 10),
                       validator: (value) {

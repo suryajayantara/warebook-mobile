@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:warebook_mobile/controllers/StudentCreativityProgram/student_creativity_program_controller.dart';
 import 'package:warebook_mobile/controllers/Thesis/thesis_controller.dart';
+import 'package:warebook_mobile/services/internal_research_service.dart';
 import 'package:warebook_mobile/services/journal_topic_service.dart';
 import 'package:warebook_mobile/services/student_creativity_program_service.dart';
 import 'package:warebook_mobile/services/thesis_service.dart';
@@ -15,6 +16,7 @@ class SearchController extends GetxController {
   final _thesisService = ThesisService();
   final _journalService = JournalTopicService();
   final _studentResearch = StudentCreativityProgramService();
+  final _internalResearch = InternalResearchService();
   
 
   void getSearch(searchType) async {
@@ -34,7 +36,7 @@ class SearchController extends GetxController {
         await _studentResearch.getAll().then((value) => res.assignAll(value));
         break;
       case 'internalResearch':
-        print('internalResearch');
+        await _internalResearch.getAll().then((value) => res.assignAll(value));
         break;
       default:
     }

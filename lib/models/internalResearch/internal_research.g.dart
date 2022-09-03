@@ -13,13 +13,9 @@ InternalResearch _$InternalResearchFromJson(Map<String, dynamic> json) =>
       abstract: json['abstract'] as String?,
       budgetType: json['budget_type'] as String?,
       budget: json['budget'] as int?,
-      projectStartedAt: json['project_started_at'] == null
-          ? null
-          : DateTime.parse(json['project_started_at'] as String),
-      projectFinishAt: json['project_finish_at'] == null
-          ? null
-          : DateTime.parse(json['project_finish_at'] as String),
-      contractNumber: toInt(json['contract_number']),
+      projectStartedAt: toNull(json['project_started_at']),
+      projectFinishAt: toNull(json['project_finish_at']),
+      contractNumber: json['contract_number'] as String?,
       teamMember: json['team_member'] as String?,
       contractUrl: json['contract_url'] as String?,
       proposalUrl: json['proposal_url'] as String?,

@@ -14,12 +14,12 @@ class InternalResearch {
   @JsonKey(name: 'budget_type')
   String? budgetType;
   int? budget;
-  @JsonKey(name: 'project_started_at')
+  @JsonKey(name: 'project_started_at', fromJson: toNull)
   DateTime? projectStartedAt;
-  @JsonKey(name: 'project_finish_at')
+  @JsonKey(name: 'project_finish_at', fromJson: toNull)
   DateTime? projectFinishAt;
-  @JsonKey(name: 'contract_number', fromJson: toInt)
-  int? contractNumber;
+  @JsonKey(name: 'contract_number')
+  String? contractNumber;
   @JsonKey(name: 'team_member')
   String? teamMember;
   @JsonKey(name: 'contract_url')
@@ -54,7 +54,7 @@ class InternalResearch {
     int? budget,
     DateTime? projectStartedAt,
     DateTime? projectFinishAt,
-    int? contractNumber,
+    String? contractNumber,
     String? teamMember,
     String? contractUrl,
     String? proposalUrl,
@@ -124,6 +124,11 @@ class InternalResearch {
         documentUrl.hashCode ^
         users.hashCode;
   }
+
+ 
+
+  
+
 }
 
 
