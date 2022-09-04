@@ -155,6 +155,11 @@ class _JournalDocumentEditRepoState extends State<JournalDocumentEditRepo> {
         ],
         action: () {
           journalDocumentController.updateJournalDocument(id, idJournal);
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.blue,
+            content: Text(
+                'Dokument Terupdate :  ${journalDocumentController.detailsData.title} '),
+          ));
         },
       ),
     );

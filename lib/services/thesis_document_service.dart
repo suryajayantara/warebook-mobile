@@ -55,7 +55,6 @@ class ThesisDocumentService extends GetConnect {
             headers: url_path.header(token.toString()))
         .then((value) {
       if (value.body != null && value.isOk) {
-        print(value.body);
         return ThesisDocument();
       } else {
         print(value.bodyBytes);

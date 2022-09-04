@@ -77,6 +77,11 @@ class EditJournalTopic extends StatelessWidget {
         ],
         action: () {
           journalTopicController.updateData(id);
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.blue,
+            content: Text(
+                'Repository Terupdate :  ${journalTopicController.detailsData.title} '),
+          ));
         },
       ),
     );

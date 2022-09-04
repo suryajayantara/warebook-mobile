@@ -20,6 +20,7 @@ class ThesisCreateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(type);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -40,7 +41,7 @@ class ThesisCreateView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text(
-                        "Thesis Baru",
+                        "Buat ${type} Baru",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w800,

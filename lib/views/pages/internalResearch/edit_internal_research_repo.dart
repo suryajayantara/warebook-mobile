@@ -216,6 +216,11 @@ class _InternalResearchEditViewState extends State<InternalResearchEditView> {
         action: () {
           // thesisController.addData();
           internalResearchController.updateInternalResearch(id);
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.blue,
+            content: Text(
+                'Data Terupdate : ${internalResearchController.detailsData.title}'),
+          ));
         },
       ),
     );

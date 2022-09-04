@@ -154,6 +154,11 @@ class _EditRepoStudentCreativityProgramViewState
         action: () {
           // thesisController.addData();
           studentCreativityProgramController.updateData(id);
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.blue,
+            content: Text(
+                'Data Terupdate :  ${studentCreativityProgramController.detailsData.title} '),
+          ));
         },
       ),
     );

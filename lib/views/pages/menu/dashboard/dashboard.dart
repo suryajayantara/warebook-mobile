@@ -7,6 +7,9 @@ import 'package:warebook_mobile/controllers/Auth/login_controller.dart';
 import 'package:warebook_mobile/controllers/Auth/user_controller.dart';
 import 'package:warebook_mobile/themes/colors.dart';
 import 'package:warebook_mobile/views/components/Card/card.dart';
+import 'package:warebook_mobile/views/components/button/outline_button.dart';
+import 'package:warebook_mobile/views/components/button/solid_button.dart';
+import 'package:warebook_mobile/views/components/popup/custom_dialog.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/lecturer_repository.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/student_repository.dart';
 import 'package:warebook_mobile/views/pages/repository/select_repository_type_view.dart';
@@ -61,7 +64,40 @@ class DashboardPage extends StatelessWidget {
                               size: 30,
                             ),
                             onPressed: () {
-                              _loginController.logoutMethod();
+
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return CustomPopUpDialog(
+                                      title: 'Logout',
+                                      desc:
+                                          'Yakin ingin Logout dari Aplikasi ini ?',
+                                      button: [
+                                        SolidButton(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          title: 'Batalkan',
+                                          width: 120,
+                                          color: Colors.red,
+                                        ),
+                                        OutlineButton(
+                                          onTap: () {
+                                            _loginController.logoutMethod();
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                              backgroundColor: Colors.blue,
+                                              content: Text('Berhasil Logout'),
+                                            ));
+                                          },
+                                          title: 'Logout',
+                                          width: 120,
+                                          color: Colors.red,
+                                          textColor: Colors.red,
+                                        )
+                                      ],
+                                    );
+                                  });
                             },
                           )
                         ]),
@@ -171,54 +207,7 @@ class DashboardPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 260, left: 0, right: 0),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: Container(
-                          margin: EdgeInsets.only(left: 25),
-                          child: Row(
-                            children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Tugas Akhir di Jurusanmu',
-                                    style: TextStyle(
-                                        fontFamily: 'Nunito Sans',
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w800),
-                                  ),
-                                  Text(
-                                    'Liat Journal tebaik di jurusanmu',
-                                    style: TextStyle(
-                                        fontFamily: 'Nunito Sans',
-                                        fontSize: 15),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 175,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            CardView(),
-                            CardView(),
-                            CardView(),
-                            CardView(),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                
               ],
             )
           ],

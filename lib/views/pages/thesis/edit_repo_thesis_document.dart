@@ -90,7 +90,11 @@ class _EditThesisDocumentRepositoryPageState
           action: () {
             // thesisController.addData();
             thesisDocumentController.updateThesisDocument(id, idThesis);
-
+ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Colors.blue,
+              content: Text(
+                  'Dokument Terupdate :  ${thesisDocumentController.detailsData.documentName} '),
+            ));
             // print(documentName);
           },
         ),

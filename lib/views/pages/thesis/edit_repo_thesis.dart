@@ -92,6 +92,11 @@ class ThesisEditView extends StatelessWidget {
         ],
         action: () {
           thesisController.updateData(id);
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.blue,
+            content: Text(
+                'Repository Terupdate :  ${thesisController.detailsData.title} '),
+          ));
         },
       ),
     );

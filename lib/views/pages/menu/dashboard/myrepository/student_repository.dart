@@ -30,7 +30,7 @@ class MyRepositoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    thesisController.getAllDataByAuth;
+    thesisController.getAllDataByAuth();
     studentCreativityProgramController.getAllDataByAuth();
     return SafeArea(
       child: DefaultTabController(
