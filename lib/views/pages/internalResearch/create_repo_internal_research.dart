@@ -62,7 +62,8 @@ class _InternalResearchCreateViewState
         lastDate: DateTime(2100));
 
     setState(() {
-      String formatedDate = DateFormat('yyyy-mm-dd').format(pickedTime!);
+      String formatedDate =
+          DateFormat('yyyy-MM-dd HH:mm:ss').format(pickedTime!);
       internalResearchController.projectStartedAt.text = formatedDate;
     });
   }
@@ -75,7 +76,8 @@ class _InternalResearchCreateViewState
         lastDate: DateTime(2100));
 
     setState(() {
-      String formatedDate = DateFormat('yyyy-mm-dd').format(pickedTime!);
+      String formatedDate =
+          DateFormat('yyyy-MM-dd HH:mm:ss').format(pickedTime!);
       internalResearchController.projectFinishAt.text = formatedDate;
     });
   }
@@ -170,14 +172,16 @@ class _InternalResearchCreateViewState
                         padding: EdgeInsets.symmetric(vertical: 10),
                       controller: internalResearchController.projectStartedAt,
                         label: 'Tanggal Pengajuan',
-                        hint: DateFormat('dd/mm/yyyy').format(DateTime.now()),
+                        hint: DateFormat('yyyy-MM-dd HH:mm:ss')
+                            .format(DateTime.now()),
                         onTap: selectStartDate,
                         Icon: Icon(Icons.calendar_today_rounded)),
                     DateSelectForm(
                         padding: EdgeInsets.symmetric(vertical: 10),
                         controller: internalResearchController.projectFinishAt,
                         label: 'Tanggal Penyelesaian',
-                        hint: DateFormat('dd/mm/yyyy').format(DateTime.now()),
+                        hint: DateFormat('yyyy-MM-dd HH:mm:ss')
+                            .format(DateTime.now()),
                         onTap: selectFinishDate,
                         Icon: Icon(Icons.calendar_month_outlined)),
 

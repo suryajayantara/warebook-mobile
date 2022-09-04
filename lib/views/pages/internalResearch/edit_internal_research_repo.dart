@@ -61,7 +61,8 @@ class _InternalResearchEditViewState extends State<InternalResearchEditView> {
         lastDate: DateTime(2100));
 
     setState(() {
-      String formatedDate = DateFormat('yyyy-mm-dd').format(pickedTime!);
+      String formatedDate =
+          DateFormat('yyyy-MM-dd HH:mm:ss').format(pickedTime!);
       internalResearchController.projectStartedAt.text = formatedDate;
     });
   }
@@ -74,7 +75,8 @@ class _InternalResearchEditViewState extends State<InternalResearchEditView> {
         lastDate: DateTime(2100));
 
     setState(() {
-      String formatedDate = DateFormat('yyyy-mm-dd').format(pickedTime!);
+      String formatedDate =
+          DateFormat('yyyy-MM-dd HH:mm:ss').format(pickedTime!);
       internalResearchController.projectFinishAt.text = formatedDate;
     });
   }

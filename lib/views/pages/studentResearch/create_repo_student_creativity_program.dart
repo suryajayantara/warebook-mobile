@@ -135,14 +135,7 @@ class _StudentCreativityProgramCreateViewState
                         ontap: () {
                           selectDocument();
                         }),
-                    // UploadField(
-                    //     description: (thesisController.statusData)
-                    //         ? thesisController.filename.toString()
-                    //         : "Pilih Satu File",
-                    //     padding: EdgeInsets.symmetric(vertical: 10),
-                    //     ontap: () {
-                    //       thesisController.selectFile();
-                    //     }),
+                    
                   ],
                 )),
           )
