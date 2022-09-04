@@ -31,7 +31,7 @@ class StudentCreativityProgramService extends GetConnect {
             headers: url_path.header(token))
         .then((value) {
       if (value.body != null && value.isOk) {
-        return List<StudentCreativityProgram>.from(value.body["data"]['data']
+        return List<StudentCreativityProgram>.from(value.body["data"]
             .map((e) => StudentCreativityProgram.fromJson(e)));
       } else {
         throw "${value.body} - ${value.statusCode}";
