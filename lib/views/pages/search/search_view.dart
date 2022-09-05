@@ -33,7 +33,9 @@ class SearchView extends StatelessWidget {
             automaticallyImplyLeading: false,
             centerTitle: true,
             leading: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.back();
+                },
                 icon: const Icon(
                   Icons.arrow_back_ios_new,
                   color: ColorsTheme.lightBlue,
@@ -47,10 +49,10 @@ class SearchView extends StatelessWidget {
           body: Obx(() {
             if (_searchController.listData.length > 0) {
               return ListView.builder(
-              itemCount: _searchController.listData.length,
-              itemBuilder: (context, i) {
-                return ListTile(
-                  onTap: () {
+                itemCount: _searchController.listData.length,
+                itemBuilder: (context, i) {
+                  return ListTile(
+                    onTap: () {
                       switch (typeOfRepos) {
                         case "thesis":
                           final _thesisController = Get.put(ThesisController());
@@ -60,6 +62,7 @@ class SearchView extends StatelessWidget {
                           Get.to(() => ThesisDetailsPage(), arguments: {
                             "id": _searchController.listData[i].id
                           });
+                          // print(_searchController.listData[i].id);
                           break;
                         case "studentResearch":
                           final _studentResearchController =
@@ -78,24 +81,26 @@ class SearchView extends StatelessWidget {
                           break;
                         default:
                       }
-                  },
-                  leading: SvgPicture.asset(
-                    ImagePath.folder,
-                    height: 72.0,
-                  ),
-                  title: Text(
-                      stringFormating.truncateWithEllipsis(
-                          20, _searchController.listData[i].title.toString()),
-                      style: TextStyle(fontFamily: 'Nunito Sans')),
-                  subtitle: (typeOfRepos == 'journal')
-                      ? Text(stringFormating.truncateWithEllipsis(60,
-                          _searchController.listData[i].description.toString()))
-                      : Text(stringFormating.truncateWithEllipsis(60,
-                          _searchController.listData[i].abstract.toString())),
-                  isThreeLine: true,
-                );
-              },
-            );
+                    },
+                    leading: SvgPicture.asset(
+                      ImagePath.folder,
+                      height: 72.0,
+                    ),
+                    title: Text(
+                        stringFormating.truncateWithEllipsis(
+                            20, _searchController.listData[i].title.toString()),
+                        style: TextStyle(fontFamily: 'Nunito Sans')),
+                    subtitle: (typeOfRepos == 'journal')
+                        ? Text(stringFormating.truncateWithEllipsis(
+                            60,
+                            _searchController.listData[i].description
+                                .toString()))
+                        : Text(stringFormating.truncateWithEllipsis(60,
+                            _searchController.listData[i].abstract.toString())),
+                    isThreeLine: true,
+                  );
+                },
+              );
             } else {
               return Center(
                   child: Column(

@@ -55,7 +55,7 @@ class _ThesisDocumentCreateViewState extends State<ThesisDocumentCreateView> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text(
-                        "Thesis Baru",
+                        "Dokumen Thesis Baru",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w800,

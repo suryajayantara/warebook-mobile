@@ -210,7 +210,7 @@ class _InternalResearchCreateViewState
                     UploadField(
                         description: (dokumentName != null)
                             ? dokumentName
-                            : "Pilih Dokument Penelitian",
+                            : "Pilih Dokumen Penelitian",
                         padding: EdgeInsets.symmetric(vertical: 10),
                         ontap: () {
                           selectDocument();

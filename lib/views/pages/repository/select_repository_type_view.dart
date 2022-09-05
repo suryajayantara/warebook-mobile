@@ -11,15 +11,12 @@ import 'package:warebook_mobile/views/pages/search/search_type_view.dart';
 import 'package:warebook_mobile/views/pages/studentResearch/create_repo_student_creativity_program.dart';
 import 'package:warebook_mobile/views/pages/thesis/create_repo_thesis.dart';
 
-
-
 class SelectRepositoryTypeView extends StatelessWidget {
   SelectRepositoryTypeView({Key? key}) : super(key: key);
   GetStorage dataStorage = GetStorage('auth');
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -28,7 +25,9 @@ class SelectRepositoryTypeView extends StatelessWidget {
           automaticallyImplyLeading: false,
           centerTitle: true,
           leading: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+              },
               icon: const Icon(
                 Icons.arrow_back_ios_new,
                 color: ColorsTheme.lightBlue,
@@ -47,7 +46,6 @@ class SelectRepositoryTypeView extends StatelessWidget {
             children: [
               Center(
                 child: Column(children: [
-                  
                   Container(
                     margin: EdgeInsets.symmetric(vertical: 10.0),
                     child: Column(
@@ -70,38 +68,38 @@ class SelectRepositoryTypeView extends StatelessWidget {
                     ),
                   ),
                   if (dataStorage.read('role') != "lecture") ...{
-                  SelectSearchCard(
-                    ontap: () {
+                    SelectSearchCard(
+                      ontap: () {
                         Get.to(() => ThesisCreateView(),
                             arguments: {'type': 'Tugas Akhir'});
-                    },
-                    margin: EdgeInsets.symmetric(vertical: 15.0),
-                    title: 'Tugas Akhir',
-                    urlImage: 'assets/images/search/thesis.svg',
-                    height: 100,
-                    desc: 'Upload hasil tugas akhirmu disini',
-                  ),
-                  SelectSearchCard(
-                    ontap: () {
+                      },
+                      margin: EdgeInsets.symmetric(vertical: 15.0),
+                      title: 'Tugas Akhir',
+                      urlImage: 'assets/images/search/thesis.svg',
+                      height: 100,
+                      desc: 'Upload hasil tugas akhirmu disini',
+                    ),
+                    SelectSearchCard(
+                      ontap: () {
                         Get.to(() => ThesisCreateView(),
                             arguments: {'type': 'Skripsi'});
-                    },
-                    margin: EdgeInsets.symmetric(vertical: 0.15),
-                    title: 'Skripsi',
-                    urlImage: 'assets/images/search/pkm.svg',
-                    height: 100,
-                    desc: 'Upload Skripsi yang kamu kerjakan Disini',
-                  ),
-                  SelectSearchCard(
-                    ontap: () {
-                      Get.to(() => StudentCreativityProgramCreateView());
-                    },
-                    margin: EdgeInsets.symmetric(vertical: 15.0),
-                    title: 'PKM',
-                    urlImage: 'assets/images/search/journal.svg',
-                    height: 100,
-                    desc: 'Punya PKM ? Upload Disini',
-                  ),
+                      },
+                      margin: EdgeInsets.symmetric(vertical: 0.15),
+                      title: 'Skripsi',
+                      urlImage: 'assets/images/search/pkm.svg',
+                      height: 100,
+                      desc: 'Upload Skripsi yang kamu kerjakan Disini',
+                    ),
+                    SelectSearchCard(
+                      ontap: () {
+                        Get.to(() => StudentCreativityProgramCreateView());
+                      },
+                      margin: EdgeInsets.symmetric(vertical: 15.0),
+                      title: 'PKM',
+                      urlImage: 'assets/images/search/journal.svg',
+                      height: 100,
+                      desc: 'Punya PKM ? Upload Disini',
+                    ),
                   } else ...{
                     SelectSearchCard(
                       ontap: () {
@@ -114,18 +112,16 @@ class SelectRepositoryTypeView extends StatelessWidget {
                       desc: 'ingin membuat jurnal ? Upload Disini',
                     ),
                     SelectSearchCard(
-                    ontap: () {
-                      Get.to(() => InternalResearchCreateView());
-                    },
+                      ontap: () {
+                        Get.to(() => InternalResearchCreateView());
+                      },
                       margin: EdgeInsets.symmetric(vertical: 0.0),
-                    title: 'Pengabdian',
-                    urlImage: 'assets/images/search/journal.svg',
-                    height: 100,
-                    desc: 'Punya Pengabdian ? Upload Disini',
-                  ),
-                    
+                      title: 'Penelitian',
+                      urlImage: 'assets/images/search/journal.svg',
+                      height: 100,
+                      desc: 'Punya Penelitian  ? Upload Disini',
+                    ),
                   }
-                  
                 ]),
               )
             ],
