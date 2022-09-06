@@ -16,6 +16,7 @@ class JournalView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _journalController.getAllData();
     _journalController.getJournalDocumentDetails(id);
     return SafeArea(
       child: Scaffold(
