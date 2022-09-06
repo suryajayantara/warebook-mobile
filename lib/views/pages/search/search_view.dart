@@ -56,7 +56,6 @@ class SearchView extends StatelessWidget {
                           final _thesisController = Get.put(ThesisController());
                           final _thesisDocumentController =
                               Get.put(ThesisDocumentController());
-
                           Get.to(() => ThesisDetailsPage(), arguments: {
                             "id": _searchController.listData[i].id
                           });

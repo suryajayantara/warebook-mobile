@@ -78,7 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       controller: _registerController.password,
                       label: 'Password',
                       hintText: 'Masukan Password disini',
-                      isPassword: false,
+                      isPassword: true,
                       padding: EdgeInsets.symmetric(vertical: 10),
                       validator: (value) {
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
@@ -140,7 +140,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         );
                       },
-                    )
+                    ),
+                    
                   ],
                 )),
           )

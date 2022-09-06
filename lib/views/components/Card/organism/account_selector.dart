@@ -30,7 +30,7 @@ class AccountSelectorCard extends StatelessWidget {
           children: [
             SvgPicture.asset(
               img.toString(),
-              height: 140,
+              height: 110,
             ),
             Text(
               title.toString(),
