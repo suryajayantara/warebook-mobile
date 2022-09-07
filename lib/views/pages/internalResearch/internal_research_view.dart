@@ -32,7 +32,9 @@ class InternalResearchDetailsPage extends StatelessWidget {
           automaticallyImplyLeading: false,
           centerTitle: true,
           leading: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+              },
               icon: const Icon(
                 Icons.arrow_back_ios_new,
                 color: ColorsTheme.lightBlue,
@@ -52,7 +54,7 @@ class InternalResearchDetailsPage extends StatelessWidget {
               Row(
                 children: [
                   Pill(
-                      text: 'Pengabdian',
+                      text: 'Penelitian & Pengabdian',
                       margin: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
                       padding:
                           EdgeInsets.symmetric(vertical: 5, horizontal: 10)),
@@ -95,24 +97,22 @@ class InternalResearchDetailsPage extends StatelessWidget {
               Container(
                 child: DocumentCard(
                   onTap: () {
-                   
                     Get.to(() => PDFView(
                         url: internalResearchController.detailsData.proposalUrl
                             .toString()));
                   },
-                  title: "Proposal Pengabdian",
+                  title: "Proposal Penelitian",
                   desc: '',
                 ),
               ),
               Container(
                 child: DocumentCard(
                   onTap: () {
-                   
                     Get.to(() => PDFView(
                         url: internalResearchController.detailsData.documentUrl
                             .toString()));
                   },
-                  title: "Dokument Pengabdian",
+                  title: "Dokument Penelitian",
                   desc: '',
                 ),
               ),
