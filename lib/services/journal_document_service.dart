@@ -46,7 +46,8 @@ class JournalDocumentService extends GetConnect {
             headers: url_path.header(dataStorage.read('token')))
         .then((value) {
       if (value.body != null && value.isOk) {
-        return JournalDocument.fromJson(value.body['data']);
+        // return JournalDocument.fromJson(value.body['data']);
+        return JournalDocument();
       } else {
         throw "${value.bodyString}";
       }

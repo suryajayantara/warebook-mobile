@@ -81,9 +81,7 @@ class JournalDocumentController extends GetxController {
 
     service.createJournalDocument(form).then((value) {
       getAllData();
-      Get.to(() => DosenRepositoryPage(
-            activePage: 0,
-          ));
+      Get.to(() => ManageJournalRepo(), arguments: {'id': id});
     }).catchError((e) {
       throw e;
     });
