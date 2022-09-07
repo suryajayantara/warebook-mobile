@@ -26,6 +26,7 @@ class ManageJournalRepo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     journalTopicController.getJournalTopicDetails(id);
+    journalController.getJournalDocumentByIdTopics(id);
     return SafeArea(
         child: Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -41,7 +42,9 @@ class ManageJournalRepo extends StatelessWidget {
           automaticallyImplyLeading: false,
           centerTitle: true,
           leading: IconButton(
-              onPressed: () {Get.back();},
+              onPressed: () {
+                Get.back();
+              },
               icon: const Icon(
                 Icons.arrow_back_ios_new,
                 color: ColorsTheme.lightBlue,
@@ -95,30 +98,30 @@ class ManageJournalRepo extends StatelessWidget {
                                 button: [
                                   SolidButton(
                                     onTap: () {
-                                      // thesisDocumentController
-                                      //     .deleteThesisDocument(
-                                      //         thesisDocumentController
-                                      //             .listData[i].id,
-                                      //         id)
-                                      //     .then((value) {
-                                      //   if (value) {
-                                      //     Navigator.pop(context);
-                                      //     ScaffoldMessenger.of(context)
-                                      //         .showSnackBar(SnackBar(
-                                      //       backgroundColor: Colors.blue,
-                                      //       content: Text(
-                                      //           'Dokument Berhasil Dihapus'),
-                                      //     ));
-                                      //   } else {
-                                      //     Navigator.pop(context);
+                                      journalController
+                                          .deleteJournalDocument(
+                                              journalController.listData[i].id)
+                                          .then((value) {
+                                        if (value) {
+                                          Navigator.pop(context);
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                            backgroundColor: Colors.blue,
+                                            content: Text(
+                                                'Dokument Berhasil Dihapus'),
+                                          ));
+                                          journalController
+                                              .getJournalDocumentByIdTopics(id);
+                                        } else {
+                                          Navigator.pop(context);
 
-                                      //     ScaffoldMessenger.of(context)
-                                      //         .showSnackBar(SnackBar(
-                                      //       backgroundColor: Colors.red,
-                                      //       content: Text(value.toString()),
-                                      //     ));
-                                      //   }
-                                      // });
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                            backgroundColor: Colors.red,
+                                            content: Text(value.toString()),
+                                          ));
+                                        }
+                                      });
                                     },
                                     title: 'Hapus',
                                     width: 120,
@@ -151,7 +154,7 @@ class ManageJournalRepo extends StatelessWidget {
                           'assets/images/lottie/nodata.json'),
                     ),
                     Text(
-                      'Dokument Belum Tersedia',
+                      'Dokumen Belum Tersedia',
                       style: TextStyle(
                           fontFamily: 'Nunito Sans',
                           fontSize: 16,

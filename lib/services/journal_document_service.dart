@@ -54,7 +54,6 @@ class JournalDocumentService extends GetConnect {
   }
 
   Future<JournalDocument> updateJournalDocument(FormData form, int id) async {
-    
     return await post(
             Uri.parse(url_path.serviceUrl() + "${routeName}/$id").toString(),
             form,
@@ -65,6 +64,24 @@ class JournalDocumentService extends GetConnect {
       } else {
         throw "${value.bodyString}";
       }
+    });
+  }
+
+  Future<bool> deleteJournalDocument(id) async {
+    String token = dataStorage.read('token');
+    return await delete(
+            Uri.parse(url_path.serviceUrl() + "${routeName}/$id").toString(),
+            headers: url_path.header(token.toString()))
+        .then((value) {
+      if (value.statusCode == 200) {
+        print(value.body);
+        return true;
+      } else {
+        print(value.body);
+        return false;
+      }
+    }).catchError((e) {
+      throw e;
     });
   }
 }
