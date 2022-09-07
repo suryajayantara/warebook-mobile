@@ -22,7 +22,7 @@ class SearchTypeViewRepository extends StatelessWidget {
           automaticallyImplyLeading: false,
           centerTitle: true,
           leading: IconButton(
-              onPressed: () {},
+              onPressed: () {Get.back();},
               icon: const Icon(
                 Icons.arrow_back_ios_new,
                 color: ColorsTheme.lightBlue,

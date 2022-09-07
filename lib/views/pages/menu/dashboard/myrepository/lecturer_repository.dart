@@ -19,7 +19,6 @@ import 'package:warebook_mobile/views/pages/journal/manage_journal_repo.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/dashboard.dart';
 
 class DosenRepositoryPage extends StatelessWidget {
-  
   int activePage;
   DosenRepositoryPage({Key? key, this.activePage = 0}) : super(key: key);
 
@@ -57,12 +56,11 @@ class DosenRepositoryPage extends StatelessWidget {
                     child: Text('Jurnal'),
                   ),
                   Tab(
-                    child: Text('Pengabdian'),
+                    child: Text('Penelitian & Pengabdian'),
                   )
                 ]),
           ),
           body: TabBarView(children: [
-            
             Obx(() {
               if (journalTopicController.listData.length > 0) {
                 return ListView.builder(
@@ -241,7 +239,7 @@ class DosenRepositoryPage extends StatelessWidget {
                                     return CustomPopUpDialog(
                                       title: 'Hapus Data',
                                       desc:
-                                          'Yakin ingin menghapus Repository Pengabdian?',
+                                          'Yakin ingin menghapus Repository ?',
                                       button: [
                                         SolidButton(
                                           onTap: () {
@@ -256,7 +254,7 @@ class DosenRepositoryPage extends StatelessWidget {
                                                     .showSnackBar(SnackBar(
                                                   backgroundColor: Colors.blue,
                                                   content: Text(
-                                                      'Pengabdian Berhasil Dihapus'),
+                                                      'Data Berhasil Dihapus'),
                                                 ));
                                               } else {
                                                 Navigator.pop(context);
