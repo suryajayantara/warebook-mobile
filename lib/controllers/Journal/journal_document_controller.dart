@@ -25,7 +25,6 @@ class JournalDocumentController extends GetxController {
   final listData = <JournalDocument>[].obs;
   JournalDocument detailsData = JournalDocument();
   final service = JournalDocumentService();
-  
 
   @override
   void onInit() {
@@ -44,14 +43,11 @@ class JournalDocumentController extends GetxController {
   void getJournalDocumentByIdTopics(id) {
     listData.clear();
     service.getAllByTopics(id).then((value) => listData.assignAll(value));
-  
   }
 
-  
   JournalDocument getJournalDocumentDetails(int id) {
     return detailsData = listData.firstWhere((element) => element.id == id);
   }
-
 
   void editThesisDocument(id) {
     detailsData = listData.firstWhere((element) => element.id == id);
@@ -128,4 +124,16 @@ class JournalDocumentController extends GetxController {
     });
   }
 
+  Future<bool> deleteJournalDocument(id) async {
+    return await service.deleteJournalDocument(id).then((value) {
+      getJournalDocumentByIdTopics(id);
+      if (value) {
+        return true;
+      } else {
+        return false;
+      }
+    }).catchError((e) {
+      throw e;
+    });
+  }
 }
