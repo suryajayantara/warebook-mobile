@@ -41,7 +41,7 @@ class JournalDocumentController extends GetxController {
   }
 
   List<JournalDocument> getJournalDocumentByIdTopics(id) {
-    getAllData();
+
     return listData.where((element) => element.journalTopic?.id == id).toList();
   }
 
