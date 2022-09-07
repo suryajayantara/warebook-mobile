@@ -109,21 +109,26 @@ class InternalResearchController extends GetxController {
     abstract.text = detailsData.abstract.toString();
     budget.text = detailsData.budget.toString();
     budgetType.text = detailsData.budgetType.toString();
-    projectStartedAt.text = detailsData.projectStartedAt.toString();
-    projectFinishAt.text = detailsData.projectFinishAt.toString();
     contractNumber.text = detailsData.contractNumber.toString();
     teamMember.text = detailsData.teamMember.toString();
   }
 
   void updateInternalResearch(id) async {
+
+    
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+    DateTime date = DateTime.now();
+
     FormData formData = FormData({
       'title': title.value.text.toString(),
       'abstract': abstract.value.text.toString(),
       'budget': budget.value.text.toString(),
       'budget_type': budgetType.value.text.toString(),
       'contract_number': contractNumber.value.text.toString(),
-      'project_started_at': projectStartedAt.value.text.toString(),
-      'project_finish_at': projectFinishAt.value.text.toString(),
+      'project_started_at': dateFormat.parse(
+          "${projectStartedAt.value.text} ${date.hour}:${date.minute}:${date.second}"),
+      'project_finish_at': dateFormat.parse(
+          "${projectFinishAt.value.text} ${date.hour}:${date.minute}:${date.second}"),
       'team_member': teamMember.value.text.toString(),
     });
 
