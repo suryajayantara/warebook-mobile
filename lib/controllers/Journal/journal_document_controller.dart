@@ -41,6 +41,10 @@ class JournalDocumentController extends GetxController {
     });
   }
 
+  List<JournalDocument> getJournalDocumentByIdTopics(id) {
+    return listData.where((element) => element.journalTopic?.id == id).toList();
+  }
+
   
   JournalDocument getJournalDocumentDetails(int id) {
     return detailsData = listData.firstWhere((element) => element.id == id);

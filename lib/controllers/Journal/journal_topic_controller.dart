@@ -36,6 +36,7 @@ class JournalTopicController extends GetxController {
       throw "$e";
     });
   }
+  
 
   JournalTopic getJournalTopicDetails(id) {
     return detailsData = listData.firstWhere((element) => element.id == id);
