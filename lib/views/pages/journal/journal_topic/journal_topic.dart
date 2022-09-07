@@ -29,6 +29,8 @@ class _JournalTopicViewState extends State<JournalTopicView> {
 
   @override
   Widget build(BuildContext context) {
+    journalTopicController.getAllData();
+    journalTopicController.getJournalTopicDetails(id);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
