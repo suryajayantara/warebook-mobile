@@ -114,8 +114,6 @@ class InternalResearchController extends GetxController {
   }
 
   void updateInternalResearch(id) async {
-
-    
     DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
     DateTime date = DateTime.now();
 

@@ -137,7 +137,7 @@ class DashboardPage extends StatelessWidget {
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 10),
                           child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 GestureDetector(
                                   child: Column(
@@ -186,21 +186,21 @@ class DashboardPage extends StatelessWidget {
                                         Get.to(() => DosenRepositoryPage());
                                       }
                                     }),
-                                Column(
-                                  children: [
-                                    SvgPicture.asset(
-                                      ImagePath.setting,
-                                      height: 50,
-                                    ),
-                                    Text(
-                                      'Pengaturan',
-                                      style: TextStyle(
-                                          fontFamily: 'Nunito Sans',
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black.withOpacity(0.4)),
-                                    )
-                                  ],
-                                ),
+                                // Column(
+                                //   children: [
+                                //     SvgPicture.asset(
+                                //       ImagePath.setting,
+                                //       height: 50,
+                                //     ),
+                                //     Text(
+                                //       'Pengaturan',
+                                //       style: TextStyle(
+                                //           fontFamily: 'Nunito Sans',
+                                //           fontWeight: FontWeight.w600,
+                                //           color: Colors.black.withOpacity(0.4)),
+                                //     )
+                                //   ],
+                                // ),
                               ]),
                         ),
                       ],
