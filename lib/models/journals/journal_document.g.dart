@@ -17,9 +17,7 @@ JournalDocument _$JournalDocumentFromJson(Map<String, dynamic> json) =>
       year: json['year'] as String?,
       tags: json['tags'] as String?,
       doi: json['doi'] as String?,
-      journalTopic: json['journalTopic'] == null
-          ? null
-          : JournalTopic.fromJson(json['journalTopic'] as Map<String, dynamic>),
+      journalTopicId: json['journal_topics_id'] as int?,
     );
 
 Map<String, dynamic> _$JournalDocumentToJson(JournalDocument instance) {
@@ -40,6 +38,6 @@ Map<String, dynamic> _$JournalDocumentToJson(JournalDocument instance) {
   val['year'] = instance.year;
   val['tags'] = instance.tags;
   val['doi'] = instance.doi;
-  val['journalTopic'] = instance.journalTopic;
+  val['journal_topics_id'] = instance.journalTopicId;
   return val;
 }

@@ -19,6 +19,7 @@ class JournalTopicController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+    getAllDataByAuth();
   }
 
   void getAllData() async {

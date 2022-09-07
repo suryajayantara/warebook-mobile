@@ -20,7 +20,8 @@ class JournalDocument {
   String? year;
   String? tags;
   String? doi;
-  JournalTopic? journalTopic;
+  @JsonKey(name: "journal_topics_id")
+  int? journalTopicId;
   JournalDocument({
     this.id,
     this.title,
@@ -31,7 +32,7 @@ class JournalDocument {
     this.year,
     this.tags,
     this.doi,
-    this.journalTopic,
+    this.journalTopicId,
   });
 
   JournalDocument copyWith({
@@ -44,7 +45,8 @@ class JournalDocument {
     String? year,
     String? tags,
     String? doi,
-    JournalTopic? journalTopic,
+  
+    int? journalTopicId,
   }) {
     return JournalDocument(
       id: id ?? this.id,
@@ -56,7 +58,7 @@ class JournalDocument {
       year: year ?? this.year,
       tags: tags ?? this.tags,
       doi: doi ?? this.doi,
-      journalTopic: journalTopic ?? this.journalTopic,
+      journalTopicId: journalTopicId ?? this.journalTopicId,
     );
   }
 
@@ -67,7 +69,7 @@ class JournalDocument {
 
   @override
   String toString() {
-    return 'JournalDocument(id: $id, title: $title, author: $author, abstract: $abstract, documentUrl: $documentUrl, originalUrl: $originalUrl, year: $year, tags: $tags, doi: $doi, journalTopic: $journalTopic)';
+    return 'JournalDocument(id: $id, title: $title, author: $author, abstract: $abstract, documentUrl: $documentUrl, originalUrl: $originalUrl, year: $year, tags: $tags, doi: $doi, journalTopicId: $journalTopicId)';
   }
 
   @override
@@ -84,7 +86,7 @@ class JournalDocument {
         other.year == year &&
         other.tags == tags &&
         other.doi == doi &&
-        other.journalTopic == journalTopic;
+        other.journalTopicId == journalTopicId;
   }
 
   @override
@@ -98,8 +100,10 @@ class JournalDocument {
         year.hashCode ^
         tags.hashCode ^
         doi.hashCode ^
-        journalTopic.hashCode;
+        journalTopicId.hashCode;
   }
+
+ 
 }
 
 toNull(_) {

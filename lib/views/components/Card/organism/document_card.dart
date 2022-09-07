@@ -62,7 +62,9 @@ class DocumentCard extends StatelessWidget {
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 18,
-                            fontFamily: 'Nunito Sans'),
+                          fontFamily: 'Nunito Sans',
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                       Text(
                         desc.toString(),

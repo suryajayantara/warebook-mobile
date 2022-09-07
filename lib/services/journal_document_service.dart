@@ -22,6 +22,23 @@ class JournalDocumentService extends GetConnect {
     });
   }
 
+  Future<List<JournalDocument>> getAllByTopics(id) async {
+    print(Uri.parse(
+            url_path.serviceUrl() + routeName + '/single/' + id.toString())
+        .toString());
+    return await get(Uri.parse(
+                url_path.serviceUrl() + routeName + '/single/' + id.toString())
+            .toString())
+        .then((value) {
+      if (value.body != null && value.isOk) {
+        return List<JournalDocument>.from(
+            value.body["data"].map((e) => JournalDocument.fromJson(e)));
+      } else {
+        throw "${value.body} - ${value.statusCode}";
+      }
+    });
+  }
+
   // Add
   Future<JournalDocument> createJournalDocument(FormData form) async {
     return await post(

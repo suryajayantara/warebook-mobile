@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:warebook_mobile/models/internalResearch/internal_research.dart';
 import 'package:warebook_mobile/models/journals/journal_document.dart';
 import 'package:warebook_mobile/models/journals/journal_topic.dart';
 import 'package:warebook_mobile/services/journal_document_service.dart';
+import 'package:warebook_mobile/views/components/form/dropdown_button.dart';
 import 'package:warebook_mobile/views/pages/journal/manage_journal_repo.dart';
 import 'package:warebook_mobile/views/pages/menu/dashboard/myrepository/lecturer_repository.dart';
 
@@ -34,15 +36,15 @@ class JournalDocumentController extends GetxController {
   void getAllData() async {
     return service.getAll().then((value) {
       listData.assignAll(value);
-      print(value);
     }).catchError((e) {
       throw "$e";
     });
   }
 
-  List<JournalDocument> getJournalDocumentByIdTopics(id) {
-
-    return listData.where((element) => element.journalTopic?.id == id).toList();
+  void getJournalDocumentByIdTopics(id) {
+    listData.clear();
+    service.getAllByTopics(id).then((value) => listData.assignAll(value));
+  
   }
 
   

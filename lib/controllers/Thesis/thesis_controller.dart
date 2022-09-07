@@ -60,7 +60,7 @@ class ThesisController extends GetxController {
     Users data = await _userController.getUserDetail();
 
     FormData form = FormData({
-      'thesisType': type,
+      'thesis_type': type,
       'tags': tags.value.text,
       'title': title.value.text,
       'author': data.name,
