@@ -5,9 +5,11 @@ import 'package:get/get.dart';
 import 'package:warebook_mobile/commons/asset_path.dart';
 import 'package:warebook_mobile/controllers/Auth/login_controller.dart';
 import 'package:warebook_mobile/themes/colors.dart';
+import 'package:warebook_mobile/views/components/bottom_sheet/auth_bottom_sheet.dart';
 import 'package:warebook_mobile/views/components/form/custom_input_form.dart';
 import 'package:warebook_mobile/views/components/button/solid_button.dart';
 import 'package:warebook_mobile/views/pages/auth/select_account.dart';
+import 'package:warebook_mobile/views/pages/menu/dashboard/dashboard.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -90,13 +92,34 @@ class _LoginPageState extends State<LoginPage> {
                               },
                             ),
                             SolidButton(
-                              onTap: () {
-
-                                _loginController.loginMethod(
+                              onTap: () async {
+                                Get.bottomSheet(AuthBottomSheet(
+                                  lottieUrl:
+                                      "assets/images/lottie/loading-login.json",
+                                  lottieSize: 200,
+                                  title: "Masuk Kedalam Aplikas",
+                                  desc: "Tunggu sesaat lagi ...",
+                                ));
+                                await _loginController
+                                    .loginMethod(
                                     _loginController.email.value.text
                                         .toString(),
                                     _loginController.password.value.text
-                                        .toString());
+                                            .toString())
+                                    .then((value) {
+                                  if (value) {
+                                    Get.offAll(() => DashboardPage());
+                                  }
+                                }).catchError((e) {
+                                  Get.back();
+                                  Get.bottomSheet(AuthBottomSheet(
+                                    title: 'Gagal Login',
+                                    desc: e.toString(),
+                                    lottieUrl:
+                                        "assets/images/lottie/error.json",
+                                    lottieSize: 100,
+                                  ));
+                                });
                                 
                               },
                               title: "Masuk",

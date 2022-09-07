@@ -19,20 +19,22 @@ class LoginController extends GetxController {
   String token = "";
   var isLoading = false.obs;
 
-  void loginMethod(String email, String password) async {
+  Future<bool> loginMethod(String email, String password) async {
     
-    try {
-      await _authService
+    
+    return await _authService
         .login(Users(password: password, email: email))
           .then((value) {
         if (value.token != null) {
           dataStorage.write('token', value.token);
-          Get.offAll(() => DashboardPage());
+        return true;
+      } else {
+        return false;
       }
+
+
     });
-    } catch (e) {
-      throw e;
-    }
+
   }
 
   void logoutMethod() {

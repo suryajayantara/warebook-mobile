@@ -22,6 +22,7 @@ class InternalResearchDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    internalResearchController.getAllData();
     internalResearchController.getInternalResearctDetails(id);
     return SafeArea(
       child: Scaffold(

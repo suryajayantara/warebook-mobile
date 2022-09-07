@@ -16,6 +16,7 @@ class JournalView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _journalController.getAllData();
     _journalController.getJournalDocumentDetails(id);
     return SafeArea(
       child: Scaffold(
@@ -71,12 +72,12 @@ class JournalView extends StatelessWidget {
                     fontSize: 30,
                     fontWeight: FontWeight.w800),
               ),
-              Container(
-                  margin: EdgeInsets.symmetric(vertical: 10),
-                  child: UserSection(
-                      userName:
-                          _journalController.detailsData.author.toString(),
-                      userDepartement: 'Politeknik Negeri Bali')),
+              // Container(
+              //     margin: EdgeInsets.symmetric(vertical: 10),
+              //     child: UserSection(
+              //         userName:
+              //             _journalController.detailsData.author.toString(),
+              //         userDepartement: 'Politeknik Negeri Bali')),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: Column(
@@ -90,17 +91,18 @@ class JournalView extends StatelessWidget {
                           fontSize: 14,
                           color: ColorsTheme.black),
                     ),
+                    
                     Container(
-                        margin: EdgeInsets.symmetric(vertical: 10),
+                        margin: EdgeInsets.only(top: 20),
                         child: RichText(
                           text: TextSpan(
-                              text: 'Kata Kunci : ',
+                              text: 'Penulis : ',
                               style: TextStyle(
                                   fontWeight: FontWeight.w800,
                                   color: Colors.black),
                               children: [
                                 TextSpan(
-                                    text: _journalController.detailsData.tags,
+                                    text: _journalController.detailsData.author,
                                     style: TextStyle(color: Colors.blueAccent))
                               ]),
                         )),
@@ -108,7 +110,20 @@ class JournalView extends StatelessWidget {
                 ),
               ),
               Container(
-                  margin: EdgeInsets.only(bottom: 20),
+                  margin: EdgeInsets.only(bottom: 10),
+                  child: RichText(
+                    text: TextSpan(
+                        text: 'Kata Kunci : ',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w800, color: Colors.black),
+                        children: [
+                          TextSpan(
+                              text: _journalController.detailsData.tags,
+                              style: TextStyle(color: Colors.blueAccent))
+                        ]),
+                  )),
+              Container(
+                  margin: EdgeInsets.only(bottom: 10),
                   child: RichText(
                     text: TextSpan(
                         text: 'DOI : ',
@@ -129,8 +144,8 @@ class JournalView extends StatelessWidget {
                         url: _journalController.detailsData.documentUrl
                             .toString()));
                   },
-                  title: "Proposal PKM",
-                  desc: '',
+                  title: "Dokumen Jurnal",
+                  desc: _journalController.detailsData.title,
                 ),
               ),
             ],

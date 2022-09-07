@@ -29,6 +29,7 @@ class StudentCreativityProgramView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    studentCreativityProgramController.getAllData();
     studentCreativityProgramController.getStudentCreativityProgramDetails(id);
     return SafeArea(
       child: Scaffold(

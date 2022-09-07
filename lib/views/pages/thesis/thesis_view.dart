@@ -21,15 +21,17 @@ class ThesisDetailsPage extends StatelessWidget {
   ThesisDetailsPage({Key? key}) : super(key: key);
   var urlPath = NetworkUtility();
   int id = Get.arguments["id"];
-  // final thesisControllers = Get.put(ThesisController());
+
+  // final thesiscontrollers = Get.put(ThesisController());
   final thesiscontrollers = Get.find<ThesisController>();
   final thesisDocumentController = Get.put(ThesisDocumentController());
 
   @override
   Widget build(BuildContext context) {
+    thesiscontrollers.getAllData();
     thesiscontrollers.getThesisDetails(id);
     thesisDocumentController.getByThesisId(id);
-    
+
 
     return SafeArea(
       child: Scaffold(

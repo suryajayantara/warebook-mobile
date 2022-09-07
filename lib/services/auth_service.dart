@@ -22,11 +22,10 @@ class AuthService extends GetConnect {
         }).then((value) {
       if (value.isOk && value.body != null) {
         // print(value.body["role"]);
-        print(value.body["role"]);
         dataStorage.write('role', value.body["role"]);
         return Users.fromJson(value.body);
       } else {
-        throw "${value.statusCode} : ${value.body['message']}";
+        throw "${value.body['message']}";
       }
     }).catchError((e) {
       throw e;

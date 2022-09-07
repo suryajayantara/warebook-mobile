@@ -23,8 +23,6 @@ class _InternalResearchCreateViewState
   final internalResearchController = Get.put(InternalResearchController());
   final _key = GlobalKey<FormState>();
 
-
-
   // FileName
   String? proposalName;
   String? dokumentName;
@@ -63,7 +61,7 @@ class _InternalResearchCreateViewState
 
     setState(() {
       String formatedDate =
-          DateFormat('yyyy-MM-dd HH:mm:ss').format(pickedTime!);
+          DateFormat('yyyy-MM-dd').format(pickedTime!);
       internalResearchController.projectStartedAt.text = formatedDate;
     });
   }
@@ -76,8 +74,7 @@ class _InternalResearchCreateViewState
         lastDate: DateTime(2100));
 
     setState(() {
-      String formatedDate =
-          DateFormat('yyyy-MM-dd HH:mm:ss').format(pickedTime!);
+      String formatedDate = DateFormat('yyyy-MM-dd').format(pickedTime!);
       internalResearchController.projectFinishAt.text = formatedDate;
     });
   }
@@ -92,10 +89,8 @@ class _InternalResearchCreateViewState
   //   }
   // }
 
-
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -143,7 +138,7 @@ class _InternalResearchCreateViewState
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
                       },
                     ),
-                    CustomInputForm(  
+                    CustomInputForm(
                       controller: internalResearchController.budgetType,
                       label: 'Sumber Dana',
                       hintText: 'Masukan Sumber Dana disini',
@@ -167,24 +162,20 @@ class _InternalResearchCreateViewState
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
                       },
                     ),
-
                     DateSelectForm(
                         padding: EdgeInsets.symmetric(vertical: 10),
-                      controller: internalResearchController.projectStartedAt,
+                        controller: internalResearchController.projectStartedAt,
                         label: 'Tanggal Pengajuan',
-                        hint: DateFormat('yyyy-MM-dd HH:mm:ss')
-                            .format(DateTime.now()),
+                        hint: DateFormat('yyyy-MM-dd').format(DateTime.now()),
                         onTap: selectStartDate,
                         Icon: Icon(Icons.calendar_today_rounded)),
                     DateSelectForm(
                         padding: EdgeInsets.symmetric(vertical: 10),
                         controller: internalResearchController.projectFinishAt,
                         label: 'Tanggal Penyelesaian',
-                        hint: DateFormat('yyyy-MM-dd HH:mm:ss')
-                            .format(DateTime.now()),
+                        hint: DateFormat('yyyy-MM-dd').format(DateTime.now()),
                         onTap: selectFinishDate,
                         Icon: Icon(Icons.calendar_month_outlined)),
-
                     CustomInputForm(
                       controller: internalResearchController.contractNumber,
                       label: 'No. Kontrak',

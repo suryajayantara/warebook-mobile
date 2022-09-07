@@ -29,7 +29,6 @@ class JournalDocumentController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    getAllData();
   }
 
   void getAllData() async {
@@ -39,6 +38,11 @@ class JournalDocumentController extends GetxController {
     }).catchError((e) {
       throw "$e";
     });
+  }
+
+  List<JournalDocument> getJournalDocumentByIdTopics(id) {
+    getAllData();
+    return listData.where((element) => element.journalTopic?.id == id).toList();
   }
 
   
