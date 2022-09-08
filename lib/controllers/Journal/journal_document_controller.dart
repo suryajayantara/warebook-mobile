@@ -80,7 +80,7 @@ class JournalDocumentController extends GetxController {
     });
 
     service.createJournalDocument(form).then((value) {
-      getAllData();
+      getJournalDocumentByIdTopics(id);
       Get.to(() => ManageJournalRepo(), arguments: {'id': id});
     }).catchError((e) {
       throw e;

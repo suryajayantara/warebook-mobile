@@ -140,7 +140,7 @@ class _JournalCreateViewState extends State<JournalCreateView> {
                         if (value!.isEmpty) return ("Tidak Boleh Kosong");
                       },
                     ),
-                    
+
                     // UploadField(
                     //     description: (thesisController.statusData)
                     //         ? thesisController.filename.toString()

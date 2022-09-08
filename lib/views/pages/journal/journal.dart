@@ -16,7 +16,7 @@ class JournalView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _journalController.getAllData();
+    // _journalController.getAllData();
     _journalController.getJournalDocumentDetails(id);
     return SafeArea(
       child: Scaffold(
@@ -26,7 +26,9 @@ class JournalView extends StatelessWidget {
           automaticallyImplyLeading: false,
           centerTitle: true,
           leading: IconButton(
-              onPressed: () {Get.back();},
+              onPressed: () {
+                Get.back();
+              },
               icon: const Icon(
                 Icons.arrow_back_ios_new,
                 color: ColorsTheme.lightBlue,
@@ -91,7 +93,6 @@ class JournalView extends StatelessWidget {
                           fontSize: 14,
                           color: ColorsTheme.black),
                     ),
-                    
                     Container(
                         margin: EdgeInsets.only(top: 20),
                         child: RichText(
